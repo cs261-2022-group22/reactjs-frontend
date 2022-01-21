@@ -1,0 +1,26 @@
+name: Deploy to test server
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: azure
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+
+    - name: Deploy
+      run: |
+        sudo systemctl stop cs261-web-server.service
+        rm -rf /mnt/disk/cs261/frontend
+        cp -rv ../reactjs-frontend /mnt/disk/cs261/frontend
+        cd /mnt/disk/cs261/frontend
+        npm install
+        npm run build
+        sudo systemctl start cs261-web-server.service
