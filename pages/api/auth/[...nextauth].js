@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
 export default NextAuth({
     providers: [
@@ -18,20 +19,20 @@ export default NextAuth({
                 },
             },
 			async authorize(credentials) {
-                // Make request to python api
-
-                if (
-                    credentials.username == "test@gmail.com" &&
-                    credentials.password == "test"
-                ) {
-                    return {
-                        id: 0,
-                        name: "Test",
-                        email: "test@gmail.com",
-                    };
-                }
-                // If login fails
-                return null;
+				const res = await axios.post("http://localhost:3000/api/checkcredentials", {
+					email: credentials.username,
+					// Currently not hashed
+					passwordHash: credentials.password,
+				})
+				if (res.data.authenticated == "True") {
+					return {
+						id: res.data.id,
+						email: credentials.username,
+					};
+				} else {
+					// If login fails
+					return null
+				}
             },
         }),
     ],

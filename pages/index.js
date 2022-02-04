@@ -6,12 +6,14 @@ import Unauthenticated from "../components/Unauthenticated";
 export default function Home() {
 	const { data: session } = useSession()
 	if (!session) return <Unauthenticated />
-	return (
-		<div>
-			You must be signed in to get here <br></br>
-			<Link href="/api/auth/signout">
-				Sign out
-			</Link>
-		</div>
-	)
+	else {	
+		return (
+			<div>
+				You must be signed in to get here <br></br>
+				<Link href="/api/auth/signout">
+					Sign out
+				</Link>
+			</div>
+		)
+	}
 }
