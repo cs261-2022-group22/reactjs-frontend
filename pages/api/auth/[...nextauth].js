@@ -21,18 +21,17 @@ export default NextAuth({
 			async authorize(credentials) {
 				const res = await axios.post("http://localhost:3000/api/checkcredentials", {
 					email: credentials.username,
-					// Currently not hashed
-					passwordHash: credentials.password,
+					password: credentials.password,
 				})
-				if (res.data.authenticated == "True") {
-					return {
-						id: res.data.id,
-						email: credentials.username,
-					};
-				} else {
-					// If login fails
-					return null
+				if (res.status == 200) {
+					if (res.data.authenticated == "True") {
+						return {
+							id: res.data.id,
+							email: credentials.username,
+						};
+					}
 				}
+				return null
             },
         }),
     ],

@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         var auth_proto = grpc.loadPackageDefinition(packageDefinition).authentication;
         var client = new auth_proto.Authenticate('localhost:50051',
                                             grpc.credentials.createInsecure());
-        client.TryLogin({username: req.body.email, password: req.body.passwordHash}, function(err, response) {
+        client.TryLogin({username: req.body.email, password: req.body.password}, function(err, response) {
             if (err) {
                 console.log("An error has occurred");
                 res.status(500).send({ message: "Internal Server Error." });
