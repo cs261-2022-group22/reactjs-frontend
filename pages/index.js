@@ -8,7 +8,7 @@ export default function Home() {
 	if (!session) return <Unauthenticated />
 	else {	
 		return (
-			<div>
+			<div className="display-6">
 				You must be signed in to get here <br></br>
 				<Link href="/api/auth/signout">
 					Sign out
