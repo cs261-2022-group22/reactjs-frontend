@@ -1,3 +1,6 @@
+/// This file gets called by running `npm run build:gen_proto`, it generates corresponding typescript proto implementation
+/// modules for all proto files in ./common/
+
 const path = require('path');
 const shell = require('shelljs');
 const process = require('process');
@@ -19,5 +22,6 @@ const protoConfig = [
     `--ts_proto_out=${MODEL_DIR}`,
     `--proto_path ${PROTO_DIR} ${PROTO_DIR}/*.proto`,
 ];
+
 // https://github.com/stephenh/ts-proto#usage
 shell.exec(`${PROTOC_PATH} ${protoConfig.join(" ")}`, (code, stdout, stderr) => console.log(code, stdout, stderr));
