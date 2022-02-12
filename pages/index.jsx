@@ -6,7 +6,7 @@ import Unauthenticated from "../components/Unauthenticated";
 export default function Home() {
 	const { data: session } = useSession()
 	if (!session) return <Unauthenticated />
-	else {	
+	else {
 		return (
 			<div className="display-6">
 				You must be signed in to get here <br></br>

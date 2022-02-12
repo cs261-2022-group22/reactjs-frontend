@@ -5,6 +5,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "build:gen_proto": "node bin/generate-proto.js",
         "lint": "next lint"
     },
     "dependencies": {
@@ -18,7 +19,13 @@
         "react-dom": "17.0.2"
     },
     "devDependencies": {
+        "@types/react": "^17.0.39",
         "eslint": "8.7.0",
-        "eslint-config-next": "12.0.8"
+        "eslint-config-next": "12.0.8",
+        "grpc-tools": "^1.11.2",
+        "rimraf": "^3.0.2",
+        "shelljs": "^0.8.5",
+        "ts-proto": "^1.104.0",
+        "typescript": "^4.5.5"
     }
 }
