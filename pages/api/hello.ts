@@ -7,7 +7,4 @@ export default async function handler(req, res) {
             authResolve();
         }, 3000);
     });
-    // setTimeout(() => {
-    //     res.status(200).json({ name: "John Doe" });
-    // }, 10000);
 }
