@@ -3,7 +3,7 @@ import Link from "next/link";
 function Unauthenticated() {
     return (
         <div>
-            <Link href="/api/auth/signin">You haven&apos;t logged in.</Link>
+            <Link href="/api/auth/signin">You have not logged in.</Link>
         </div>
     );
 }
