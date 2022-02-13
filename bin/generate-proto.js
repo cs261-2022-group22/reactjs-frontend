@@ -1,5 +1,5 @@
-/// This file gets called by running `npm run build:gen_proto`, it generates corresponding typescript proto implementation
-/// modules for all proto files in ./common/
+// This file gets called by running `npm run build:gen_proto`, it generates corresponding typescript proto implementation
+// modules for all proto files in ./common/
 
 const path = require("path");
 const shell = require("shelljs");
