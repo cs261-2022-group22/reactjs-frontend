@@ -1,4 +1,3 @@
-import styles from "../styles/Home.module.css";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Unauthenticated from "../components/Unauthenticated";
