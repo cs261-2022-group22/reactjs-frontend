@@ -19,6 +19,7 @@ function BottomBar() {
                         label="Feedback"
                         icon={<FeedbackIcon />}
                         showLabel
+                        sx={{ "&:hover": { color: "#5d6166" } }}
                     />
                 </Link>
             </BottomNavigation>
