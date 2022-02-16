@@ -1,6 +1,6 @@
 import LoginButton from "components/LoginButton";
 import NavBar from "components/NavBar";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import FrontPagePicture from "components/FrontPagePicture";
 import RegisterButton from "components/RegisterButton";
 import FrontPageText from "components/FrontPageText";
