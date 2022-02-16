@@ -8,7 +8,8 @@ import FrontPageText from "components/FrontPageText";
 
 function Home() {
 	return (
-		<><NavBar />
+		<div>
+			<NavBar />
 			<Grid container spacing={5} alignItems="center" justifyContent="space-evenly">
 				<Grid item style={{ justifyContent: "center", display: "flex" }} xs={11}>
 					<FrontPagePicture />
@@ -24,10 +25,8 @@ function Home() {
 				</Grid>
 			</Grid>
 			<BottomBar />
-		</>
-
+		</div>
 	)
-
 }
 
 export default Home;
