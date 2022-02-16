@@ -2,7 +2,6 @@
 .vscode/
 utils/proto
 
-
 # dependencies
 /node_modules
 /.pnp

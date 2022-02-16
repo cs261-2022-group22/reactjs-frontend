@@ -1,13 +1,13 @@
-import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
 import HelpIcon from "@mui/icons-material/Help";
 
 function NavBar() {
-    return (
-        <AppBar position="static">
+	return (
+		<AppBar position="static">
 			<Toolbar>
 				<Grid container>
-					<Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-start"}}>
+					<Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-start" }}>
 						<Typography variant="h6">Logo</Typography>
 					</Grid>
 					<Grid item xs={8}>
@@ -18,7 +18,7 @@ function NavBar() {
 							Website Name
 						</Typography>
 					</Grid>
-					<Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end"}}>
+					<Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
 						<Link href="/tutorial">
 							<Button
 								color="inherit"
@@ -30,8 +30,8 @@ function NavBar() {
 					</Grid>
 				</Grid>
 			</Toolbar>
-        </AppBar>
-    );
+		</AppBar>
+	);
 }
 
 export default NavBar;
