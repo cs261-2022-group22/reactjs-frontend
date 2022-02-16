@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -14,16 +13,17 @@ jobs:
         node-version: [16.x, 17.x]
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-        token: ${{ secrets.GH_TOKEN }}
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          token: ${{ secrets.GH_TOKEN }}
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    - run: npm install
-    - run: npm run build
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
