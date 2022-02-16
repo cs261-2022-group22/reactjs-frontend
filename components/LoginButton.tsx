@@ -1,21 +1,11 @@
 import React from 'react'
-import { Link, Typography } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Typography, Button } from '@mui/material';
 
 function LoginButton() {
   return (
-    <Link href="/login">
-      <Button color="inherit" sx={{ mt: 2 }} variant="contained" size="large" >
-
-        <Typography
-          variant="h3">
-          Login
-        </Typography>
-
-
-      </Button>
-    </Link>
-
+    <Button color="inherit" sx={{ mt: 2 }} variant="contained" size="large" href='/api/auth/signin' >
+      <Typography variant="h3"> Login</Typography>
+    </Button>
   )
 }
 export default LoginButton
