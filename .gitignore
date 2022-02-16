@@ -2,7 +2,6 @@
 .vscode/
 utils/proto
 
-
 # dependencies
 /node_modules
 /.pnp
@@ -33,6 +32,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 *.local
+*.nosync
 
 # vercel
 .vercel
