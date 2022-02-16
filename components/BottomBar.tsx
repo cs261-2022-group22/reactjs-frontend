@@ -3,7 +3,7 @@ import {
     BottomNavigation,
     BottomNavigationAction,
 } from "@mui/material";
-import FeedbackIcon from "@mui/icons-material/Feedback";
+import { Feedback } from "@mui/icons-material";
 import Link from "next/link";
 
 function BottomBar() {
@@ -17,7 +17,7 @@ function BottomBar() {
                 <Link href="/developerFeedback" passHref>
                     <BottomNavigationAction
                         label="Feedback"
-                        icon={<FeedbackIcon />}
+                        icon={<Feedback />}
                         showLabel
                         sx={{ "&:hover": { color: "#5d6166" } }}
                     />
