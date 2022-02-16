@@ -14,7 +14,7 @@ function BottomBar() {
             style={{ top: "auto", bottom: 0 }}
         >
             <BottomNavigation>
-                <Link href="/developerFeedback">
+                <Link href="/developerFeedback" passHref>
                     <BottomNavigationAction
                         label="Feedback"
                         icon={<FeedbackIcon />}

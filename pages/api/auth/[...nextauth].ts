@@ -28,6 +28,7 @@ export default NextAuth({
             },
 
             async authorize(cred, _req) {
+                _req; // unused
                 if (cred == undefined) {
                     return null;
                 }
@@ -42,7 +43,7 @@ export default NextAuth({
                         AuthenticateRequest,
                         AuthenticateReply
                     >(client.tryLogin).bind(client);
-                    let loginResult = await loginAsync({
+                    const loginResult = await loginAsync({
                         username: cred.username,
                         password: cred.password,
                     });
