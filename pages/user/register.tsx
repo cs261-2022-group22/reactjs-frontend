@@ -224,11 +224,11 @@ function Register() {
                 <br />
 
                 <Box sx={{ display: 'grid', rowGap: 2 }}>
-                    <Button variant="outlined" color="error" href="/">Cancel</Button>
                     <Button type="submit" disabled={formState.isSubmitting} variant="contained">
                         {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                         Register
                     </Button>
+                    <Button variant="outlined" color="error" href="/">Cancel</Button>
                 </Box>
             </form>
         </Container >
