@@ -9,7 +9,7 @@ import Link from "next/link";
 function BottomBar() {
     return (
         <AppBar
-            position="fixed"
+            position="relative"
             color="primary"
             style={{ top: "auto", bottom: 0 }}
         >

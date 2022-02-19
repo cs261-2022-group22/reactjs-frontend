@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 function FrontPageText() {
   return (
-    <Card sx={{ mt: 25, mb: 5 }} variant="outlined">
+    <Card sx={{ mt: 15, mb: 5 }} variant="outlined">
 
       <CardContent>
         <Typography variant="h6" color="text.secondary" textAlign="center" >
