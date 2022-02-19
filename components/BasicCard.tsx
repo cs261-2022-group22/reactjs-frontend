@@ -4,24 +4,49 @@ import {
     CardActions,
     CardContent,
     Typography,
+    Grid,
 } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Link from "next/link";
 
-function BasicCard() {
+function BasicCard({ type, account }) {
     return (
-        <Card sx={{ mt: 3, "&:hover": { boxShadow: 5 }, height: "82vh" }}>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }}>Word of the Day</Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    adjective
-                </Typography>
-                <Typography variant="body2">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                </Typography>
+        <Card sx={{ mt: 3, boxShadow: 2, "&:hover": { boxShadow: 15 }, height: "82vh" }}>
+            <CardContent
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    mt: "20vh",
+                }}
+            >
+                <Grid container direction="column" alignItems="center">
+                    <Grid item>
+                        <AccountCircleIcon
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h1">{type}</Typography>
+                    </Grid>
+                </Grid>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
+            <CardActions
+                sx={{
+                    justifyContent: "center",
+                    // alignItems: "center",
+                    display: "flex",
+                }}
+            >
+                {account == "true" ? (
+                    <Link href={type + "/dashboard"} passHref>
+                        <Button size="large">Go to dashboard</Button>
+                    </Link>
+                ) : (
+                    <Link href={type + "/signup"} passHref>
+                        <Button size="large">Sign up</Button>
+                    </Link>
+                )}
             </CardActions>
         </Card>
     );

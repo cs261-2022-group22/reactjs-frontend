@@ -8,16 +8,16 @@ function Home() {
             <Grid container>
                 <Grid item xs={6}>
                     <Container>
-                        <BasicCard />
+                        <BasicCard type="mentee" account="false" />
                     </Container>
                 </Grid>
                 <Grid item xs={6}>
                     <Container>
-                        <BasicCard />
+                        <BasicCard type="mentor" account="true" />
                     </Container>
                 </Grid>
             </Grid>
-			<BottomBar position="fixed"/>
+            <BottomBar position="fixed" />
         </>
     );
 }

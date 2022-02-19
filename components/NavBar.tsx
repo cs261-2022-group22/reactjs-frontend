@@ -13,7 +13,7 @@ function NavBar() {
                         xs={2}
                         sx={{ display: "flex", justifyContent: "flex-start" }}
                     >
-                        <Link href="/" passHref>
+                        <Link href="/choice" passHref>
                             <Typography variant="h6">Logo</Typography>
                         </Link>
                     </Grid>
