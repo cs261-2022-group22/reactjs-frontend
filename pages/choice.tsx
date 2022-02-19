@@ -1,5 +1,4 @@
 import { Grid, Container } from "@mui/material";
-import NavBar from "components/NavBar";
 import BottomBar from "components/BottomBar";
 import BasicCard from "../components/BasicCard";
 
@@ -18,6 +17,7 @@ function Home() {
                     </Container>
                 </Grid>
             </Grid>
+			<BottomBar position="fixed"/>
         </>
     );
 }
