@@ -1,10 +1,14 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { Box, Button, Container, FormControl, Input, InputAdornment, InputLabel } from "@mui/material"
-import { CtxOrReq } from "next-auth/client/_utils"
 import { getCsrfToken } from "next-auth/react"
+import { GetServerSideProps } from "next"
 import React from "react";
 
-export default function SignIn({ csrfToken }: { csrfToken: string }) {
+type SigninProperty = {
+    csrfToken: string;
+};
+
+export default function SignIn({ csrfToken }: SigninProperty) {
     const [values, setValues] = React.useState({
         showPassword: false,
     });
@@ -41,10 +45,6 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
     )
 }
 
-export async function getServerSideProps(context: CtxOrReq) {
-    return {
-        props: {
-            csrfToken: await getCsrfToken(context),
-        },
-    }
+export const getServerSideProps: GetServerSideProps<SigninProperty> = async (context) => {
+    return { props: { csrfToken: await getCsrfToken(context) ?? "" } }
 }
