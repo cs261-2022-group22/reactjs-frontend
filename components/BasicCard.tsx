@@ -11,7 +11,14 @@ import Link from "next/link";
 
 function BasicCard({ type, account }) {
     return (
-        <Card sx={{ mt: 3, boxShadow: 2, "&:hover": { boxShadow: 15 }, height: "82vh" }}>
+        <Card
+            sx={{
+                mt: 3,
+                boxShadow: 2,
+                "&:hover": { boxShadow: 15 },
+                height: "82vh",
+            }}
+        >
             <CardContent
                 sx={{
                     justifyContent: "center",
@@ -22,9 +29,7 @@ function BasicCard({ type, account }) {
             >
                 <Grid container direction="column" alignItems="center">
                     <Grid item>
-                        <AccountCircleIcon
-                            sx={{ width: 100, height: 100 }}
-                        />
+                        <AccountCircleIcon sx={{ width: 100, height: 100 }} />
                     </Grid>
                     <Grid item>
                         <Typography variant="h1">{type}</Typography>

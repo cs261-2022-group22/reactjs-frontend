@@ -2,7 +2,7 @@ import { SubmitHandler, useForm, UseFormRegister, FieldPath, FieldErrors } from 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Container, InputLabel, Typography, FormControl, Input, FormHelperText, Box, Button, InputAdornment, FormLabel, FormControlLabel, Radio, RadioGroup, Chip, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
 import { AccountCircle, DateRangeOutlined, EmailOutlined, PasswordOutlined, TextFields, Visibility, VisibilityOff } from '@mui/icons-material';
-import * as Yup from 'yup';
+import { object as yup_object, string as yup_string, date as yup_date  } from 'yup';
 import PropTypes, { InferProps } from "prop-types";
 import React from 'react';
 import BottomBar from 'components/BottomBar';
@@ -101,18 +101,18 @@ const names = [
 ];
 
 function Register() {
-    const validationSchema = Yup.object().shape({
-        firstName: Yup.string()
+    const validationSchema = yup_object().shape({
+        firstName: yup_string()
             .required('First Name is required'),
-        lastName: Yup.string()
+        lastName: yup_string()
             .required('Last Name is required'),
-        email: Yup.string()
+        email: yup_string()
             .email()
             .required('Email is required'),
-        password: Yup.string()
+        password: yup_string()
             .required('Password is required')
             .min(6, 'Password must be at least 6 characters'),
-        dateOfBirth: Yup.date()
+        dateOfBirth: yup_date()
             .transform((d) => new Date(d))
             .required('Date of Birth is Required')
             .max(new Date(), 'Date of Birth cannot be in the future')
@@ -151,7 +151,7 @@ function Register() {
 
     return (
 		<>
-			<Container maxWidth="sm">
+			<Container maxWidth="sm" sx={{ mt: "8vh" }}>
 				<Typography variant="h4" component="div" gutterBottom>User Registration</Typography>
 
 				<form onSubmit={handleSubmit(registerUser)}>
