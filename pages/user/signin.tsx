@@ -8,9 +8,10 @@ type SigninProperty = {
     csrfToken: string;
     hasValidSession: boolean;
     currentEmail: string;
+    errorReason: string;
 };
 
-export default function SignIn({ csrfToken, hasValidSession, currentEmail }: SigninProperty) {
+export default function SignIn({ csrfToken, hasValidSession, currentEmail, errorReason }: SigninProperty) {
     const [values, setValues] = React.useState({
         showPassword: false,
     });
@@ -18,7 +19,11 @@ export default function SignIn({ csrfToken, hasValidSession, currentEmail }: Sig
     return (
         <Container maxWidth="sm">
             {
-                hasValidSession && <Alert severity="success">You have already logged in as &apos;{currentEmail}&apos;!</Alert>
+                hasValidSession && <div><Alert severity="info">You have already logged in as &apos;{currentEmail}&apos;</Alert><br /></div>
+            }
+
+            {
+                errorReason == "CredentialsSignin" && <div><Alert severity="warning">Wrong email address or password.</Alert><br /></div>
             }
 
             <form method="post" action="/api/auth/callback/credentials">
@@ -61,7 +66,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             csrfToken: await getCsrfToken(context) ?? "",
-            hasValidSession: !!session,
+            errorReason: context.query["error"] ?? "",
+            hasValidSession: !!session && !context.query["error"],
             currentEmail: session?.user?.email ?? "",
         }
     }
