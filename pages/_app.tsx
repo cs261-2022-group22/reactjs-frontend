@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <SessionProvider>
             <NavBar />
+            <br />
             <Component {...pageProps} />
             <BottomBar />
         </SessionProvider>
