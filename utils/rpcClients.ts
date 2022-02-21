@@ -18,7 +18,7 @@ export class AccountClient extends AccountServiceClient {
     constructor() { super(grpc_backend_address, getCredentials()); }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
-    userRegistrationAsync = WrapAsyncRPC(this, this.userRegistration);
+    registerUserAsync = WrapAsyncRPC(this, this.registerUser);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {
