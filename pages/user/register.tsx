@@ -2,7 +2,7 @@ import { SubmitHandler, useForm, UseFormRegister, FieldPath, FieldErrors } from 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Container, InputLabel, Typography, FormControl, Input, FormHelperText, Box, Button, InputAdornment, FormLabel, FormControlLabel, Radio, RadioGroup, Chip, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
 import { AccountCircle, DateRangeOutlined, EmailOutlined, PasswordOutlined, TextFields, Visibility, VisibilityOff } from '@mui/icons-material';
-import { object as yup_object, string as yup_string, date as yup_date  } from 'yup';
+import { object as yup_object, string as yup_string, date as yup_date } from 'yup';
 import PropTypes, { InferProps } from "prop-types";
 import React from 'react';
 import BottomBar from 'components/BottomBar';
@@ -149,92 +149,92 @@ function Register() {
     const [businessAreas, setBusinessAreas] = React.useState<Array<string>>([]);
 
     return (
-		<>
-			<Container maxWidth="sm" sx={{ mt: "8vh" }}>
-				<Typography variant="h4" component="div" gutterBottom>User Registration</Typography>
+        <>
+            <Container maxWidth="sm" sx={{ mt: "8vh" }}>
+                <Typography variant="h4" component="div" gutterBottom>User Registration</Typography>
 
-				<form onSubmit={handleSubmit(registerUser)}>
-					<Box
-						sx={{
-							display: 'grid',
-							columnGap: 3,
-							rowGap: 2,
-							gridAutoColumns: '2fr',
-						}}
-					>
-						<FormTextInput fReg={register} fErrs={errors}
-							icon={<AccountCircle sx={{ mr: 1 }} />}
-							text="First Name"
-							propName='firstName'
-							sx={{ gridRow: '1', gridColumn: '1 / 2' }} />
+                <form onSubmit={handleSubmit(registerUser)}>
+                    <Box
+                        sx={{
+                            display: 'grid',
+                            columnGap: 3,
+                            rowGap: 2,
+                            gridAutoColumns: '2fr',
+                        }}
+                    >
+                        <FormTextInput fReg={register} fErrs={errors}
+                            icon={<AccountCircle sx={{ mr: 1 }} />}
+                            text="First Name"
+                            propName='firstName'
+                            sx={{ gridRow: '1', gridColumn: '1 / 2' }} />
 
-						<FormTextInput fReg={register} fErrs={errors}
-							icon={<div />}
-							text="Last Name"
-							propName='lastName'
-							sx={{ gridRow: '1', gridColumn: '2 / 3' }} />
+                        <FormTextInput fReg={register} fErrs={errors}
+                            icon={<div />}
+                            text="Last Name"
+                            propName='lastName'
+                            sx={{ gridRow: '1', gridColumn: '2 / 3' }} />
 
-						<FormTextInput fReg={register} fErrs={errors}
-							icon={<EmailOutlined sx={{ mr: 1 }} />}
-							text="Email Address"
-							propName='email'
-							type='email' />
+                        <FormTextInput fReg={register} fErrs={errors}
+                            icon={<EmailOutlined sx={{ mr: 1 }} />}
+                            text="Email Address"
+                            propName='email'
+                            type='email' />
 
-						<FormTextInput fReg={register} fErrs={errors}
-							icon={<PasswordOutlined sx={{ mr: 1 }} />}
-							text="Password"
-							propName='password'
-							type='password' />
+                        <FormTextInput fReg={register} fErrs={errors}
+                            icon={<PasswordOutlined sx={{ mr: 1 }} />}
+                            text="Password"
+                            propName='password'
+                            type='password' />
 
-						<FormTextInput fReg={register} fErrs={errors}
-							icon={<DateRangeOutlined sx={{ mr: 1 }} />}
-							text="dateOfBirth"
-							propName='dateOfBirth'
-							type='date' />
+                        <FormTextInput fReg={register} fErrs={errors}
+                            icon={<DateRangeOutlined sx={{ mr: 1 }} />}
+                            text="dateOfBirth"
+                            propName='dateOfBirth'
+                            type='date' />
 
-						<FormControl sx={{ gridColumn: 'span 2' }}>
-							<FormLabel id="gender_radiobutton">Gender</FormLabel>
-							<RadioGroup row aria-labelledby="gender_radiobutton">
-								<FormControlLabel value="female" control={<Radio />} label="Female" />
-								<FormControlLabel value="male" control={<Radio />} label="Male" />
-								<FormControlLabel value="other" control={<Radio />} label="Other" />
-							</RadioGroup>
-						</FormControl>
+                        <FormControl sx={{ gridColumn: 'span 2' }}>
+                            <FormLabel id="gender_radiobutton">Gender</FormLabel>
+                            <RadioGroup row aria-labelledby="gender_radiobutton">
+                                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                <FormControlLabel value="other" control={<Radio />} label="Other" />
+                            </RadioGroup>
+                        </FormControl>
 
-						<FormControl sx={{ gridColumn: 'span 2' }}>
-							<InputLabel id="demo-multiple-chip-label">Business Areas</InputLabel>
-							<Select
-								labelId="demo-multiple-chip-label"
-								id="demo-multiple-chip"
-								multiple
-								value={businessAreas}
-								onChange={(event: SelectChangeEvent<string[]>) => { setBusinessAreas(event.target.value as string[]); }}
-								input={<OutlinedInput id="select-multiple-chip" label="Business Areas" />}
-								MenuProps={MenuProps}
-								renderValue={(selected) => (
-									<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-										{selected.map((value) => (<Chip key={value} label={value} />))}
-									</Box>
-								)}
-							>
-								{names.map((name) => (<MenuItem key={name} value={name}>{name}</MenuItem>))}
-							</Select>
-						</FormControl>
-					</Box>
+                        <FormControl sx={{ gridColumn: 'span 2' }}>
+                            <InputLabel id="demo-multiple-chip-label">Business Areas</InputLabel>
+                            <Select
+                                labelId="demo-multiple-chip-label"
+                                id="demo-multiple-chip"
+                                multiple
+                                value={businessAreas}
+                                onChange={(event: SelectChangeEvent<string[]>) => { setBusinessAreas(event.target.value as string[]); }}
+                                input={<OutlinedInput id="select-multiple-chip" label="Business Areas" />}
+                                MenuProps={MenuProps}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (<Chip key={value} label={value} />))}
+                                    </Box>
+                                )}
+                            >
+                                {names.map((name) => (<MenuItem key={name} value={name}>{name}</MenuItem>))}
+                            </Select>
+                        </FormControl>
+                    </Box>
 
-					<br />
+                    <br />
 
-					<Box sx={{ display: 'grid', rowGap: 2 }}>
-						<Button type="submit" disabled={formState.isSubmitting} variant="contained">
-							{formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-							Register
-						</Button>
-						<Button variant="outlined" color="error" href="/">Cancel</Button>
-					</Box>
-				</form>
-			</Container >
-			<BottomBar postion="fixed"/>
-		</>
+                    <Box sx={{ display: 'grid', rowGap: 2 }}>
+                        <Button type="submit" disabled={formState.isSubmitting} variant="contained">
+                            {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
+                            Register
+                        </Button>
+                        <Button variant="outlined" color="error" href="/">Cancel</Button>
+                    </Box>
+                </form>
+            </Container >
+            <BottomBar position='fixed' />
+        </>
     );
 }
 

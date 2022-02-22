@@ -33,10 +33,10 @@ function Choice(props: { valid: boolean; isMentee: boolean; isMentor: boolean })
 export default Choice;
 
 export async function getServerSideProps() {
-// export async function getServerSideProps(context) {
+    // export async function getServerSideProps(context) {
     // const session = await getSession(context);
     // if (session) {
-    const res = await axios.post("http://localhost:3000/api/user/profiletype", {
+    const res = await axios.post("/api/user/profiletype", {
         userid: "1", //session["id"],
     });
     return {
