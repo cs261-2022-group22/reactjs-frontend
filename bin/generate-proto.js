@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
+
 // This file gets called by running `npm run build:gen_proto`, it generates corresponding typescript proto implementation
 // modules for all proto files in ./common/
 
@@ -20,16 +23,19 @@ const PLUGIN_PATH = path.join(
     "../node_modules/.bin/protoc-gen-ts_proto"
 );
 
+// https://github.com/stephenh/ts-proto/blob/main/README.markdown
 const protoConfig = [
     `--plugin=${PLUGIN_PATH}`,
-
-    // https://github.com/stephenh/ts-proto/blob/main/README.markdown
     "--ts_proto_opt=outputServices=grpc-js,env=node,exportCommonSymbols=false,esModuleInterop=true",
     `--ts_proto_out=${MODEL_DIR}`,
     `--proto_path ${PROTO_DIR} ${PROTO_DIR}/*.proto`,
 ];
 
-// https://github.com/stephenh/ts-proto#usage
-shell.exec(`${PROTOC_PATH} ${protoConfig.join(" ")}`, (code, stdout, stderr) =>
-    console.log(code, stdout, stderr)
-);
+const command = `${PROTOC_PATH} ${protoConfig.join(" ")}`;
+
+shell.exec(command, (code, stdout, stderr) => {
+    if (code !== 0)
+        console.error(code, stdout, stderr)
+    else
+        console.log("Generation Completed!")
+});
