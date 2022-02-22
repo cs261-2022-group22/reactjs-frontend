@@ -3,6 +3,7 @@ import { Alert, Box, Button, Container, FormControl, Input, InputAdornment, Inpu
 import { getCsrfToken, getSession } from "next-auth/react";
 import { GetServerSideProps } from "next"
 import React from "react";
+import BottomBar from "components/BottomBar";
 
 type SigninProperty = {
     csrfToken: string;
@@ -17,42 +18,45 @@ export default function SignIn({ csrfToken, hasValidSession, currentEmail, error
     });
 
     return (
-        <Container maxWidth="sm">
-            {
-                hasValidSession && <div><Alert severity="info">You have already logged in as &apos;{currentEmail}&apos;</Alert><br /></div>
-            }
+        <>
+            <Container maxWidth="sm">
+                {
+                    hasValidSession && <div><Alert severity="info">You have already logged in as &apos;{currentEmail}&apos;</Alert><br /></div>
+                }
 
-            {
-                errorReason == "CredentialsSignin" && <div><Alert severity="warning">Wrong email address or password.</Alert><br /></div>
-            }
+                {
+                    errorReason == "CredentialsSignin" && <div><Alert severity="warning">Wrong email address or password.</Alert><br /></div>
+                }
 
-            <form method="post" action="/api/auth/callback/credentials">
-                <Box sx={{ display: 'grid', rowGap: 2 }}>
-                    <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+                <form method="post" action="/api/auth/callback/credentials">
+                    <Box sx={{ display: 'grid', rowGap: 2 }}>
+                        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
-                    <FormControl >
-                        <InputLabel htmlFor="login_email" variant='standard' required>Email</InputLabel>
-                        <Input id="login_email" type="text" name="email" />
-                    </FormControl>
+                        <FormControl >
+                            <InputLabel htmlFor="login_email" variant='standard' required>Email</InputLabel>
+                            <Input id="login_email" type="text" name="email" />
+                        </FormControl>
 
-                    <FormControl>
-                        <InputLabel htmlFor="login_password" variant='standard' required>Password</InputLabel>
-                        <Input id="login_password" name="password" type={values.showPassword ? "text" : "password"}
-                            endAdornment={<InputAdornment position="end">
-                                <Button aria-label="toggle password visibility"
-                                    onClick={() => { setValues({ ...values, showPassword: !values.showPassword, }); }}
-                                    onMouseDown={(event) => event.preventDefault()}>
-                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </Button>
-                            </InputAdornment>}
-                        />
-                    </FormControl>
+                        <FormControl>
+                            <InputLabel htmlFor="login_password" variant='standard' required>Password</InputLabel>
+                            <Input id="login_password" name="password" type={values.showPassword ? "text" : "password"}
+                                endAdornment={<InputAdornment position="end">
+                                    <Button aria-label="toggle password visibility"
+                                        onClick={() => { setValues({ ...values, showPassword: !values.showPassword, }); }}
+                                        onMouseDown={(event) => event.preventDefault()}>
+                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </Button>
+                                </InputAdornment>}
+                            />
+                        </FormControl>
 
-                    <Button type="submit" variant="contained">Sign In</Button>
-                    <Button href="/">Go back</Button>
-                </Box>
-            </form>
-        </Container>
+                        <Button type="submit" variant="contained">Sign In</Button>
+                        <Button href="/">Go back</Button>
+                    </Box>
+                </form>
+            </Container>
+            <BottomBar position="fixed" />
+        </>
     )
 }
 

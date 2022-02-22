@@ -6,10 +6,10 @@ import {
 import { Feedback } from "@mui/icons-material";
 import Link from "next/link";
 
-function BottomBar() {
+function BottomBar(props: { position: string }) {
     return (
         <AppBar
-            position="fixed"
+            position={ props.position }
             color="primary"
             style={{ top: "auto", bottom: 0 }}
         >
