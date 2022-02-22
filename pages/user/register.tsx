@@ -7,12 +7,23 @@ import PropTypes, { InferProps } from "prop-types";
 import React from 'react';
 import BottomBar from 'components/BottomBar';
 
-type RegistrationData = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    dateOfBirth: Date;
+import { RegistrationData } from "utils/CommonTypes"
+
+FormTextInput.propTypes = {
+    text: PropTypes.string.isRequired,
+    propName: PropTypes.instanceOf<FieldPath<RegistrationData>>(Object()).isRequired,
+    fReg: PropTypes.instanceOf<UseFormRegister<RegistrationData>>(Object()).isRequired,
+    fErrs: PropTypes.instanceOf<FieldErrors>(Object()).isRequired,
+    type: PropTypes.string,
+    colSpan: PropTypes.string,
+    icon: PropTypes.element,
+    sx: PropTypes.oneOfType([
+        PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
+        ),
+        PropTypes.func,
+        PropTypes.object
+    ]),
 };
 
 function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
@@ -60,23 +71,6 @@ function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
         </FormControl>
     );
 }
-
-FormTextInput.propTypes = {
-    text: PropTypes.string.isRequired,
-    propName: PropTypes.instanceOf<FieldPath<RegistrationData>>(Object()).isRequired,
-    fReg: PropTypes.instanceOf<UseFormRegister<RegistrationData>>(Object()).isRequired,
-    fErrs: PropTypes.instanceOf<FieldErrors>(Object()).isRequired,
-    type: PropTypes.string,
-    colSpan: PropTypes.string,
-    icon: PropTypes.element,
-    sx: PropTypes.oneOfType([
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
-        ),
-        PropTypes.func,
-        PropTypes.object
-    ]),
-};
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
