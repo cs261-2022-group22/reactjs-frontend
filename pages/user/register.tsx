@@ -15,7 +15,6 @@ type RegistrationData = {
     dateOfBirth: Date;
 };
 
-
 function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
     const {
         text: text,
