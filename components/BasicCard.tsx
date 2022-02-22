@@ -9,7 +9,8 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Link from "next/link";
 
-function BasicCard({ type, account }) {
+function BasicCard({ type, account }: { type: string, account: boolean }) {
+    console.log("card", account);
     return (
         <Card
             sx={{
@@ -39,11 +40,10 @@ function BasicCard({ type, account }) {
             <CardActions
                 sx={{
                     justifyContent: "center",
-                    // alignItems: "center",
                     display: "flex",
                 }}
             >
-                {account == "true" ? (
+                {account ? (
                     <Link href={type + "/dashboard"} passHref>
                         <Button size="large">Go to dashboard</Button>
                     </Link>

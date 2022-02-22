@@ -6,7 +6,7 @@ import {
 import { Feedback } from "@mui/icons-material";
 import Link from "next/link";
 
-function BottomBar(props) {
+function BottomBar(props: { position: string }) {
     return (
         <AppBar
             position={ props.position }
