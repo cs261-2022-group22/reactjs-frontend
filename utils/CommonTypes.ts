@@ -4,4 +4,5 @@ export type RegistrationData = {
     email: string;
     password: string;
     dateOfBirth: Date;
+    businessArea: number;
 };

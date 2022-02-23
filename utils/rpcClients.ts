@@ -22,6 +22,7 @@ export class AccountClient extends AccountServiceClient {
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
     listAccountProfilesAsync = WrapAsyncRPC(this, this.accountProfiles);
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
+    listBusinessAreasAsync = WrapAsyncRPC(this, this.listBusinessAreas);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {

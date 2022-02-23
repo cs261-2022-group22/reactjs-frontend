@@ -1,15 +1,15 @@
-import { SubmitHandler, useForm, UseFormRegister, FieldPath, FieldErrors } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Container, InputLabel, Typography, FormControl, Input, FormHelperText, Box, Button, InputAdornment, FormLabel, FormControlLabel, Radio, RadioGroup, Chip, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
 import { AccountCircle, DateRangeOutlined, EmailOutlined, PasswordOutlined, TextFields, Visibility, VisibilityOff } from '@mui/icons-material';
-import { object as yup_object, string as yup_string, date as yup_date } from 'yup';
-import PropTypes, { InferProps } from "prop-types";
-import React from 'react';
+import { Box, Button, Container, FormControl, FormHelperText, Input, InputAdornment, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import BottomBar from 'components/BottomBar';
+import PropTypes, { InferProps } from "prop-types";
+import { useEffect, useState } from 'react';
+import { FieldErrors, FieldPath, SubmitHandler, useForm, UseFormRegister } from 'react-hook-form';
+import { RegistrationData } from "utils/CommonTypes";
+import { BusinessArea } from 'utils/proto/account';
+import { number as yup_number, date as yup_date, object as yup_object, string as yup_string } from 'yup';
 
-import { RegistrationData } from "utils/CommonTypes"
-
-FormTextInput.propTypes = {
+const FormTextInputTypes = {
     text: PropTypes.string.isRequired,
     propName: PropTypes.instanceOf<FieldPath<RegistrationData>>(Object()).isRequired,
     fReg: PropTypes.instanceOf<UseFormRegister<RegistrationData>>(Object()).isRequired,
@@ -18,15 +18,13 @@ FormTextInput.propTypes = {
     colSpan: PropTypes.string,
     icon: PropTypes.element,
     sx: PropTypes.oneOfType([
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
-        ),
+        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
         PropTypes.func,
         PropTypes.object
     ]),
 };
 
-function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
+function FormTextInput(_prop: InferProps<typeof FormTextInputTypes>) {
     const {
         text: text,
         propName: propertyName,
@@ -43,7 +41,7 @@ function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
 
     const labelName = "input_" + propertyName;
 
-    const [values, setValues] = React.useState({
+    const [values, setValues] = useState({
         showPassword: false,
     });
 
@@ -72,28 +70,7 @@ function FormTextInput(_prop: InferProps<typeof FormTextInput.propTypes>) {
     );
 }
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-
-const names = [
-    'Business Area A',
-    'Business Area B',
-    'Area C',
-    'Area D',
-    'Area 51',
-    'CS126',
-    'Logic and Verification',
-];
-
-function Register() {
+export default function Register() {
     const validationSchema = yup_object().shape({
         firstName: yup_string()
             .required('First Name is required'),
@@ -108,25 +85,19 @@ function Register() {
         dateOfBirth: yup_date()
             .transform((d) => new Date(d))
             .required('Date of Birth is Required')
-            .max(new Date(), 'Date of Birth cannot be in the future')
+            .max(new Date(), 'Date of Birth cannot be in the future'),
+        businessArea: yup_number()
+            .required('You have to choose a business area')
     });
 
     const registerUser: SubmitHandler<RegistrationData> = async (data, event?) => {
-        console.log(data)
-        console.log(event)
-
         if (!event)
             return;
 
         event.preventDefault()
 
         const res = await fetch('/api/user/register', {
-            body: JSON.stringify({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                password: data.password
-            }),
+            body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
             method: 'POST'
         })
@@ -135,12 +106,18 @@ function Register() {
         console.log(result)
     }
 
-
-    // get functions to build form with useForm() hook 
     const { register, handleSubmit, formState } = useForm<RegistrationData>({ resolver: yupResolver(validationSchema) });
     const { errors } = formState;
 
-    const [businessAreas, setBusinessAreas] = React.useState<Array<string>>([]);
+    const [businessAreas, setBusinessAreas] = useState<BusinessArea[]>([]);
+    useEffect(() => {
+        async function getBusinessAreas() {
+            const result = await fetch('/api/businessArea/list', { method: 'GET' })
+            const res: { businessAreas: BusinessArea[] } = await result.json()
+            setBusinessAreas(res.businessAreas);
+        }
+        getBusinessAreas();
+    }, [])
 
     return (
         <>
@@ -148,14 +125,7 @@ function Register() {
                 <Typography variant="h4" component="div" gutterBottom>User Registration</Typography>
 
                 <form onSubmit={handleSubmit(registerUser)}>
-                    <Box
-                        sx={{
-                            display: 'grid',
-                            columnGap: 3,
-                            rowGap: 2,
-                            gridAutoColumns: '2fr',
-                        }}
-                    >
+                    <Box sx={{ display: 'grid', columnGap: 3, rowGap: 2, gridAutoColumns: '2fr' }}>
                         <FormTextInput fReg={register} fErrs={errors}
                             icon={<AccountCircle sx={{ mr: 1 }} />}
                             text="First Name"
@@ -182,37 +152,23 @@ function Register() {
 
                         <FormTextInput fReg={register} fErrs={errors}
                             icon={<DateRangeOutlined sx={{ mr: 1 }} />}
-                            text="dateOfBirth"
+                            text="Date of Birth"
                             propName='dateOfBirth'
                             type='date' />
 
-                        <FormControl sx={{ gridColumn: 'span 2' }}>
-                            <FormLabel id="gender_radiobutton">Gender</FormLabel>
-                            <RadioGroup row aria-labelledby="gender_radiobutton">
-                                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                <FormControlLabel value="other" control={<Radio />} label="Other" />
-                            </RadioGroup>
-                        </FormControl>
 
                         <FormControl sx={{ gridColumn: 'span 2' }}>
-                            <InputLabel id="demo-multiple-chip-label">Business Areas</InputLabel>
+                            <InputLabel id="input-businessarea-label">Business Area</InputLabel>
                             <Select
-                                labelId="demo-multiple-chip-label"
-                                id="demo-multiple-chip"
-                                multiple
-                                value={businessAreas}
-                                onChange={(event: SelectChangeEvent<string[]>) => { setBusinessAreas(event.target.value as string[]); }}
-                                input={<OutlinedInput id="select-multiple-chip" label="Business Areas" />}
-                                MenuProps={MenuProps}
-                                renderValue={(selected) => (
-                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                        {selected.map((value) => (<Chip key={value} label={value} />))}
-                                    </Box>
-                                )}
+                                labelId="input-businessarea-label"
+                                id="input-businessarea"
+                                label="Business Area"
+                                error={!!errors['businessArea']}
+                                {...register('businessArea')}
                             >
-                                {names.map((name) => (<MenuItem key={name} value={name}>{name}</MenuItem>))}
+                                {businessAreas.map(({ id, name }) => <MenuItem key={id} value={id}>{name}</MenuItem>)}
                             </Select>
+                            <FormHelperText>{errors['businessArea']?.message}</FormHelperText>
                         </FormControl>
                     </Box>
 
@@ -231,5 +187,3 @@ function Register() {
         </>
     );
 }
-
-export default Register;
