@@ -1,5 +1,9 @@
+import BetterNavBar from "components/BetterNavBar";
+
 function MentorDashboard() {
-    return <div>The mentor dashboard</div>;
+    return (
+		<><BetterNavBar /><div>The mentor dashboard</div></>
+	);
 }
 
 export default MentorDashboard;
