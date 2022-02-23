@@ -19,7 +19,7 @@ export default function SignIn({ csrfToken, hasValidSession, currentEmail, error
 
     return (
         <>
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" sx={{ mt: "3vh" }}>
                 {
                     hasValidSession && <div><Alert severity="info">You have already logged in as &apos;{currentEmail}&apos;</Alert><br /></div>
                 }

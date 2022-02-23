@@ -150,7 +150,7 @@ function Register() {
 
     return (
         <>
-            <Container maxWidth="sm" sx={{ mt: "8vh" }}>
+            <Container maxWidth="sm" sx={{ mt: "3vh" }}>
                 <Typography variant="h4" component="div" gutterBottom>User Registration</Typography>
 
                 <form onSubmit={handleSubmit(registerUser)}>

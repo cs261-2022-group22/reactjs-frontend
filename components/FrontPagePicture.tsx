@@ -4,7 +4,7 @@ import { CardActionArea } from "@mui/material";
 
 function FrontPagePicture() {
     return (
-        <Card sx={{ maxWidth: 1000, maxHeight: 1000, mt: 8, mb: 10 }}>
+        <Card sx={{ maxWidth: "110vh", maxHeight: "110vh", mt: "5vh", mb: "3vh" }}>
             <CardActionArea
                 style={{
                     justifyContent: "center",
@@ -13,7 +13,7 @@ function FrontPagePicture() {
                 }}
             >
                 <CardMedia
-                    sx={{ maxWidth: 1000, maxHeight: 1000 }}
+                    sx={{ maxWidth: "110vh", maxHeight: "110vh" }}
                     component="img"
                     image="/Images/Mentor.jpg"
                     alt="Mentor"

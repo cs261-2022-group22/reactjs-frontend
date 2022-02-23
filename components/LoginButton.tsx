@@ -5,11 +5,10 @@ function LoginButton() {
     return (
         <Link href="/api/auth/signin" passHref>
             <Button
-                sx={{ mt: 2 }}
                 variant="contained"
-                size="large"
+                size="medium"
             >
-                <Typography variant="h3"> Login</Typography>
+                <Typography variant="h4"> Login</Typography>
             </Button>
         </Link>
     );

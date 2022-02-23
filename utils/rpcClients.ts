@@ -15,9 +15,12 @@ const getCredentials = () => {
 }
 
 export class AccountClient extends AccountServiceClient {
-    constructor() { super(grpc_backend_address, getCredentials()); }
+    constructor() {
+        super(grpc_backend_address, getCredentials());
+    }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
+    tryProfileAsync = WrapAsyncRPC(this, this.accountProfiles);
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
 }
 

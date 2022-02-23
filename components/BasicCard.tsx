@@ -9,15 +9,17 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Link from "next/link";
 
-function BasicCard({ type, account }: { type: string, account: boolean }) {
-    console.log("card", account);
+function BasicCard({ type, account, marginLeft, marginRight }: { type: string, account: boolean, marginLeft: string, marginRight: string }) {
     return (
         <Card
             sx={{
-                mt: 3,
+                mt: "1vh",
                 boxShadow: 2,
                 "&:hover": { boxShadow: 15 },
-                height: "82vh",
+                height: "77vh",
+				ml: marginLeft,
+				mr: marginRight,
+				mb: "1vh"
             }}
         >
             <CardContent
@@ -25,7 +27,7 @@ function BasicCard({ type, account }: { type: string, account: boolean }) {
                     justifyContent: "center",
                     alignItems: "center",
                     display: "flex",
-                    mt: "20vh",
+                    mt: "16vh",
                 }}
             >
                 <Grid container direction="column" alignItems="center">
