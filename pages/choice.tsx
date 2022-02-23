@@ -1,16 +1,17 @@
-// TODO uncomment comments when testing sessions
-import { Grid, Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import BasicCard from "components/BasicCard";
 import BottomBar from "components/BottomBar";
-import BasicCard from "../components/BasicCard";
-// import Unauthenticated from "components/Unauthenticated";
-// import { getSession, useSession } from "next-auth/react";
-import axios from "axios";
+import Unauthenticated from "components/Unauthenticated";
+import { getSession } from "next-auth/react";
+import { AccountClient } from "utils/rpcClients";
 
-function Choice(props: { valid: boolean; isMentee: boolean; isMentor: boolean }) {
-    // if (!props.valid) {
-    //     return <Unauthenticated />;
-    // }
-	console.log(props)
+export default async function Choice(props: { isMentee: boolean; isMentor: boolean }) {
+    const session = await getSession();
+    if (!session) {
+        return <Unauthenticated />;
+    }
+
+    console.log(props)
     return (
         <>
             <Grid container>
@@ -30,26 +31,28 @@ function Choice(props: { valid: boolean; isMentee: boolean; isMentor: boolean })
     );
 }
 
-export default Choice;
-
 export async function getServerSideProps() {
-    // export async function getServerSideProps(context) {
-    // const session = await getSession(context);
-    // if (session) {
-    const res = await axios.post("http://localhost:3000/api/user/profiletype", {
-        userid: "1", //session["id"],
+    const session = await getSession();
+
+    if (!session) {
+        return {
+            props: {
+                isMentee: false,
+                isMentor: false,
+            },
+        };
+    }
+
+    const client = new AccountClient();
+    const profileResult = await client.listAccountProfilesAsync({
+        userid: session['id'] as number
     });
+
     return {
         props: {
             valid: true,
-            isMentee: res.data.isMentee,
-            isMentor: res.data.isMentor,
+            isMentee: profileResult.isMentee,
+            isMentor: profileResult.isMentor,
         },
     };
-    // }
-    // return {
-    // 	props: {
-    // 		valid: false
-    // 	}
-    // }
 }

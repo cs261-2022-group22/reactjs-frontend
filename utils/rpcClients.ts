@@ -20,7 +20,7 @@ export class AccountClient extends AccountServiceClient {
     }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
-    tryProfileAsync = WrapAsyncRPC(this, this.accountProfiles);
+    listAccountProfilesAsync = WrapAsyncRPC(this, this.accountProfiles);
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
 }
 
