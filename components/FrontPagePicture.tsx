@@ -1,7 +1,6 @@
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
+import { Card, CardMedia } from "@mui/material";
 
-function FrontPagePicture() {
+export default function FrontPagePicture() {
     return (
         <Card
             sx={{
@@ -11,13 +10,12 @@ function FrontPagePicture() {
                 boxShadow: 0,
             }}
         >
-			<CardMedia
-				sx={{ maxWidth: "110vh", maxHeight: "110vh" }}
-				component="img"
-				image="/Images/Mentor.png"
-				alt="Mentor"
-			/>
+            <CardMedia
+                sx={{ maxWidth: "110vh", maxHeight: "110vh" }}
+                component="img"
+                image="/Images/Mentor.png"
+                alt="Mentor"
+            />
         </Card>
     );
 }
-export default FrontPagePicture;

@@ -49,7 +49,6 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            valid: true,
             isMentee: profileResult.isMentee,
             isMentor: profileResult.isMentor,
         },
