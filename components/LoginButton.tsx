@@ -1,5 +1,6 @@
 import { Typography, Button } from "@mui/material";
 import Link from "next/link";
+import LoginIcon from "@mui/icons-material/Login";
 
 function LoginButton() {
     return (
@@ -7,6 +8,7 @@ function LoginButton() {
             <Button
                 variant="contained"
                 size="medium"
+				endIcon={<LoginIcon/>}
             >
                 <Typography variant="h4"> Login</Typography>
             </Button>
