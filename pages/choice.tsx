@@ -2,16 +2,15 @@ import { Container, Grid } from "@mui/material";
 import BasicCard from "components/BasicCard";
 import BottomBar from "components/BottomBar";
 import Unauthenticated from "components/Unauthenticated";
-import { getSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import { AccountClient } from "utils/rpcClients";
 
-export default async function Choice(props: { isMentee: boolean; isMentor: boolean }) {
-    const session = await getSession();
+export default function Choice(props: { isMentee: boolean; isMentor: boolean }) {
+    const { data: session } = useSession();
     if (!session) {
         return <Unauthenticated />;
     }
 
-    console.log(props)
     return (
         <>
             <Grid container>

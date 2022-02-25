@@ -13,10 +13,10 @@ function BasicCard({ type, account, marginLeft, marginRight }: { type: string, a
     return (
         <Card
             sx={{
-                mt: "1vh",
+                mt: "3vh",
                 boxShadow: 2,
                 "&:hover": { boxShadow: 15 },
-                height: "77vh",
+                height: "82vh",
 				ml: marginLeft,
 				mr: marginRight,
 				mb: "1vh"
@@ -27,7 +27,7 @@ function BasicCard({ type, account, marginLeft, marginRight }: { type: string, a
                     justifyContent: "center",
                     alignItems: "center",
                     display: "flex",
-                    mt: "16vh",
+                    mt: "22vh",
                 }}
             >
                 <Grid container direction="column" alignItems="center">
