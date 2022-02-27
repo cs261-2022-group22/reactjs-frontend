@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import UpcomingAppointments from "components/UpcomingAppointments";
 
 function MentorDashboard() {
     return (
@@ -8,7 +9,7 @@ function MentorDashboard() {
                     Top left
                 </Grid>
                 <Grid item xs={6}>
-                    Top right
+                    <UpcomingAppointments />
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
