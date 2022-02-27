@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 export default function MenteeDashboard() {
     return (
         <Grid container>
-            <Grid container item xs={12} sx={{ height: "48vh" }}>
+            <Grid container item xs={12} sx={{ height: "46vh" }}>
                 <Grid item xs={6}>
                     Top left
                 </Grid>
@@ -11,7 +11,7 @@ export default function MenteeDashboard() {
                     Top right
                 </Grid>
             </Grid>
-            <Grid container item xs={12}>
+            <Grid container item xs={12} sx={{ height: "46vh" }}>
                 <Grid item xs={6}>
                     Bottom left
                 </Grid>
