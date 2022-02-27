@@ -4,10 +4,7 @@ import {
     Typography,
     List,
     ListItem,
-    ListItemText,
 } from "@mui/material";
-import { maxHeight } from "@mui/system";
-import { userInfo } from "os";
 
 import groupBy from "lodash.groupby";
 
@@ -111,7 +108,7 @@ function UpcomingAppointments() {
                                             </Typography>
                                             <List>
                                                 {groupedAppointments[date].map(
-                                                    (appointment) => {
+                                                    (appointment: { time: string; name: string; duration: string; }) => {
                                                         return (
                                                             <ListItem
                                                                 sx={{
