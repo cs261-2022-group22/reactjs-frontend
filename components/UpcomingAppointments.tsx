@@ -108,7 +108,7 @@ function UpcomingAppointments() {
                                             </Typography>
                                             <List>
                                                 {groupedAppointments[date].map(
-                                                    (appointment: { time: string; name: string; duration: string; }) => {
+                                                    (appointment: { time: string; name: string; duration: number; }) => {
                                                         return (
                                                             <ListItem
                                                                 sx={{
