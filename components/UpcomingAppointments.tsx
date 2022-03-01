@@ -105,64 +105,66 @@ function UpcomingAppointments() {
                         >
                             {dates.map((date) => {
                                 return (
-                                    <>
-                                        <Card
+                                    <Card
+                                        sx={{
+                                            mt: "1vh",
+                                            ml: "1vh",
+                                            pl: "1vh",
+                                            boxShadow: 1,
+                                            "&:hover": { boxShadow: 4 },
+                                        }}
+                                        key={date}
+                                    >
+                                        <Typography
                                             sx={{
-                                                mt: "1vh",
-                                                ml: "1vh",
-                                                pl: "1vh",
-                                                boxShadow: 1,
-                                                "&:hover": { boxShadow: 4 },
+                                                fontWeight: "bold",
+                                                mb: "-1vh",
+                                                pt: "4px",
                                             }}
                                         >
-                                            <Typography
-                                                sx={{
-                                                    fontWeight: "bold",
-                                                    mb: "-1vh",
-                                                    pt: "4px",
-                                                }}
-                                            >
-                                                {date}
-                                            </Typography>
-                                            <List>
-                                                {groupedAppointments[date].map(
-                                                    (appointment: {
-                                                        time: string;
-                                                        name: string;
-                                                        duration: number;
-                                                    }) => {
-                                                        return (
-                                                            <ListItem
+                                            {date}
+                                        </Typography>
+                                        <List>
+                                            {groupedAppointments[date].map(
+                                                (appointment: {
+                                                    name: string;
+                                                    date: string;
+                                                    time: string;
+                                                    duration: number;
+                                                }) => {
+                                                    return (
+                                                        <ListItem
+                                                            sx={{
+                                                                mb: "-1vh",
+                                                            }}
+                                                            key={
+                                                                appointment.date +
+                                                                appointment.time
+                                                            }
+                                                        >
+                                                            <Typography
                                                                 sx={{
-                                                                    mb: "-1vh",
+                                                                    fontWeight:
+                                                                        "bold",
                                                                 }}
                                                             >
-                                                                <Typography
-                                                                    sx={{
-                                                                        fontWeight:
-                                                                            "bold",
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        appointment.time
-                                                                    }
-                                                                </Typography>
-                                                                : Meeting with{" "}
                                                                 {
-                                                                    appointment.name
-                                                                }{" "}
-                                                                for{" "}
-                                                                {
-                                                                    appointment.duration
-                                                                }{" "}
-                                                                minutes
-                                                            </ListItem>
-                                                        );
-                                                    }
-                                                )}
-                                            </List>
-                                        </Card>
-                                    </>
+                                                                    appointment.time
+                                                                }
+                                                            </Typography>
+                                                            : Meeting with{" "}
+                                                            {appointment.name}{" "}
+                                                            for{" "}
+                                                            {
+                                                                appointment.duration
+                                                            }{" "}
+                                                            minutes
+                                                        </ListItem>
+                                                    );
+                                                }
+                                            )}
+                                        </List>
+                                    </Card>
                                 );
                             })}
                         </Card>
