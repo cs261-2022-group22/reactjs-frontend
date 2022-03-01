@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Links from  "components/Links";
 
 function MenteeDashboard() {
     return (
@@ -6,7 +7,7 @@ function MenteeDashboard() {
             <Grid container>
                 <Grid container item xs={12} sx={{ height: "48vh"}}>
                     <Grid item xs={6}>
-                        Top left
+                        <Links/>
                     </Grid>
                     <Grid item xs={6}>
                         Top right
