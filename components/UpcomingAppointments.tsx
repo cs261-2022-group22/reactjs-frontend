@@ -53,43 +53,19 @@ const test_data = {
     ],
 };
 
-const test_data2 = {
-    appointments: [
-        {
-            name: "Charlie",
-            date: "30/01/2022",
-            time: "9:00",
-            duration: 60,
-        },
-        {
-            name: "Bob",
-            date: "27/02/2022",
-            time: "10:00",
-            duration: 60,
-        }
-    ],
-};
-
 function UpcomingAppointments() {
-    const groupedAppointments = groupBy(test_data.appointments, "date");
-    const dates = [];
-    for (const key in groupedAppointments) {
-        dates.push(key);
+    const ga = groupBy(test_data.appointments, "date");
+    const d = [];
+    for (const key in ga) {
+        d.push(key);
     }
 
-	const groupedAppointments2 = groupBy(test_data2.appointments, "date");
-    const dates2 = [];
-    for (const key in groupedAppointments2) {
-        dates2.push(key);
+    const [groupedAppointments, setGroupedAppointments] = useState(ga);
+    const [dates, setDates] = useState(d);
+
+    function update() {
+        console.log("updating");
     }
-
-	const [testA, setTestA] = useState(groupedAppointments);
-	const [testD, setTestD] = useState(dates);
-
-	function update() {
-		setTestA(groupedAppointments2)
-		setTestD(dates2)
-	}
 
     return (
         <>
@@ -112,7 +88,10 @@ function UpcomingAppointments() {
                         >
                             Upcoming appointments
                         </Typography>
-                        <RefreshIcon sx={{ "&:hover": { color: "blue"}}} onClick={update}/>
+                        <RefreshIcon
+                            sx={{ "&:hover": { color: "blue" } }}
+                            onClick={update}
+                        />
                     </Stack>
                     <List>
                         <Card
@@ -124,7 +103,7 @@ function UpcomingAppointments() {
                                 pb: "1vh",
                             }}
                         >
-                            {testD.map((date) => {
+                            {dates.map((date) => {
                                 return (
                                     <>
                                         <Card
@@ -146,7 +125,7 @@ function UpcomingAppointments() {
                                                 {date}
                                             </Typography>
                                             <List>
-                                                {testA[date].map(
+                                                {groupedAppointments[date].map(
                                                     (appointment: {
                                                         time: string;
                                                         name: string;
