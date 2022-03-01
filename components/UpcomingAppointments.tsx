@@ -4,9 +4,13 @@ import {
     Typography,
     List,
     ListItem,
+    Stack,
 } from "@mui/material";
 
+import RefreshIcon from "@mui/icons-material/Refresh";
+
 import groupBy from "lodash.groupby";
+import { useState } from "react";
 
 const test_data = {
     appointments: [
@@ -49,14 +53,43 @@ const test_data = {
     ],
 };
 
+const test_data2 = {
+    appointments: [
+        {
+            name: "Charlie",
+            date: "30/01/2022",
+            time: "9:00",
+            duration: 60,
+        },
+        {
+            name: "Bob",
+            date: "27/02/2022",
+            time: "10:00",
+            duration: 60,
+        }
+    ],
+};
+
 function UpcomingAppointments() {
     const groupedAppointments = groupBy(test_data.appointments, "date");
     const dates = [];
     for (const key in groupedAppointments) {
-        console.log(groupedAppointments[key]);
         dates.push(key);
     }
-    console.log(dates);
+
+	const groupedAppointments2 = groupBy(test_data2.appointments, "date");
+    const dates2 = [];
+    for (const key in groupedAppointments2) {
+        dates2.push(key);
+    }
+
+	const [testA, setTestA] = useState(groupedAppointments);
+	const [testD, setTestD] = useState(dates);
+
+	function update() {
+		setTestA(groupedAppointments2)
+		setTestD(dates2)
+	}
 
     return (
         <>
@@ -72,26 +105,32 @@ function UpcomingAppointments() {
                 }}
             >
                 <CardContent>
-                    <Typography variant="h4" sx={{ mb: "-1vh", mt: "-1vh" }}>
-                        Upcoming appointments
-                    </Typography>
+                    <Stack direction="row" justifyContent="space-between">
+                        <Typography
+                            variant="h4"
+                            sx={{ mb: "-1vh", mt: "-1vh" }}
+                        >
+                            Upcoming appointments
+                        </Typography>
+                        <RefreshIcon sx={{ "&:hover": { color: "blue"}}} onClick={update}/>
+                    </Stack>
                     <List>
                         <Card
                             sx={{
                                 overflow: "auto",
                                 maxHeight: "38vh",
-								boxShadow: "0",
-								ml: "-1vh",
-								pb: "1vh"
+                                boxShadow: "0",
+                                ml: "-1vh",
+                                pb: "1vh",
                             }}
                         >
-                            {dates.map((date) => {
+                            {testD.map((date) => {
                                 return (
                                     <>
                                         <Card
                                             sx={{
                                                 mt: "1vh",
-												ml: "1vh",
+                                                ml: "1vh",
                                                 pl: "1vh",
                                                 boxShadow: 1,
                                                 "&:hover": { boxShadow: 4 },
@@ -101,14 +140,18 @@ function UpcomingAppointments() {
                                                 sx={{
                                                     fontWeight: "bold",
                                                     mb: "-1vh",
-													pt: "4px"
+                                                    pt: "4px",
                                                 }}
                                             >
                                                 {date}
                                             </Typography>
                                             <List>
-                                                {groupedAppointments[date].map(
-                                                    (appointment: { time: string; name: string; duration: number; }) => {
+                                                {testA[date].map(
+                                                    (appointment: {
+                                                        time: string;
+                                                        name: string;
+                                                        duration: number;
+                                                    }) => {
                                                         return (
                                                             <ListItem
                                                                 sx={{
