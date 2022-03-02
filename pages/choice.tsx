@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import BasicCard from "components/BasicCard";
 import BottomBar from "components/BottomBar";
 import Unauthenticated from "components/Unauthenticated";
-import { useSession, getSession } from "next-auth/react";
+import { useSession, getSession, GetSessionParams } from "next-auth/react";
 import { AccountClient } from "utils/rpcClients";
 
 export default function Choice(props: { isMentee: boolean; isMentor: boolean }) {
@@ -30,8 +30,8 @@ export default function Choice(props: { isMentee: boolean; isMentor: boolean }) 
     );
 }
 
-export async function getServerSideProps() {
-    const session = await getSession();
+export async function getServerSideProps(context: GetSessionParams | undefined) {
+    const session = await getSession(context);
 
     if (!session) {
         return {
@@ -49,7 +49,6 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            valid: true,
             isMentee: profileResult.isMentee,
             isMentor: profileResult.isMentor,
         },
