@@ -4,7 +4,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-function Links() {
+function MenteeLinks() {
     return (
         <Grid container rowSpacing={5} sx={{ textAlign: "center", mt: 1, p: 1 }}>
             <Grid item xs={6}>           
@@ -56,4 +56,4 @@ function Links() {
         
     );
 }
-export default Links;
+export default MenteeLinks;
