@@ -9,7 +9,7 @@ export default function MenteeDashboard() {
                     Top left
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable="true"/>
+                    <UpcomingAppointments cancellable={true}/>
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
