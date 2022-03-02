@@ -5,7 +5,7 @@ import RegisterButton from "components/RegisterButton";
 import FrontPageText from "components/FrontPageText";
 import BottomBar from "components/BottomBar";
 
-function Home() {
+export default function Home() {
 	return (
 		<>
 			<Grid container spacing={5} alignItems="center" justifyContent="space-evenly">
@@ -22,9 +22,7 @@ function Home() {
 					<FrontPageText />
 				</Grid>
 			</Grid>
-			<BottomBar position="relative"/>
+			<BottomBar position="relative" />
 		</>
 	)
 }
-
-export default Home;

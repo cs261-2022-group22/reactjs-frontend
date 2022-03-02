@@ -1,6 +1,6 @@
 import { Typography, Button } from "@mui/material";
 import Link from "next/link";
-import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import { AppRegistration as AppRegistrationIcon } from "@mui/icons-material";
 
 export default function RegisterButton() {
     return (

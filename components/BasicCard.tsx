@@ -1,15 +1,8 @@
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    Typography,
-    Grid,
-} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 
-function BasicCard({ type, account, marginLeft, marginRight }: { type: string, account: boolean, marginLeft: string, marginRight: string }) {
+export default function BasicCard({ type, account, marginLeft, marginRight }: { type: string, account: boolean, marginLeft: string, marginRight: string }) {
     return (
         <Card
             sx={{
@@ -17,9 +10,9 @@ function BasicCard({ type, account, marginLeft, marginRight }: { type: string, a
                 boxShadow: 2,
                 "&:hover": { boxShadow: 15 },
                 height: "82vh",
-				ml: marginLeft,
-				mr: marginRight,
-				mb: "1vh"
+                ml: marginLeft,
+                mr: marginRight,
+                mb: "1vh"
             }}
         >
             <CardContent
@@ -58,5 +51,3 @@ function BasicCard({ type, account, marginLeft, marginRight }: { type: string, a
         </Card>
     );
 }
-
-export default BasicCard;

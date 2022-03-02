@@ -29,9 +29,7 @@ export default function MenteeDashboard(props: { messages: string[] }) {
     );
 }
 
-export async function getServerSideProps(
-    context: GetSessionParams | undefined
-) {
+export async function getServerSideProps(context: GetSessionParams | undefined) {
     const session = await getSession(context);
 
     if (!session) {

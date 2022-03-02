@@ -2,10 +2,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-function FrontPageText() {
+export default function FrontPageText() {
     return (
         <Card sx={{ mt: 5, mb: 5 }} variant="outlined">
-			<CardContent>
+            <CardContent>
                 <Typography
                     variant="h6"
                     color="text.secondary"
@@ -62,4 +62,3 @@ function FrontPageText() {
         </Card>
     );
 }
-export default FrontPageText;

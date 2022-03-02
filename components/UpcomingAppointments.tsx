@@ -1,17 +1,8 @@
-import {
-    Card,
-    CardContent,
-    Typography,
-    List,
-    ListItem,
-    Stack,
-} from "@mui/material";
-
-import RefreshIcon from "@mui/icons-material/Refresh";
-import CancelIcon from "@mui/icons-material/Cancel";
-
+import { Cancel as CancelIcon, Refresh as RefreshIcon } from "@mui/icons-material";
+import { Card, CardContent, List, ListItem, Stack, Typography } from "@mui/material";
 import groupBy from "lodash.groupby";
 import { useState } from "react";
+
 
 const test_data = {
     appointments: [
@@ -54,14 +45,14 @@ const test_data = {
     ],
 };
 
-function UpcomingAppointments(props : { cancellable: boolean }) {
+export default function UpcomingAppointments(props: { cancellable: boolean }) {
     const ga = groupBy(test_data.appointments, "date");
     const d = [];
     for (const key in ga) {
         d.push(key);
     }
 
-	console.log(props.cancellable);
+    console.log(props.cancellable);
 
     const [groupedAppointments] = useState(ga);
     const [dates] = useState(d);
@@ -163,7 +154,7 @@ function UpcomingAppointments(props : { cancellable: boolean }) {
                                                                 appointment.duration
                                                             }{" "}
                                                             minutes
-                                                            { props.cancellable ? <CancelIcon
+                                                            {props.cancellable ? <CancelIcon
                                                                 sx={{
                                                                     color: "red",
                                                                     marginLeft:
@@ -186,4 +177,3 @@ function UpcomingAppointments(props : { cancellable: boolean }) {
     );
 }
 
-export default UpcomingAppointments;

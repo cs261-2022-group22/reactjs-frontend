@@ -1,4 +1,4 @@
-function MentorSignUp() {
+export default function MentorSignUp() {
     return (
         <>
             <div>The mentor sign up page</div>
@@ -6,4 +6,3 @@ function MentorSignUp() {
     );
 }
 
-export default MentorSignUp;

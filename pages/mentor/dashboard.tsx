@@ -5,7 +5,7 @@ import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient } from "utils/rpcClients";
 
-function MentorDashboard(props: { messages: string[]; }) {
+export default function MentorDashboard(props: { messages: string[]; }) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -28,11 +28,8 @@ function MentorDashboard(props: { messages: string[]; }) {
     );
 }
 
-export default MentorDashboard;
 
-export async function getServerSideProps(
-    context: GetSessionParams | undefined
-) {
+export async function getServerSideProps(context: GetSessionParams | undefined) {
     const session = await getSession(context);
 
     if (!session) {

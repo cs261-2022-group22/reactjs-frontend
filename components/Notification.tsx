@@ -1,13 +1,6 @@
-import {
-    Card,
-    CardContent,
-    List,
-    ListItem,
-    ListItemText,
-    Typography,
-} from "@mui/material";
+import { Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
 
-function Notifications({ messages }: { messages: string[] }) {
+export default function Notifications({ messages }: { messages: string[] }) {
     if (!messages.length) {
         return (
             <Card
@@ -76,5 +69,3 @@ function Notifications({ messages }: { messages: string[] }) {
         </Card>
     );
 }
-
-export default Notifications;

@@ -1,12 +1,8 @@
-import {
-    AppBar,
-    BottomNavigation,
-    BottomNavigationAction,
-} from "@mui/material";
 import { Feedback } from "@mui/icons-material";
+import { AppBar, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import Link from "next/link";
 
-function BottomBar(props: { position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' }) {
+export default function BottomBar(props: { position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' }) {
     return (
         <AppBar
             position={props.position}
@@ -26,5 +22,3 @@ function BottomBar(props: { position: 'fixed' | 'absolute' | 'sticky' | 'static'
         </AppBar>
     );
 }
-
-export default BottomBar;

@@ -1,9 +1,7 @@
-function schedule() {
-	return (
+export default function schedule() {
+    return (
         <>
             <div>The schedule a meeting page</div>
         </>
     );
 }
-
-export default schedule

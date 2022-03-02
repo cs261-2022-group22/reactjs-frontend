@@ -1,11 +1,9 @@
+import { Help as HelpIcon, Logout as LogoutIcon, SwitchAccount as SwitchAccountIcon } from "@mui/icons-material";
 import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
-import Link from "next/link";
-import HelpIcon from "@mui/icons-material/Help";
-import LogoutIcon from "@mui/icons-material/Logout";
-import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
-function NavBar() {
+export default function NavBar() {
     const { data: session } = useSession();
     if (session) {
         return (
@@ -118,5 +116,3 @@ function NavBar() {
         );
     }
 }
-
-export default NavBar;

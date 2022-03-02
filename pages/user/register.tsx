@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { FieldErrors, FieldPath, SubmitHandler, useForm, UseFormRegister } from 'react-hook-form';
 import { RegistrationData } from "utils/CommonTypes";
 import { BusinessArea } from 'utils/proto/account';
-import { number as yup_number, date as yup_date, object as yup_object, string as yup_string } from 'yup';
+import { date as yup_date, number as yup_number, object as yup_object, string as yup_string } from 'yup';
 
 const FormTextInputTypes = {
     text: PropTypes.string.isRequired,
