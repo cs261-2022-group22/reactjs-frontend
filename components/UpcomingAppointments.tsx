@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import RefreshIcon from "@mui/icons-material/Refresh";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 import groupBy from "lodash.groupby";
 import { useState } from "react";
@@ -53,12 +54,14 @@ const test_data = {
     ],
 };
 
-function UpcomingAppointments() {
+function UpcomingAppointments(props : { cancellable: boolean }) {
     const ga = groupBy(test_data.appointments, "date");
     const d = [];
     for (const key in ga) {
         d.push(key);
     }
+
+	console.log(props.cancellable);
 
     const [groupedAppointments, setGroupedAppointments] = useState(ga);
     const [dates, setDates] = useState(d);
@@ -146,6 +149,7 @@ function UpcomingAppointments() {
                                                                 sx={{
                                                                     fontWeight:
                                                                         "bold",
+                                                                    mb: "-1px",
                                                                 }}
                                                             >
                                                                 {
@@ -159,6 +163,13 @@ function UpcomingAppointments() {
                                                                 appointment.duration
                                                             }{" "}
                                                             minutes
+                                                            { props.cancellable ? <CancelIcon
+                                                                sx={{
+                                                                    color: "red",
+                                                                    marginLeft:
+                                                                        "auto",
+                                                                }}
+                                                            /> : <></>}
                                                         </ListItem>
                                                     );
                                                 }

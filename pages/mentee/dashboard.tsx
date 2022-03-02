@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import UpcomingAppointments from "components/UpcomingAppointments";
 
 export default function MenteeDashboard() {
     return (
@@ -8,7 +9,7 @@ export default function MenteeDashboard() {
                     Top left
                 </Grid>
                 <Grid item xs={6}>
-                    Top right
+                    <UpcomingAppointments cancellable="true"/>
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
