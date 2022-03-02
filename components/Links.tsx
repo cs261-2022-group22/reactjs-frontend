@@ -8,7 +8,7 @@ function Links() {
     return (
         <Grid container rowSpacing={5} sx={{ textAlign: "center", mt: 1, p: 1 }}>
             <Grid item xs={6}>           
-                <Link href="/mentee/meeting" passHref>
+                <Link href="/mentee/schedule" passHref>
                     <Button 
                         sx={{ 
                             flexDirection: 'column', 
