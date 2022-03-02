@@ -63,8 +63,8 @@ function UpcomingAppointments(props : { cancellable: boolean }) {
 
 	console.log(props.cancellable);
 
-    const [groupedAppointments, setGroupedAppointments] = useState(ga);
-    const [dates, setDates] = useState(d);
+    const [groupedAppointments] = useState(ga);
+    const [dates] = useState(d);
 
     function update() {
         console.log("updating");
