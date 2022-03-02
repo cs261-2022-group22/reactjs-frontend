@@ -1,5 +1,4 @@
-import { credentials } from "@grpc/grpc-js";
-import WrapAsyncRPC from "./gRPCHelpers";
+import { WrapAsyncRPC, getCredentials, getRpcBackendAddress } from "./gRPCHelpers";
 
 import { AccountServiceClient } from "./proto/account";
 import { FeedbackServiceClient } from "./proto/feedback";
@@ -7,16 +6,12 @@ import { MatchingServiceClient } from "./proto/matching";
 import { MeetingServiceClient } from "./proto/meeting";
 import { OtherServiceClient } from "./proto/other";
 
-const grpc_backend_address: string = process.env["GRPC_BACKEND_ADDRESS"] ?? "127.0.0.1:50051"
-const grpc_backend_use_tls: boolean = process.env["GRPC_BACKEND_TLS"] == "true"
-
-const getCredentials = () => {
-    return grpc_backend_use_tls ? credentials.createSsl() : credentials.createInsecure();
-}
 
 export class AccountClient extends AccountServiceClient {
+    static SERVICE_NAME = "ACCOUNT";
+
     constructor() {
-        super(grpc_backend_address, getCredentials());
+        super(getRpcBackendAddress(AccountClient.SERVICE_NAME), getCredentials(AccountClient.SERVICE_NAME));
     }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
@@ -26,17 +21,33 @@ export class AccountClient extends AccountServiceClient {
 }
 
 export class FeedbackClient extends FeedbackServiceClient {
-    constructor() { super(grpc_backend_address, getCredentials()); }
+    static SERVICE_NAME = "FEEDBACK";
+
+    constructor() {
+        super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
+    }
 }
 
 export class MatchingClient extends MatchingServiceClient {
-    constructor() { super(grpc_backend_address, getCredentials()); }
+    static SERVICE_NAME = "MATCHING";
+
+    constructor() {
+        super(getRpcBackendAddress(MatchingClient.SERVICE_NAME), getCredentials(MatchingClient.SERVICE_NAME));
+    }
 }
 
 export class MeetingClient extends MeetingServiceClient {
-    constructor() { super(grpc_backend_address, getCredentials()); }
+    static SERVICE_NAME = "MEETING";
+
+    constructor() {
+        super(getRpcBackendAddress(MeetingClient.SERVICE_NAME), getCredentials(MeetingClient.SERVICE_NAME));
+    }
 }
 
 export class OtherClient extends OtherServiceClient {
-    constructor() { super(grpc_backend_address, getCredentials()); }
+    static SERVICE_NAME = "OTHER";
+
+    constructor() {
+        super(getRpcBackendAddress(OtherClient.SERVICE_NAME), getCredentials(OtherClient.SERVICE_NAME));
+    }
 }
