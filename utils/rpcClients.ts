@@ -11,13 +11,17 @@ export class AccountClient extends AccountServiceClient {
     static SERVICE_NAME = "ACCOUNT";
 
     constructor() {
-        super(getRpcBackendAddress(AccountClient.SERVICE_NAME), getCredentials(AccountClient.SERVICE_NAME));
+        super(
+            getRpcBackendAddress(AccountClient.SERVICE_NAME),
+            getCredentials(AccountClient.SERVICE_NAME)
+        );
     }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
     listAccountProfilesAsync = WrapAsyncRPC(this, this.accountProfiles);
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
     listBusinessAreasAsync = WrapAsyncRPC(this, this.listBusinessAreas);
+    listNotificationsAsync = WrapAsyncRPC(this, this.getNotifications);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {
