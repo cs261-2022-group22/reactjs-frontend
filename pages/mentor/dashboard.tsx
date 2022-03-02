@@ -9,7 +9,7 @@ function MentorDashboard() {
                     Top left
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable="false"/>
+                    <UpcomingAppointments cancellable={false}/>
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
