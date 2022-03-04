@@ -1,31 +1,35 @@
-import { Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Card, CardContent, List, Typography } from "@mui/material";
 
 export default function Notifications({ messages }: { messages: string[] }) {
     if (!messages.length) {
         return (
             <Card
                 sx={{
-                    border: 3,
-                    borderColor: "info.main",
-                    borderRadius: 15,
-                    margin: 1,
-                    boxShadow: 3,
+                    mb: "1vh",
+                    boxShadow: 2,
+                    "&:hover": { boxShadow: 2 },
+                    ml: "1vh",
+                    maxHeight: "45vh",
+                    maxWidth: "100vh",
+                    height: "100%",
                 }}
             >
                 <CardContent
                     sx={{
                         textAlign: "center",
-                        typography: "h3",
+                        typography: "h4",
                     }}
                 >
                     Your notifications
-                    <List>
-                        <ListItemText>
-                            <Typography variant="h5">
+                        <Typography
+                            sx={{
+                                typography: "h5",
+                                margin: 5,
+                                fontStyle: 'italic'
+                            }}
+                        >
                                 No notifications
-                            </Typography>
-                        </ListItemText>
-                    </List>
+                        </Typography>
                 </CardContent>
             </Card>
         );
@@ -33,37 +37,52 @@ export default function Notifications({ messages }: { messages: string[] }) {
     return (
         <Card
             sx={{
-                border: 3,
-                borderColor: "info.main",
-                borderRadius: 15,
-                margin: 1,
-                boxShadow: 3,
+                mb: "1vh",
+                boxShadow: 2,
+                "&:hover": { boxShadow: 2 },
+                ml: "1vh",
+                maxHeight: "45vh",
+                maxWidth: "100vh",
+                height: "100%",
             }}
         >
             <CardContent
                 sx={{
                     textAlign: "center",
-                    typography: "h3",
+                    typography: "h4",
                 }}
             >
                 Your notifications
                 <List>
-                    {messages.map((message) => {
-                        return (
-                            <ListItem key={message}>
-                                <ListItemText
+                    <Card
+                        sx={{
+                            overflow: "auto",
+                            maxHeight: "30vh",
+                            boxShadow: "0",
+                            ml: "-1vh",
+                            pb: "1vh",
+                        }}
+                    >
+                        {messages.map((message) => {
+                            return (
+                                <Card
                                     sx={{
                                         textAlign: "center",
+                                        mt: "1vh",
+                                        ml: "1vh",
+                                        pl: "1vh",
+                                        boxShadow: 1,
+                                        "&:hover": { boxShadow: 4 },
                                     }}
+                                    key = {message}
                                 >
                                     <Typography variant="h6">
                                         {message}
                                     </Typography>
-                                    .
-                                </ListItemText>
-                            </ListItem>
-                        );
-                    })}
+                                </Card>
+                            );
+                        })}
+                    </Card>
                 </List>
             </CardContent>
         </Card>
