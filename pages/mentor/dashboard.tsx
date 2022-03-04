@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import Notifications from "components/Notification";
+import MentorLinks from "components/MentorLinks";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
@@ -10,7 +11,7 @@ export default function MentorDashboard(props: { messages: string[]; }) {
         <Grid container>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
                 <Grid item xs={6}>
-                    Top left
+                    <MentorLinks />
                 </Grid>
                 <Grid item xs={6}>
                     <UpcomingAppointments cancellable={false} />
@@ -34,7 +35,9 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
 
     if (!session) {
         return {
-            props: [],
+            props: {
+                messages: []
+            }
         };
     }
 
