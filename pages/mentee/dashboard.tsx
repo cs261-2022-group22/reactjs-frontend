@@ -34,7 +34,9 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
 
     if (!session) {
         return {
-            props: [],
+            props: {
+                messages: []
+            }
         };
     }
 
