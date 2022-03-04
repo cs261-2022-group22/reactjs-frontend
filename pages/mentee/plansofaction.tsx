@@ -10,8 +10,9 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import PlanElement from "components/PlanElement"
 
-const test_data = ["Wake up", "Eat breakfast", "Shower"];
+const test_data = [["Wake up", true], ["Eat breakfast", true], ["Shower", false]];
 
 export default function planofactions() {
     const [userInput, setUserInput] = useState("");
@@ -51,29 +52,7 @@ export default function planofactions() {
                         }}
                     >
                         {elements.map((element) => {
-                            return (
-                                <Card
-                                    sx={{
-                                        mb: "2vh",
-                                        pl: "2vh",
-                                        height: "6vh",
-                                        boxShadow: 1,
-                                        "&:hover": { boxShadow: 3 },
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center",
-                                    }}
-                                    key={element}
-                                >
-                                    <Typography
-                                        sx={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        {element}
-                                    </Typography>
-                                </Card>
-                            );
+                            return (<PlanElement element={element} key={element}/>);
                         })}
                     </List>
                 </Stack>
