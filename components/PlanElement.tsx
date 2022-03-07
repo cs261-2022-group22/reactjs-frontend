@@ -17,12 +17,12 @@ export default function PlanElement({ element }) {
                 pl: "2vh",
                 height: "6vh",
                 boxShadow: 1,
-                "&:hover": { boxShadow: 3 },
+                "&:hover": { boxShadow: 3, cursor: "pointer" },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 backgroundColor: !active ? "white" : "#3576CB",
-				color: !active ? "black" : "white"
+                color: !active ? "black" : "white",
             }}
             onClick={handleClick}
         >
