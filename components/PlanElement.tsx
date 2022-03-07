@@ -2,7 +2,7 @@ import { Card, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export default function PlanElement({ element }) {
+export default function PlanElement({ element }: (string | boolean)[]) {
     const [active, setActive] = useState(element[1]);
 
     function handleClick() {
