@@ -9,7 +9,6 @@ export default function PlanElement({ element }: (string | boolean)[]) {
         setActive(!active);
     }
 
-    console.log(active);
     return (
         <Card
             sx={{

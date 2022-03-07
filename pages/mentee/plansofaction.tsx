@@ -40,9 +40,7 @@ export default function planofactions() {
 								mb: "8vh"
                             }}
                             onClick={() => {
-								console.log(userInput);
                                 setElements([...elements, [userInput, false]]);
-								console.log(elements)
                             }}
                         >
                             Add
