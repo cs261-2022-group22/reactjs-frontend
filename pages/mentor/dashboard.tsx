@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import Notifications from "components/Notification";
 import MentorLinks from "components/MentorLinks";
+import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
