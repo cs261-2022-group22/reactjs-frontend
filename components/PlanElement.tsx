@@ -21,7 +21,8 @@ export default function PlanElement({ element }) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                backgroundColor: active ? "white" : "lightBlue",
+                backgroundColor: !active ? "white" : "#3576CB",
+				color: !active ? "black" : "white"
             }}
             onClick={handleClick}
         >
@@ -33,7 +34,11 @@ export default function PlanElement({ element }) {
                 >
                     {element[0]}
                 </Typography>
-				{ !active ? <CheckCircleIcon sx={{color:"white", mr: "10px"}}/> : <></> }
+                {active ? (
+                    <CheckCircleIcon sx={{ color: "white", mr: "10px" }} />
+                ) : (
+                    <></>
+                )}
             </Stack>
         </Card>
     );

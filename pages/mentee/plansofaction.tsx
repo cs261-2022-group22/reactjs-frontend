@@ -22,7 +22,7 @@ export default function planofactions() {
         <>
             <Container sx={{ textAlign: "center" }}>
                 <Stack>
-                    <Typography variant="h3">Your plan of action</Typography>
+                    <Typography sx={{ mt: "5vh", mb: "5vh"}} variant="h3">Your plan of action</Typography>
                     <TextField
                         sx={{
                             mb: "2vh",
@@ -38,9 +38,12 @@ export default function planofactions() {
                             endIcon={<AddIcon />}
                             sx={{
                                 minWidth: "11vh",
+								mb: "8vh"
                             }}
                             onClick={() => {
-                                setElements([...elements, userInput]);
+								console.log(userInput);
+                                setElements([...elements, [userInput, false]]);
+								console.log(elements)
                             }}
                         >
                             Add
@@ -56,7 +59,6 @@ export default function planofactions() {
                         })}
                     </List>
                 </Stack>
-                {userInput}
             </Container>
         </>
     );
