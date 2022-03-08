@@ -57,9 +57,7 @@ export default function plansofaction(props: { valid: boolean, poas: PlansOfActi
                                 mb: "8vh",
                             }}
                             onClick={async () => {
-								console.log("clicked")
 								if (userInput.length > 0) {
-									console.log("longer than 0")
 									const res = await axios.post(
                                         "/api/user/createpoa",
                                         {
@@ -67,7 +65,6 @@ export default function plansofaction(props: { valid: boolean, poas: PlansOfActi
                                             plansOfAction: userInput as string,
                                         }
                                     );
-									console.log(res.data);
                                     if (res.data.successful) {
                                         setElements([...elements, [res.data.plan.id, res.data.plan.content, false]])
 									}
