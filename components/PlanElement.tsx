@@ -2,8 +2,8 @@ import { Card, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export default function PlanElement({ element }: (string | boolean)[]) {
-    const [active, setActive] = useState(element[1]);
+export default function PlanElement({ element }: (number | string | boolean)[]) {
+    const [active, setActive] = useState(element[2]);
 
     function handleClick() {
         setActive(!active);
@@ -31,7 +31,7 @@ export default function PlanElement({ element }: (string | boolean)[]) {
                         fontWeight: "bold",
                     }}
                 >
-                    {element[0]}
+                    {element[1]}
                 </Typography>
                 {active ? (
                     <CheckCircleIcon sx={{ color: "white", mr: "10px" }} />

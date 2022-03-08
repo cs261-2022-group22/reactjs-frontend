@@ -11,11 +11,12 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import PlanElement from "components/PlanElement"
 
-const test_data = [["Wake up", true], ["Eat breakfast", true], ["Shower", false]];
+const test_data = [[1, "Wake up", true], [1, "Eat breakfast", true], [2, "Shower", false]];
 
 export default function planofactions() {
     const [userInput, setUserInput] = useState("");
 	const [elements, setElements] = useState(test_data)
+	let id = 3;
 
     return (
         <>
@@ -40,7 +41,7 @@ export default function planofactions() {
 								mb: "8vh"
                             }}
                             onClick={() => {
-                                setElements([...elements, [userInput, false]]);
+                                setElements([...elements, [id++, userInput, false]]);
                             }}
                         >
                             Add
