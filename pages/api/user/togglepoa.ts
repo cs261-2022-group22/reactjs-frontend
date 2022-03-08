@@ -6,10 +6,8 @@ export default async function togglepoa(req: NextApiRequest, res: NextApiRespons
 	try {
         const meetingClient = new MeetingClient();
         const result = await meetingClient.togglePlansOfActionAsync({
-            planid: req.body.planid
+            planid: req.body.planid as number
         });
-
-        console.log(result);
 
         res.status(200).json({ successful: result.successful });
     } catch (error) {

@@ -26,8 +26,6 @@ export default function plansofaction(props: { valid: boolean, poas: PlansOfActi
         poaData.push([poa.id, poa.content, false]);
     }
     const [elements, setElements] = useState(poaData);
-
-    console.log(poaData);
 	const { data: session } = useSession();
 	if (!session) {
 		return <Unauthenticated/>
@@ -66,7 +64,7 @@ export default function plansofaction(props: { valid: boolean, poas: PlansOfActi
                                         "/api/user/createpoa",
                                         {
                                             userid: session["id"] as number,
-                                            plansOfAction: userInput,
+                                            plansOfAction: userInput as string,
                                         }
                                     );
 									console.log(res.data);

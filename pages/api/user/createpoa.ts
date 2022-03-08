@@ -7,13 +7,16 @@ export default async function createpoa(req: NextApiRequest, res: NextApiRespons
 		console.log("here")
         const meetingClient = new MeetingClient();
         const result = await meetingClient.createPlansOfActionAsync({
-            menteeUserId: req.body.userid,
-            plansOfAction: req.body.plansOfAction,
+            menteeUserId: req.body.userid as number,
+            plansOfAction: req.body.plansOfAction as string,
         });
 
         console.log(result);
 
-        res.status(200).json({ successful: result.successful, plan: result.plansOfAction  });
+        res.status(200).json({
+            successful: result.successful,
+            plan: result.plansOfAction,
+        });
     } catch (error) {
         const grpcError: ServiceError = error as ServiceError;
         console.log(grpcError);

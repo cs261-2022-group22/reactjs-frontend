@@ -1,12 +1,18 @@
 import { Card, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import axios from "axios";
 
-export default function PlanElement({ element }: (number | string | boolean)[]) {
+export default function PlanElement({ element }: [number, string, boolean]) {
     const [active, setActive] = useState(element[2]);
 
-    function handleClick() {
-        setActive(!active);
+    async function handleClick() {
+        const res = await axios.post("/api/user/togglepoa", {
+            planid: element[0] as number
+        });
+        if (res.data.successful) {
+            setActive(!active);
+        }
     }
 
     return (
