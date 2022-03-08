@@ -4,9 +4,10 @@ import { MeetingClient } from "utils/rpcClients";
 
 export default async function createpoa(req: NextApiRequest, res: NextApiResponse) {
 	try {
+		console.log("here")
         const meetingClient = new MeetingClient();
         const result = await meetingClient.createPlansOfActionAsync({
-            menteeId: req.body.userid,
+            menteeUserId: req.body.userid,
             plansOfAction: req.body.plansOfAction,
         });
 

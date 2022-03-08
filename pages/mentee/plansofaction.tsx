@@ -10,23 +10,29 @@ import {
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import PlanElement from "components/PlanElement"
-import { getSession, GetSessionParams } from "next-auth/react";
+import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import { MeetingClient } from "utils/rpcClients";
 import { PlansOfAction } from "utils/proto/meeting";
+import axios from "axios";
+import Unauthenticated from "components/Unauthenticated";
 
 // const test_data = [[1, "Wake up", true], [1, "Eat breakfast", true], [2, "Shower", false]];
 
-export default function plansofaction(props: { valid: boolean, poas: any }) {
-	let poaData = [];
-	for (let i = 0; i < props.poas.plansOfActions.length; i++) {
-		const poa = props.poas.plansOfActions[i]
-		poaData.push([poa.id, poa.content, false]);
-	}
-    const [userInput, setUserInput] = useState("");
+export default function plansofaction(props: { valid: boolean, poas: PlansOfAction[] }) {
+	const [userInput, setUserInput] = useState("");
+	const poaData = [];
+    for (let i = 0; i < props.poas.length; i++) {
+        const poa = props.poas[i];
+        poaData.push([poa.id, poa.content, false]);
+    }
     const [elements, setElements] = useState(poaData);
-    let id = 3;
 
-	console.log(poaData);
+    console.log(poaData);
+	const { data: session } = useSession();
+	if (!session) {
+		return <Unauthenticated/>
+	}
+	
 
     return (
         <>
@@ -52,11 +58,22 @@ export default function plansofaction(props: { valid: boolean, poas: any }) {
                                 minWidth: "11vh",
                                 mb: "8vh",
                             }}
-                            onClick={() => {
-                                setElements([
-                                    ...elements,
-                                    [id++, userInput, false],
-                                ]);
+                            onClick={async () => {
+								console.log("clicked")
+								if (userInput.length > 0) {
+									console.log("longer than 0")
+									const res = await axios.post(
+                                        "/api/user/createpoa",
+                                        {
+                                            userid: session["id"] as number,
+                                            plansOfAction: userInput,
+                                        }
+                                    );
+									console.log(res.data);
+                                    if (res.data.successful) {
+                                        setElements([...elements, [res.data.plan.id, res.data.plan.content, false]])
+									}
+								}
                             }}
                         >
                             Add
@@ -98,7 +115,7 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
     return {
         props: {
             valid: true,
-            poas: poaResult,
+            poas: poaResult.plansOfActions,
         },
     };
 }
