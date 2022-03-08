@@ -11,6 +11,7 @@ const skills = [
 
 export default function MenteeSignUp() {
 	const [skillState, setskillState] = useState<string[]>([]);
+	const [displayRequired, setDisplayRequired] = useState(false)
 
     const handleChange = (event: SelectChangeEvent<typeof skillState>) => {
         const {
@@ -18,7 +19,7 @@ export default function MenteeSignUp() {
         } = event;
         setskillState(
             typeof value === "string" ? value.split(",") : value
-        );
+        );	
     };
     return (
         <>
@@ -65,6 +66,7 @@ export default function MenteeSignUp() {
                         alignItems: "center",
                         justifyContent: "center",
                     }}>
+						{ displayRequired ? <Typography>Please enter a skill</Typography> : <></>}
 						<Box
 							sx={{
 								display: "grid",
@@ -75,6 +77,11 @@ export default function MenteeSignUp() {
 						>
 							<Button variant="contained" onClick={() => {
 								console.log(skillState)
+								if (skillState.length == 0) {
+									setDisplayRequired(true)
+								} else {
+									console.log("valid")
+								}
 							}}>Register</Button>
 							<Button variant="outlined" color="error" href="/">
 								Cancel
