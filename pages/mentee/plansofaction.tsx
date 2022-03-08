@@ -14,14 +14,19 @@ import { getSession, GetSessionParams } from "next-auth/react";
 import { MeetingClient } from "utils/rpcClients";
 import { PlansOfAction } from "utils/proto/meeting";
 
-const test_data = [[1, "Wake up", true], [1, "Eat breakfast", true], [2, "Shower", false]];
+// const test_data = [[1, "Wake up", true], [1, "Eat breakfast", true], [2, "Shower", false]];
 
-export default function planofactions(props: { valid: boolean, poas: PlansOfAction }) {
+export default function plansofaction(props: { valid: boolean, poas: any }) {
+	let poaData = [];
+	for (let i = 0; i < props.poas.plansOfActions.length; i++) {
+		const poa = props.poas.plansOfActions[i]
+		poaData.push([poa.id, poa.content, false]);
+	}
     const [userInput, setUserInput] = useState("");
-    const [elements, setElements] = useState(test_data);
+    const [elements, setElements] = useState(poaData);
     let id = 3;
 
-	console.log(poas);
+	console.log(poaData);
 
     return (
         <>
