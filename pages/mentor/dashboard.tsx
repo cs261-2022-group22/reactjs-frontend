@@ -55,11 +55,23 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
     //     userid: session["id"] as number,
     // });
 
-	console.log(appointmentsResult);
+	const elements = [];
+    appointmentsResult.appointments.forEach((appointment) => {
+        const obj = {
+            type: appointment.type,
+            date: appointment.startTime?.toLocaleDateString(),
+            time: appointment.startTime?.toLocaleTimeString(),
+            duration: appointment.durationMinutes,
+            skill: appointment.skill,
+            link: appointment.link,
+        };
+        elements.push(obj);
+    });
+
     return {
         props: {
             messages: ["test"],
-            // appointments: appointmentsResult,
+            appointments: elements,
         },
         // props: {
         //     messages: notificationsResult.desiredNotifications,

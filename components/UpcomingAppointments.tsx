@@ -1,9 +1,19 @@
-import { Cancel as CancelIcon, Refresh as RefreshIcon } from "@mui/icons-material";
-import { Card, CardContent, List, ListItem, Stack, Typography } from "@mui/material";
+import {
+    Cancel as CancelIcon,
+    Refresh as RefreshIcon,
+} from "@mui/icons-material";
+import {
+    Card,
+    CardContent,
+    List,
+    ListItem,
+    Stack,
+    Typography,
+} from "@mui/material";
 import groupBy from "lodash.groupby";
+import Link from "next/link";
 import { useState } from "react";
 import { Appointment } from "utils/proto/meeting";
-
 
 const test_data = {
     appointments: [
@@ -46,14 +56,15 @@ const test_data = {
     ],
 };
 
-export default function UpcomingAppointments(props: { cancellable: boolean; appointments: Appointment[] }) {
-    const ga = groupBy(test_data.appointments, "date");
+export default function UpcomingAppointments(props) {
+    // const ga = groupBy(test_data.appointments, "date");
+    const ga = groupBy(props.appointments, "date");
     const d = [];
     for (const key in ga) {
         d.push(key);
     }
 
-	console.log(props.appointments);
+    console.log(d);
     console.log(props.cancellable);
 
     const [groupedAppointments] = useState(ga);
@@ -122,49 +133,106 @@ export default function UpcomingAppointments(props: { cancellable: boolean; appo
                                         </Typography>
                                         <List>
                                             {groupedAppointments[date].map(
-                                                (appointment: {
-                                                    name: string;
-                                                    date: string;
-                                                    time: string;
-                                                    duration: number;
-                                                }) => {
-                                                    return (
-                                                        <ListItem
-                                                            sx={{
-                                                                mb: "-1vh",
-                                                            }}
-                                                            key={
-                                                                appointment.date +
-                                                                appointment.time
-                                                            }
-                                                        >
-                                                            <Typography
-                                                                sx={{
-                                                                    fontWeight:
-                                                                        "bold",
-                                                                    mb: "-1px",
-                                                                }}
-                                                            >
-                                                                {
-                                                                    appointment.time
+                                                (appointment) => {
+                                                    if (appointment.type == 0) {
+                                                        return (
+                                                            <Link
+                                                                href={
+                                                                    appointment.link
                                                                 }
-                                                            </Typography>
-                                                            : Meeting with{" "}
-                                                            {appointment.name}{" "}
-                                                            for{" "}
-                                                            {
-                                                                appointment.duration
-                                                            }{" "}
-                                                            minutes
-                                                            {props.cancellable ? <CancelIcon
-                                                                sx={{
-                                                                    color: "red",
-                                                                    marginLeft:
-                                                                        "auto",
-                                                                }}
-                                                            /> : <></>}
-                                                        </ListItem>
-                                                    );
+                                                            >
+                                                                <ListItem
+                                                                    sx={{
+                                                                        mb: "-1vh",
+                                                                    }}
+                                                                    key={
+                                                                        appointment.date +
+                                                                        appointment.time
+                                                                    }
+                                                                >
+                                                                    <Typography
+                                                                        sx={{
+                                                                            fontWeight:
+                                                                                "bold",
+                                                                            mb: "-1px",
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            appointment.time
+                                                                        }
+                                                                    </Typography>
+                                                                    : Meeting
+                                                                    lasting{" "}
+                                                                    {
+                                                                        appointment.duration
+                                                                    }{" "}
+                                                                    minutes
+                                                                    {props.cancellable ? (
+                                                                        <CancelIcon
+                                                                            sx={{
+                                                                                color: "red",
+                                                                                marginLeft:
+                                                                                    "auto",
+                                                                            }}
+                                                                        />
+                                                                    ) : (
+                                                                        <></>
+                                                                    )}
+                                                                </ListItem>
+                                                            </Link>
+                                                        );
+                                                    } else {
+                                                        return (
+                                                            <Link
+                                                                href={
+                                                                    appointment.link
+                                                                }
+                                                            >
+                                                                <ListItem
+                                                                    sx={{
+                                                                        mb: "-1vh",
+                                                                    }}
+                                                                    key={
+                                                                        appointment.date +
+                                                                        appointment.time
+                                                                    }
+                                                                >
+                                                                    <Typography
+                                                                        sx={{
+                                                                            fontWeight:
+                                                                                "bold",
+                                                                            mb: "-1px",
+                                                                        }}
+                                                                    >
+                                                                        {
+                                                                            appointment.time
+                                                                        }
+                                                                    </Typography>
+                                                                    : Workshop
+                                                                    on{" "}
+                                                                    {
+                                                                        appointment.skill
+                                                                    }{" "}
+                                                                    lasting{" "}
+                                                                    {
+                                                                        appointment.duration
+                                                                    }{" "}
+                                                                    minutes
+                                                                    {props.cancellable ? (
+                                                                        <CancelIcon
+                                                                            sx={{
+                                                                                color: "red",
+                                                                                marginLeft:
+                                                                                    "auto",
+                                                                            }}
+                                                                        />
+                                                                    ) : (
+                                                                        <></>
+                                                                    )}
+                                                                </ListItem>
+                                                            </Link>
+                                                        );
+                                                    }
                                                 }
                                             )}
                                         </List>
@@ -178,4 +246,3 @@ export default function UpcomingAppointments(props: { cancellable: boolean; appo
         </>
     );
 }
-
