@@ -8,18 +8,18 @@ export default async function registermentee(req: NextApiRequest, res: NextApiRe
 
     const client = new AccountClient();
 
-    // try {
-    //     const result = await client.registerMenteeAsync({
-	// 		userid: req.body.userid,
-	// 		desiredSkills: req.body.desiredSkills,
-    //     });
+    try {
+        const result = await client.registerMenteeAsync({
+			userid: req.body.userid,
+			desiredSkills: req.body.desiredSkills,
+        });
 
-    //     console.log(result);
+        console.log(result);
 
-    //     res.status(200).json({status: result.status});
-    // } catch (error) {
-    //     const grpcError: ServiceError = error as ServiceError;
-    //     console.log(grpcError);
-    //     res.status(503).json({ status: false });
-    // }
+        res.status(200).json({status: result.status});
+    } catch (error) {
+        const grpcError: ServiceError = error as ServiceError;
+        console.log(grpcError);
+        res.status(503).json({ status: false });
+    }
 }
