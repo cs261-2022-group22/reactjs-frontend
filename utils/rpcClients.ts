@@ -44,8 +44,14 @@ export class MeetingClient extends MeetingServiceClient {
     static SERVICE_NAME = "MEETING";
 
     constructor() {
-        super(getRpcBackendAddress(MeetingClient.SERVICE_NAME), getCredentials(MeetingClient.SERVICE_NAME));
+        super(
+            getRpcBackendAddress(MeetingClient.SERVICE_NAME),
+            getCredentials(MeetingClient.SERVICE_NAME)
+        );
     }
+
+    listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);
+    listPlansOfActionAsync = WrapAsyncRPC(this, this.listPlansOfActions);
 }
 
 export class OtherClient extends OtherServiceClient {
