@@ -13,51 +13,9 @@ import {
 import groupBy from "lodash.groupby";
 import Link from "next/link";
 import { useState } from "react";
-import { Appointment } from "utils/proto/meeting";
+import { NormalisedAppointment } from "utils/CommonTypes";
 
-const test_data = {
-    appointments: [
-        {
-            name: "Alice",
-            date: "27/02/2022",
-            time: "9:00",
-            duration: 60,
-        },
-        {
-            name: "Bob",
-            date: "27/02/2022",
-            time: "10:00",
-            duration: 60,
-        },
-        {
-            name: "Bob",
-            date: "28/02/2022",
-            time: "15:00",
-            duration: 30,
-        },
-        {
-            name: "Bob",
-            date: "29/02/2022",
-            time: "15:00",
-            duration: 30,
-        },
-        {
-            name: "Bob",
-            date: "30/02/2022",
-            time: "15:00",
-            duration: 30,
-        },
-        {
-            name: "Bob",
-            date: "10/03/2022",
-            time: "15:00",
-            duration: 30,
-        },
-    ],
-};
-
-export default function UpcomingAppointments(props) {
-    // const ga = groupBy(test_data.appointments, "date");
+export default function UpcomingAppointments(props: { appointments: NormalisedAppointment[]; cancellable: boolean; }) {
     const ga = groupBy(props.appointments, "date");
     const d = [];
     for (const key in ga) {
@@ -140,6 +98,7 @@ export default function UpcomingAppointments(props) {
                                                                 href={
                                                                     appointment.link
                                                                 }
+																passHref
                                                             >
                                                                 <ListItem
                                                                     sx={{
@@ -187,6 +146,7 @@ export default function UpcomingAppointments(props) {
                                                                 href={
                                                                     appointment.link
                                                                 }
+																passHref
                                                             >
                                                                 <ListItem
                                                                     sx={{

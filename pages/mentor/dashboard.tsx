@@ -39,21 +39,17 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
         };
     }
 
-    // const accountClient = new AccountClient();
-    // const notificationsResult = await accountClient.listNotificationsAsync({
-    //     userid: session["id"] as number,
-    //     targetProfileType: ProfileType.MENTOR,
-    // });
+    const accountClient = new AccountClient();
+    const notificationsResult = await accountClient.listNotificationsAsync({
+        userid: session["id"] as number,
+        targetProfileType: ProfileType.MENTOR,
+    });
 
 	const meetingClient = new MeetingClient();
     const appointmentsResult = await meetingClient.listAppointmentsAsync({
         userid: session["id"] as number,
         profileType: ProfileType.MENTOR,
     });
-
-	// const poaResult = await meetingClient.listPlansOfActionAsync({
-    //     userid: session["id"] as number,
-    // });
 
 	const elements = [];
     appointmentsResult.appointments.forEach((appointment) => {
@@ -70,12 +66,8 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
 
     return {
         props: {
-            messages: ["test"],
-            appointments: elements,
-        },
-        // props: {
-        //     messages: notificationsResult.desiredNotifications,
-		// 	appointments: appointmentsResult,
-		// },
+            messages: notificationsResult.desiredNotifications,
+			appointments: elements,
+		},
     };
 }

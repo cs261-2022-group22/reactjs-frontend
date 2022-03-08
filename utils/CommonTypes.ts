@@ -6,3 +6,12 @@ export type RegistrationData = {
     dateOfBirth: Date;
     businessArea: number;
 };
+
+export type NormalisedAppointment = {
+	type: number;
+	date: string;
+	time: string;
+	duration: number;
+	skill: string;
+	link: string;
+}
