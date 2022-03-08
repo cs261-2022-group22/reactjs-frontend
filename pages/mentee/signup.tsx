@@ -1,5 +1,22 @@
 import { Box, Chip, Container, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, Typography, Button } from "@mui/material";
+import Unauthenticated from "components/Unauthenticated";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { AccountClient } from "utils/rpcClients";
+// var google_protobuf_timestamp = require("google-protobuf/google/protobuf/timestamp_pb");
+// var grpc = require("@grpc/grpc-js");
+// var protoLoader = require("@grpc/proto-loader");
+
+// const PROTO_PATH = __dirname + "/../common/account.proto";
+// const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+//     keepCase: true,
+//     longs: String,
+//     enums: String,
+//     defaults: true,
+//     oneofs: true,
+// });
+// const Proto = grpc.loadPackageDefinition(packageDefinition).account_package;
+// const GRPC_SERVER_ADDRESS = "localhost:50051";
 
 const skills = [
     "Technical",
@@ -10,6 +27,10 @@ const skills = [
 ];
 
 export default function MenteeSignUp() {
+	const { data: session } = useSession();
+    if (!session) {
+        return <Unauthenticated />;
+    }
 	const [skillState, setskillState] = useState<string[]>([]);
 	const [displayRequired, setDisplayRequired] = useState(false)
 
@@ -66,7 +87,7 @@ export default function MenteeSignUp() {
                         alignItems: "center",
                         justifyContent: "center",
                     }}>
-						{ displayRequired ? <Typography>Please enter a skill</Typography> : <></>}
+						{ displayRequired ? <Typography>Please add at least one skill</Typography> : <></>}
 						<Box
 							sx={{
 								display: "grid",
@@ -75,12 +96,12 @@ export default function MenteeSignUp() {
 								maxWidth: "20vh",
 							}}
 						>
-							<Button variant="contained" onClick={() => {
+							<Button variant="contained" onClick={async () => {
 								console.log(skillState)
-								if (skillState.length == 0) {
+								if (skillState.length <= 0) {
 									setDisplayRequired(true)
 								} else {
-									console.log("valid")
+									console.log("test")
 								}
 							}}>Register</Button>
 							<Button variant="outlined" color="error" href="/">
