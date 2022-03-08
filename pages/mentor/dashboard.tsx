@@ -46,16 +46,16 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
     // });
 
 	const meetingClient = new MeetingClient();
-    // const appointmentsResult = await meetingClient.listAppointmentsAsync({
-    //     userid: session["id"] as number,
-    //     profileType: ProfileType.MENTOR,
-    // });
-
-	const poaResult = await meetingClient.listPlansOfActionAsync({
+    const appointmentsResult = await meetingClient.listAppointmentsAsync({
         userid: session["id"] as number,
+        profileType: ProfileType.MENTOR,
     });
 
-	console.log(poaResult);
+	// const poaResult = await meetingClient.listPlansOfActionAsync({
+    //     userid: session["id"] as number,
+    // });
+
+	console.log(appointmentsResult);
     return {
         props: {
             messages: ["test"],
