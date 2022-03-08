@@ -3,9 +3,10 @@ import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
-import { AccountClient } from "utils/rpcClients";
+import { Appointment } from "utils/proto/meeting";
+import { AccountClient, MeetingClient } from "utils/rpcClients";
 
-export default function MentorDashboard(props: { messages: string[]; }) {
+export default function MentorDashboard(props: { messages: string[]; appointments: Appointment[]}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -13,7 +14,7 @@ export default function MentorDashboard(props: { messages: string[]; }) {
                     Top left
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable={false} />
+                    <UpcomingAppointments cancellable={false} appointments={props.appointments} />
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -38,15 +39,31 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
         };
     }
 
-    const client = new AccountClient();
-    const notificationsResult = await client.listNotificationsAsync({
+    // const accountClient = new AccountClient();
+    // const notificationsResult = await accountClient.listNotificationsAsync({
+    //     userid: session["id"] as number,
+    //     targetProfileType: ProfileType.MENTOR,
+    // });
+
+	const meetingClient = new MeetingClient();
+    // const appointmentsResult = await meetingClient.listAppointmentsAsync({
+    //     userid: session["id"] as number,
+    //     profileType: ProfileType.MENTOR,
+    // });
+
+	const poaResult = await meetingClient.listPlansOfActionAsync({
         userid: session["id"] as number,
-        targetProfileType: ProfileType.MENTOR,
     });
 
+	console.log(poaResult);
     return {
         props: {
-            messages: notificationsResult.desiredNotifications,
+            messages: ["test"],
+            // appointments: appointmentsResult,
         },
+        // props: {
+        //     messages: notificationsResult.desiredNotifications,
+		// 	appointments: appointmentsResult,
+		// },
     };
 }

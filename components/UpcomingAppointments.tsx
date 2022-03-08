@@ -2,6 +2,7 @@ import { Cancel as CancelIcon, Refresh as RefreshIcon } from "@mui/icons-materia
 import { Card, CardContent, List, ListItem, Stack, Typography } from "@mui/material";
 import groupBy from "lodash.groupby";
 import { useState } from "react";
+import { Appointment } from "utils/proto/meeting";
 
 
 const test_data = {
@@ -45,13 +46,14 @@ const test_data = {
     ],
 };
 
-export default function UpcomingAppointments(props: { cancellable: boolean }) {
+export default function UpcomingAppointments(props: { cancellable: boolean; appointments: Appointment[] }) {
     const ga = groupBy(test_data.appointments, "date");
     const d = [];
     for (const key in ga) {
         d.push(key);
     }
 
+	console.log(props.appointments);
     console.log(props.cancellable);
 
     const [groupedAppointments] = useState(ga);
