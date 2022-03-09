@@ -18,9 +18,6 @@ export default function UpcomingAppointments(props: {
         d.push(key);
     }
 
-    console.log(d);
-    console.log(props.cancellable);
-
     const [groupedAppointments] = useState(ga);
     const [dates] = useState(d);
 
