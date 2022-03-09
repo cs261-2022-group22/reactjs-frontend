@@ -74,7 +74,10 @@ export default function UpcomingAppointments(props: {
                                     return (
                                         <Link
                                             href={appointment.link}
-                                            key={appointment}
+                                            key={
+                                                appointment.date +
+                                                appointment.time
+                                            }
                                             passHref
                                         >
                                             <ListItem sx={{ mb: "-1vh" }}>
@@ -103,7 +106,10 @@ export default function UpcomingAppointments(props: {
                                     return (
                                         <Link
                                             href={appointment.link}
-                                            key={appointment}
+                                            key={
+                                                appointment.date +
+                                                appointment.time
+                                            }
                                             passHref
                                         >
                                             <ListItem sx={{ mb: "-1vh" }}>
