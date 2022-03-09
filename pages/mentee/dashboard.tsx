@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
-import Notifications from "components/Notification";
 import MenteeLinks from "components/MenteeLinks";
+import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
-import { GetSessionParams, getSession } from "next-auth/react";
+import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient, MeetingClient } from "utils/rpcClients";
 import { NormalisedAppointment } from "utils/CommonTypes";
@@ -35,7 +35,9 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
 
     if (!session) {
         return {
-            props: [],
+            props: {
+                messages: []
+            }
         };
     }
 
