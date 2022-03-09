@@ -1,3 +1,5 @@
+import { AppointmentType } from "./proto/meeting";
+
 export type RegistrationData = {
     firstName: string;
     lastName: string;
@@ -6,3 +8,12 @@ export type RegistrationData = {
     dateOfBirth: Date;
     businessArea: number;
 };
+
+export type NormalisedAppointment = {
+	type: AppointmentType;
+	date: string;
+	time: string;
+	duration: number;
+	skill: string;
+	link: string;
+}

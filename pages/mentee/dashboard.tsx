@@ -4,9 +4,10 @@ import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
-import { AccountClient } from "utils/rpcClients";
+import { AccountClient, MeetingClient } from "utils/rpcClients";
+import { NormalisedAppointment } from "utils/CommonTypes";
 
-export default function MenteeDashboard(props: { messages: string[] }) {
+export default function MenteeDashboard(props: { messages: string[]; appointments: NormalisedAppointment[] }) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "48vh" }}>
@@ -14,7 +15,7 @@ export default function MenteeDashboard(props: { messages: string[] }) {
                     <MenteeLinks />
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable={true} />
+                    <UpcomingAppointments cancellable={true} appointments={props.appointments}/>
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -46,9 +47,41 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
         targetProfileType: ProfileType.MENTEE,
     });
 
+	const meetingClient = new MeetingClient();
+    const appointmentsResult = await meetingClient.listAppointmentsAsync({
+        userid: session["id"] as number,
+        profileType: ProfileType.MENTEE,
+    });
+
+    const elements: NormalisedAppointment[] = [];
+    appointmentsResult.appointments.forEach((appointment) => {
+        if (!appointment.startTime) {
+            const obj = {
+                type: appointment.type,
+                date: "",
+                time: "",
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj);
+        } else {
+            const obj = {
+                type: appointment.type,
+                date: appointment.startTime.toLocaleDateString(),
+                time: appointment.startTime.toLocaleTimeString(),
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj);
+        }
+    });
+
     return {
         props: {
             messages: notificationsResult.desiredNotifications,
+            appointments: elements,
         },
     };
 }
