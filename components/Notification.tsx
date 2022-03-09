@@ -21,15 +21,15 @@ export default function Notifications({ messages }: { messages: string[] }) {
                     }}
                 >
                     Your notifications
-                        <Typography
-                            sx={{
-                                typography: "h5",
-                                margin: 5,
-                                fontStyle: 'italic'
-                            }}
-                        >
-                                No notifications
-                        </Typography>
+                    <Typography
+                        sx={{
+                            typography: "h5",
+                            margin: 5,
+                            fontStyle: 'italic'
+                        }}
+                    >
+                        No notifications
+                    </Typography>
                 </CardContent>
             </Card>
         );
@@ -74,7 +74,7 @@ export default function Notifications({ messages }: { messages: string[] }) {
                                         boxShadow: 1,
                                         "&:hover": { boxShadow: 4 },
                                     }}
-                                    key = {message}
+                                    key={message}
                                 >
                                     <Typography variant="h6">
                                         {message}
