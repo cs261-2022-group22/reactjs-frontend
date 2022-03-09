@@ -45,7 +45,7 @@ export default function UpcomingAppointments(props: { appointments: NormalisedAp
                         <List>
                             {groupedAppointments[date].map(
                                 (appointment) => {
-									if (appointment.type = 0) {
+									if (appointment.type == 0) {
 										return (
 											<Link href={appointment.link} passHref>
 												<ListItem sx={{ mb: "-1vh" }} key={appointment.date + appointment.time}>
