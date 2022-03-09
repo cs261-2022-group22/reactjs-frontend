@@ -55,6 +55,8 @@ export class MeetingClient extends MeetingServiceClient {
 
     listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);
     listPlansOfActionAsync = WrapAsyncRPC(this, this.listPlansOfActions);
+    togglePlansOfActionAsync = WrapAsyncRPC(this, this.togglePlansOfActionCompletion);
+    createPlansOfActionAsync = WrapAsyncRPC(this, this.createPlansOfActions);
 }
 
 export class OtherClient extends OtherServiceClient {
