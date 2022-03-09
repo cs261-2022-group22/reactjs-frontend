@@ -124,14 +124,6 @@ export default function UpcomingAppointments(props: {
                                                 : Workshop on{" "}
                                                 {appointment.skill} lasting{" "}
                                                 {appointment.duration} minutes
-                                                {props.cancellable && (
-                                                    <CancelIcon
-                                                        sx={{
-                                                            color: "red",
-                                                            marginLeft: "auto",
-                                                        }}
-                                                    />
-                                                )}
                                             </ListItem>
                                         </Link>
                                     );
