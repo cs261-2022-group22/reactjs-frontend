@@ -1,14 +1,16 @@
-import { Card, Typography, Stack } from "@mui/material";
-import { useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Card, Stack, Typography } from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 
-export default function PlanElement({ element }: [number, string, boolean]) {
-    const [active, setActive] = useState(element[2]);
+export declare type PoAData = { id: number; content: string; completed: boolean };
+
+export default function PlanElement({ element }: { element: PoAData }) {
+    const [active, setActive] = useState(element.completed);
 
     async function handleClick() {
         const res = await axios.post("/api/user/togglepoa", {
-            planid: element[0] as number
+            planid: element.id
         });
         if (res.data.successful) {
             setActive(!active);
@@ -37,13 +39,9 @@ export default function PlanElement({ element }: [number, string, boolean]) {
                         fontWeight: "bold",
                     }}
                 >
-                    {element[1]}
+                    {element.content}
                 </Typography>
-                {active ? (
-                    <CheckCircleIcon sx={{ color: "white", mr: "10px" }} />
-                ) : (
-                    <></>
-                )}
+                {active && (<CheckCircleIcon sx={{ color: "white", mr: "10px" }} />)}
             </Stack>
         </Card>
     );
