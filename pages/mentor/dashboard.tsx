@@ -2,11 +2,11 @@ import { Grid } from "@mui/material";
 import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
+import { NormalisedAppointment } from "utils/CommonTypes";
 import { ProfileType } from "utils/proto/account";
-import { Appointment } from "utils/proto/meeting";
 import { AccountClient, MeetingClient } from "utils/rpcClients";
 
-export default function MentorDashboard(props: { messages: string[]; appointments: Appointment[]}) {
+export default function MentorDashboard(props: { messages: string[]; appointments: NormalisedAppointment[]}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -51,12 +51,20 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
         profileType: ProfileType.MENTOR,
     });
 
-	const elements = [];
+	const elements: NormalisedAppointment[] = [];
     appointmentsResult.appointments.forEach((appointment) => {
+		let d, t
+		if (!appointment.startTime) {
+			d = ""
+			t = ""
+		} else {
+			d = appointment.startTime.toLocaleDateString();
+			t = appointment.startTime.toLocaleTimeString();
+		}
         const obj = {
             type: appointment.type,
-            date: appointment.startTime?.toLocaleDateString(),
-            time: appointment.startTime?.toLocaleTimeString(),
+            date: d,
+            time: t,
             duration: appointment.durationMinutes,
             skill: appointment.skill,
             link: appointment.link,
