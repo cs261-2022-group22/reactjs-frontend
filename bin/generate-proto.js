@@ -25,13 +25,13 @@ const PLUGIN_PATH = path.join(
 
 // https://github.com/stephenh/ts-proto/blob/main/README.markdown
 const protoConfig = [
-    `--plugin=${PLUGIN_PATH}`,
+    `--plugin="${PLUGIN_PATH}"`,
     "--ts_proto_opt=outputServices=grpc-js,env=node,exportCommonSymbols=false,esModuleInterop=true",
-    `--ts_proto_out=${MODEL_DIR}`,
-    `--proto_path ${PROTO_DIR} ${PROTO_DIR}/*.proto`,
+    `--ts_proto_out="${MODEL_DIR}"`,
+    `--proto_path "${PROTO_DIR}" "${PROTO_DIR}"/*.proto`,
 ];
 
-const command = `${PROTOC_PATH} ${protoConfig.join(" ")}`;
+const command = `"${PROTOC_PATH}" ${protoConfig.join(" ")}`;
 
 shell.exec(command, (code, stdout, stderr) => {
     if (code !== 0)
