@@ -53,15 +53,27 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
 
     const elements: NormalisedAppointment[] = [];
     appointmentsResult.appointments.forEach((appointment) => {
-        const obj = {
-            type: appointment.type,
-            date: appointment.startTime?.toLocaleDateString(),
-            time: appointment.startTime?.toLocaleTimeString(),
-            duration: appointment.durationMinutes,
-            skill: appointment.skill,
-            link: appointment.link,
-        };
-        elements.push(obj);
+        if (!appointment.startTime) {
+            const obj = {
+                type: appointment.type,
+                date: "",
+                time: "",
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj);
+        } else {
+            const obj = {
+                type: appointment.type,
+                date: appointment.startTime.toLocaleDateString(),
+                time: appointment.startTime.toLocaleTimeString(),
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj);
+        }
     });
 
     return {
