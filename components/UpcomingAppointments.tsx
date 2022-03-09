@@ -74,15 +74,10 @@ export default function UpcomingAppointments(props: {
                                     return (
                                         <Link
                                             href={appointment.link}
-                                            key={
-                                                appointment.date +
-                                                appointment.time
-                                            }
+                                            key={appointment}
                                             passHref
                                         >
-                                            <ListItem
-                                                sx={{ mb: "-1vh" }}
-                                            >
+                                            <ListItem sx={{ mb: "-1vh" }}>
                                                 <Typography
                                                     sx={{
                                                         fontWeight: "bold",
@@ -108,15 +103,10 @@ export default function UpcomingAppointments(props: {
                                     return (
                                         <Link
                                             href={appointment.link}
-                                            key={
-                                                appointment.date +
-                                                appointment.time
-                                            }
+                                            key={appointment}
                                             passHref
                                         >
-                                            <ListItem
-                                                sx={{ mb: "-1vh" }}
-                                            >
+                                            <ListItem sx={{ mb: "-1vh" }}>
                                                 <Typography
                                                     sx={{
                                                         fontWeight: "bold",
