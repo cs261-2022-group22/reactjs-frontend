@@ -1,9 +1,7 @@
-import ScheduleMeeting from "components/ScheduleMeeting";
-
 export default function schedule() {
     return (
         <>
-            <ScheduleMeeting />
+            <div>The schedule a meeting page</div>
         </>
     );
 }
