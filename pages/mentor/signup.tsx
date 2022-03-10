@@ -1,15 +1,31 @@
-import { SelectChangeEvent, Container, Stack, Typography, FormControl, InputLabel, Select, OutlinedInput, Box, Chip, MenuItem, Button, Alert } from "@mui/material";
+import {
+    SelectChangeEvent,
+    Container,
+    Stack,
+    Typography,
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    Box,
+    Chip,
+    MenuItem,
+    Button,
+    Alert,
+} from "@mui/material";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { AccountClient } from "utils/rpcClients";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Skill } from "utils/CommonTypes";
+import {
+    ArrowForward as ArrowForwardIcon,
+    Refresh as RefreshIcon,
+} from "@mui/icons-material";
 
-export default function MentorSignUp(props { skills: Skill[]; }) {
+export default function MentorSignUp(props: { skills: Skill[] }) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
@@ -19,7 +35,7 @@ export default function MentorSignUp(props { skills: Skill[]; }) {
         return <Unauthenticated />;
     }
 
-    let skills: string[] = [];
+    const skills: string[] = [];
     props.skills.forEach((skill) => {
         skills.push(skill.name);
     });
@@ -136,7 +152,7 @@ export default function MentorSignUp(props { skills: Skill[]; }) {
                     An error has occurred, please try again (You may already
                     have an account)
                 </Alert>
-                <Link href="/mentor/signup">
+                <Link href="/mentor/signup" passHref>
                     <Button
                         variant="contained"
                         size="large"
@@ -154,7 +170,7 @@ export default function MentorSignUp(props { skills: Skill[]; }) {
                     You have successfully signed up. Click below to take you to
                     the dashboard
                 </Alert>
-                <Link href="/mentor/dashboard">
+                <Link href="/mentor/dashboard" passHref>
                     <Button
                         variant="contained"
                         size="large"
