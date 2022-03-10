@@ -60,7 +60,9 @@ export default function NavBar() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <a onClick={() => signOut()}>
+                                <a onClick={() => signOut({
+									callbackUrl: "/"
+								})}>
                                     <Button
                                         color="inherit"
                                         endIcon={<LogoutIcon />}
