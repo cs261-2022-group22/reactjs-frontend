@@ -1,5 +1,5 @@
-import { Help as HelpIcon, Logout as LogoutIcon, SwitchAccount as SwitchAccountIcon } from "@mui/icons-material";
-import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
+import { Help as HelpIcon, Logout as LogoutIcon, SwitchAccount as SwitchAccountIcon, School as SchoolIcon } from "@mui/icons-material";
+import { AppBar, Button, Grid, Toolbar, Typography, IconButton } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -18,19 +18,19 @@ export default function NavBar() {
                                 justifyContent: "flex-start",
                             }}
                         >
-                            <Link href="/choice" passHref>
-                                <Typography variant="h6">Logo</Typography>
+                            <Link href="/" passHref>
+                                <IconButton color="inherit">
+                                    <SchoolIcon />
+                                </IconButton>
                             </Link>
                         </Grid>
                         <Grid item xs={4}>
-                            <Link href="/" passHref>
-                                <Typography
-                                    sx={{ textAlign: "center" }}
-                                    variant="h5"
-                                >
-                                    Website Name
-                                </Typography>
-                            </Link>
+                            <Typography
+                                sx={{ textAlign: "center", mt: "4px" }}
+                                variant="h5"
+                            >
+                                MentorBank
+                            </Typography>
                         </Grid>
                         <Grid
                             container
@@ -60,9 +60,13 @@ export default function NavBar() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <a onClick={() => signOut({
-									callbackUrl: "/"
-								})}>
+                                <a
+                                    onClick={() =>
+                                        signOut({
+                                            callbackUrl: "/",
+                                        })
+                                    }
+                                >
                                     <Button
                                         color="inherit"
                                         endIcon={<LogoutIcon />}
@@ -89,16 +93,20 @@ export default function NavBar() {
                                 justifyContent: "flex-start",
                             }}
                         >
-                            <Link href="/choice" passHref>
-                                <Typography variant="h6">Logo</Typography>
+                            <Link href="/" passHref>
+                                <IconButton
+                                    color="inherit"
+                                >
+									<SchoolIcon/>
+								</IconButton>
                             </Link>
                         </Grid>
                         <Grid item xs={8}>
                             <Typography
-                                sx={{ textAlign: "center" }}
+                                sx={{ textAlign: "center", mt: "4px" }}
                                 variant="h5"
                             >
-                                Website Name
+                                MentorBank
                             </Typography>
                         </Grid>
                         <Grid
