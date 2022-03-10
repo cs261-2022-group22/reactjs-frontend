@@ -22,7 +22,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AccountClient } from "utils/rpcClients";
 
-export default function MenteeSignUp(props) {
+export default function MenteeSignUp(props: { skills: Skill[]; }) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
@@ -32,7 +32,7 @@ export default function MenteeSignUp(props) {
         return <Unauthenticated />;
     }
 
-	let skills = []
+	const skills: string[] = []
 	props.skills.forEach((skill) => {
 		skills.push(skill.name)
 	})

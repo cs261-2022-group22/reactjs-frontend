@@ -25,6 +25,7 @@ export class AccountClient extends AccountServiceClient {
     listNotificationsAsync = WrapAsyncRPC(this, this.getNotifications);
     getMenteesByMentorIdAsync = WrapAsyncRPC(this, this.getMenteesByMentorId);
     registerMenteeAsync = WrapAsyncRPC(this, this.registerMentee);
+    registerMentorAsync = WrapAsyncRPC(this, this.registerMentor);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {

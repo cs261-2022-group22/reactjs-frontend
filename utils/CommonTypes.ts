@@ -17,3 +17,8 @@ export type NormalisedAppointment = {
 	skill: string;
 	link: string;
 }
+
+export type Skill = {
+    id: number;
+    name: string;
+};
