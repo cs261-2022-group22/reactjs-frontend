@@ -26,6 +26,7 @@ export class AccountClient extends AccountServiceClient {
     getMenteesByMentorIdAsync = WrapAsyncRPC(this, this.getMenteesByMentorId);
     registerMenteeAsync = WrapAsyncRPC(this, this.registerMentee);
     registerMentorAsync = WrapAsyncRPC(this, this.registerMentor);
+    updateProfileDetailsAsync = WrapAsyncRPC(this, this.updateProfileDetails);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {
@@ -44,7 +45,7 @@ export class MatchingClient extends MatchingServiceClient {
     }
 
     getMatchingMentorAsync = WrapAsyncRPC(this, this.getMatchingMentor);
-	tryMatchAsync = WrapAsyncRPC(this, this.tryMatch);
+    tryMatchAsync = WrapAsyncRPC(this, this.tryMatch);
 }
 
 export class MeetingClient extends MeetingServiceClient {
