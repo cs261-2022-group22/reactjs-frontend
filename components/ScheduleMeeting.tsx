@@ -77,9 +77,9 @@ export default function ScheduleMeeting() {
 
     const { data: session } = useSession();
     if (!session) {
-       //return <Unauthenticated/>
+       return <Unauthenticated/>
     }
-    const ID = 3//session["id"] as number
+    const ID = session["id"] as number
 
     const schedule: SubmitHandler<SchedulingData> = async (data, event?) => {
         if (!event)
