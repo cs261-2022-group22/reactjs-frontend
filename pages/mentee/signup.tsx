@@ -20,16 +20,9 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { AccountClient } from "utils/rpcClients";
 
-const skills = [
-    "Technical",
-    "How To Progress Career",
-    "Management",
-    "Leadership",
-    "Healthy Work-Life balance",
-];
-
-export default function MenteeSignUp() {
+export default function MenteeSignUp(props) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
@@ -38,6 +31,11 @@ export default function MenteeSignUp() {
     if (!session) {
         return <Unauthenticated />;
     }
+
+	let skills = []
+	props.skills.forEach((skill) => {
+		skills.push(skill.name)
+	})
 
     const handleChange = (event: SelectChangeEvent<typeof skillState>) => {
         const {
@@ -181,4 +179,15 @@ export default function MenteeSignUp() {
             </Container>
         );
     }
+}
+
+export async function getServerSideProps() {
+    const accountClient = new AccountClient();
+    const skillsResult = await accountClient.listSkillsAsync({});
+    console.log("sa", skillsResult);
+    return {
+        props: {
+            skills: skillsResult.skills,
+        },
+    };
 }
