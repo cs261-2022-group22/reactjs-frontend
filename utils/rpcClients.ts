@@ -44,6 +44,7 @@ export class MatchingClient extends MatchingServiceClient {
     }
 
     getMatchingMentorAsync = WrapAsyncRPC(this, this.getMatchingMentor);
+	tryMatchAsync = WrapAsyncRPC(this, this.tryMatch);
 }
 
 export class MeetingClient extends MeetingServiceClient {

@@ -123,6 +123,15 @@ export default function MenteeSignUp(props: { skills: Skill[] }) {
                                                 }
                                             );
                                             if (res.data.status) {
+												await axios.post(
+													"/api/user/getassignment",
+													{
+														menteeUserId:
+															session[
+																"id"
+															] as number,
+													}
+												);
                                                 setStatus("success");
                                             } else {
                                                 setStatus("false");
