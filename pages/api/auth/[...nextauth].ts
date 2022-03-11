@@ -47,6 +47,11 @@ export default NextAuth({
         }),
     ],
     callbacks: {
+        redirect: async (params: { url: string, baseUrl: string }) => {
+            // If baseurl === url (The case when clicking login) -> "/choice"
+            // Otherwise (Logging out) -> AsIs
+            return params.baseUrl === params.url ? "/choice" : params.url
+        },
         jwt: async ({ token, user }) => {
             if (user) {
                 token["id"] = user.id;
