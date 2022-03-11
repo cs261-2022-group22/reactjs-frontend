@@ -34,9 +34,9 @@ export default function Tutorial() {
                         Clicking on either will take you to the respective pages
                     </Typography>
                     <Typography>
-                        If you don't have an account already, use the register
-                        page, otherwise sign in on the login page to access the
-                        full system
+                        If you don&apos;t have an account already, use the
+                        register page, otherwise sign in on the login page to
+                        access the full system
                     </Typography>
                     <Card
                         sx={{
@@ -184,9 +184,7 @@ export default function Tutorial() {
                         <LoginButton />
                         <RegisterButton />
                     </Stack>
-					<Card>
-						
-					</Card>
+                    <Card></Card>
                 </Stack>
             </Container>
             <BottomBar position="relative" />
