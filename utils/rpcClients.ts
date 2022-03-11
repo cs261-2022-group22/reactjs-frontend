@@ -21,9 +21,11 @@ export class AccountClient extends AccountServiceClient {
     listAccountProfilesAsync = WrapAsyncRPC(this, this.accountProfiles);
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
     listBusinessAreasAsync = WrapAsyncRPC(this, this.listBusinessAreas);
+    listSkillsAsync = WrapAsyncRPC(this, this.listSkills);
     listNotificationsAsync = WrapAsyncRPC(this, this.getNotifications);
     getMenteesByMentorIdAsync = WrapAsyncRPC(this, this.getMenteesByMentorId);
-	registerMenteeAsync = WrapAsyncRPC(this, this.registerMentee);
+    registerMenteeAsync = WrapAsyncRPC(this, this.registerMentee);
+    registerMentorAsync = WrapAsyncRPC(this, this.registerMentor);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {

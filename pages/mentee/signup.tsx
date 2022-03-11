@@ -1,35 +1,31 @@
 import {
-    Box,
-    Chip,
-    Container,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
     SelectChangeEvent,
+    Container,
     Stack,
     Typography,
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    Box,
+    Chip,
+    MenuItem,
     Button,
-    Link,
-	Alert,
+    Alert,
 } from "@mui/material";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useState } from "react";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { AccountClient } from "utils/rpcClients";
+import { Skill } from "utils/CommonTypes";
+import {
+    ArrowForward as ArrowForwardIcon,
+    Refresh as RefreshIcon,
+} from "@mui/icons-material";
 
-const skills = [
-    "Technical",
-    "How To Progress Career",
-    "Management",
-    "Leadership",
-    "Healthy Work-Life balance",
-];
-
-export default function MenteeSignUp() {
+export default function MenteeSignUp(props: { skills: Skill[] }) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
@@ -38,6 +34,11 @@ export default function MenteeSignUp() {
     if (!session) {
         return <Unauthenticated />;
     }
+
+    const skills: string[] = [];
+    props.skills.forEach((skill) => {
+        skills.push(skill.name);
+    });
 
     const handleChange = (event: SelectChangeEvent<typeof skillState>) => {
         const {
@@ -151,7 +152,7 @@ export default function MenteeSignUp() {
                     An error has occurred, please try again (You may already
                     have an account)
                 </Alert>
-                <Link href="/mentee/signup">
+                <Link href="/mentee/signup" passHref>
                     <Button
                         variant="contained"
                         size="large"
@@ -165,11 +166,11 @@ export default function MenteeSignUp() {
     } else {
         return (
             <Container sx={{ textAlign: "center" }}>
-                <Alert severity="info" sx={{ mt: "3vh", mb: "3vh"}}>
+                <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                     You have successfully signed up. Click below to take you to
                     the dashboard
                 </Alert>
-                <Link href="/mentee/dashboard">
+                <Link href="/mentee/dashboard" passHref>
                     <Button
                         variant="contained"
                         size="large"
@@ -181,4 +182,15 @@ export default function MenteeSignUp() {
             </Container>
         );
     }
+}
+
+export async function getServerSideProps() {
+    const accountClient = new AccountClient();
+    const skillsResult = await accountClient.listSkillsAsync({});
+    console.log("sa", skillsResult);
+    return {
+        props: {
+            skills: skillsResult.skills,
+        },
+    };
 }
