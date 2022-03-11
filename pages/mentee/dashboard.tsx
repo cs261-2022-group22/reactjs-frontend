@@ -4,7 +4,7 @@ import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
-import { AccountClient, MeetingClient } from "utils/rpcClients";
+import { AccountClient, MatchingClient, MeetingClient } from "utils/rpcClients";
 import { NormalisedAppointment } from "utils/CommonTypes";
 
 export default function MenteeDashboard(props: { messages: string[]; appointments: NormalisedAppointment[] }) {
@@ -37,6 +37,7 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
         return {
             props: {
                 messages: []
+				elements: []
             }
         };
     }
@@ -77,6 +78,11 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
             elements.push(obj);
         }
     });
+
+	const matchingClient = new MatchingClient();
+	await matchingClient.tryMatchAsync({
+		menteeUserId: session["id"] as number,
+	});
 
     return {
         props: {
