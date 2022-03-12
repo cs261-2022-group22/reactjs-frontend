@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MeetingClient } from 'utils/rpcClients'
+import { SchedulingData } from "utils/CommonTypes"
 import { ServiceError } from '@grpc/grpc-js'
 
 export default async function schedule(req: NextApiRequest, res: NextApiResponse) {
@@ -12,13 +13,6 @@ export default async function schedule(req: NextApiRequest, res: NextApiResponse
         res.status(405).send(`Method ${req.method} not allowed on this API endpoint.`)
         return
     }
-
-    type SchedulingData = {
-        menteeID: number;
-        dateOfMeeting: Date;
-        durationOfMeeting: number;
-        link: string;
-    };
 
     const meetinginfo: SchedulingData = req.body
 

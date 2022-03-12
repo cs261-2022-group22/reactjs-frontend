@@ -27,3 +27,17 @@ export type BAResult = {
     id: number;
     name: string;
 };
+
+export type SchedulingData = {
+    menteeID: number;
+    dateOfMeeting: Date;
+    durationOfMeeting: number;
+    link: string;
+};
+
+export type CreatingData = {
+    dateOfWorkshop: Date;
+    durationOfWorkshop: number;
+    link: string;
+    skill: string;
+};
