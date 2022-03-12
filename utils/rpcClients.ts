@@ -35,6 +35,8 @@ export class FeedbackClient extends FeedbackServiceClient {
     constructor() {
         super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
     }
+	
+	addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
 }
 
 export class MatchingClient extends MatchingServiceClient {
