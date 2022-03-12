@@ -22,8 +22,7 @@ import { FieldErrors, FieldPath, SubmitHandler, useForm, UseFormRegister } from 
 import { useSession } from "next-auth/react";
 import Unauthenticated from "components/Unauthenticated";
 import { useState } from "react";
-import { Skill } from "utils/CommonTypes";
-import { CreatingData } from "utils/CommonTypes"
+import { CreatingData, Skill } from "utils/CommonTypes"
 import { AccountClient } from "utils/rpcClients";
 import { date as yup_date, object as yup_object, number as yup_number } from 'yup';
 
