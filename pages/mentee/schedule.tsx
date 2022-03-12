@@ -94,7 +94,6 @@ export default function ScheduleMeeting() {
         })
 
         const result = await res.json()
-        console.log(result)
         if (result.status) {
             window.location.pathname = "/"
         }

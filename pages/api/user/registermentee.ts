@@ -2,7 +2,7 @@ import { ServiceError } from "@grpc/grpc-js";
 import { NextApiRequest, NextApiResponse } from "next";
 import { AccountClient } from "utils/rpcClients";
 
-export default async function registermentee(req: NextApiRequest, res: NextApiResponse) {
+export default async function RegisterMentee(req: NextApiRequest, res: NextApiResponse) {
     try {
 		const client = new AccountClient();
         const result = await client.registerMenteeAsync({

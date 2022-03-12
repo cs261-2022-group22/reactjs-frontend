@@ -4,7 +4,7 @@ import { AccountClient } from 'utils/rpcClients'
 import { RegistrationData } from "utils/CommonTypes"
 import { ServiceError } from '@grpc/grpc-js'
 
-export default async function register(req: NextApiRequest, res: NextApiResponse) {
+export default async function Register(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
     if (session)
         console.log("Received a registration attempt from user:", session.user?.email ?? "<unknown>")
