@@ -18,8 +18,9 @@ export default function Tutorial() {
                     </Typography>
                     <Typography>
                         Initially you will be greeted with the home page which
-                        information about the system two large buttons to
-                        login/register which look like this:
+                        contains information about the system and two large
+                        buttons to login and register.
+                        <br /> These buttons look like the following:
                     </Typography>
                     <Stack
                         direction="row"
@@ -31,12 +32,12 @@ export default function Tutorial() {
                         <RegisterButton />
                     </Stack>
                     <Typography>
-                        Clicking on either will take you to the respective pages
+                        Clicking on either will take you to their respective
+                        page
                     </Typography>
                     <Typography>
                         If you don&apos;t have an account already, use the
-                        register page, otherwise sign in on the login page to
-                        access the full system
+                        register page, otherwise sign in on the login page
                     </Typography>
                     <Card
                         sx={{
@@ -94,19 +95,18 @@ export default function Tutorial() {
                         </Card>
                     </Stack>
                     <Typography>
-                        Once signed up, you can now access the respective
-                        dashboards each with there own features which you can
-                        explore and use
+                        Once signed up, you can access the respective dashboards
+                        each with its features which you can explore and use.
                     </Typography>
                     <Typography>
                         The <strong>top left</strong> section contains quick
-                        links to relevant pages specifically for the user type
-                        you have chosen
+                        links to relevant pages specifically for the profile
+                        type you have chosen
                         <br />
-                        As a mentee you can access the schedule a meeting; go to
-                        their plan of action; or change your details pages.
+                        As a mentee you can access the schedule a meeting, plan
+                        of action, or change your details pages.
                         <br />
-                        AS a mentor you can go back; create a workshop; or
+                        As a mentor you can go back, create a workshop, or
                         change your details
                     </Typography>
                     <Typography>
