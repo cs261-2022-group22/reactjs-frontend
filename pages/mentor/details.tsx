@@ -25,8 +25,12 @@ import { useState } from "react";
 import { AccountClient } from "utils/rpcClients";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { BAResult, SkillResult } from "utils/CommonTypes";
 
-export default function MentorDetails(props) {
+export default function MentorDetails(props: {
+    businessAreas: BAResult[];
+    skills: SkillResult[];
+}) {
     const [emailToggle, setEmailToggle] = useState(false);
     const [emailInput, setEmailInput] = useState("");
 
@@ -43,6 +47,8 @@ export default function MentorDetails(props) {
         return <Unauthenticated />;
     }
 
+    let i = 0;
+
     const handleChange = (event: SelectChangeEvent<typeof skillState>) => {
         const {
             target: { value },
@@ -50,7 +56,7 @@ export default function MentorDetails(props) {
         setskillState(typeof value === "string" ? value.split(",") : value);
     };
 
-    const convertBA = (baString) => {
+    const convertBA = (baString: string) => {
         for (let i = 0; i < props.businessAreas.length; i++) {
             if (props.businessAreas[i].name == baString) {
                 return props.businessAreas[i].id;
@@ -59,8 +65,8 @@ export default function MentorDetails(props) {
         return -1;
     };
 
-    const convertSkills = (skillStrings) => {
-        let skillIDs = [];
+    const convertSkills = (skillStrings: string[]) => {
+        const skillIDs: number[] = [];
         skillStrings.forEach((skillString) => {
             for (let i = 0; i < props.skills.length; i++) {
                 if (props.skills[i].name == skillString) {
@@ -72,17 +78,15 @@ export default function MentorDetails(props) {
         return skillIDs;
     };
 
-    const businessAreas = [];
+    const businessAreas: (string | number)[][] = [];
     props.businessAreas.forEach((ba) => {
         businessAreas.push([ba.id, ba.name]);
     });
 
-    const skills = [];
+    const skills: (string | number)[][] = [];
     props.skills.forEach((skill) => {
         skills.push([skill.id, skill.name]);
     });
-
-    console.log(skills);
 
     if (status == "normal") {
         return (
@@ -182,7 +186,7 @@ export default function MentorDetails(props) {
                                 >
                                     {businessAreas.map((ba) => {
                                         return (
-                                            <MenuItem key={ba} value={ba[1]}>
+                                            <MenuItem key={i++} value={ba[1]}>
                                                 {ba[1]}
                                             </MenuItem>
                                         );
@@ -247,7 +251,7 @@ export default function MentorDetails(props) {
                                     )}
                                 >
                                     {skills.map((skill) => (
-                                        <MenuItem key={skill} value={skill[1]}>
+                                        <MenuItem key={i++} value={skill[1]}>
                                             {skill[1]}
                                         </MenuItem>
                                     ))}
@@ -321,7 +325,7 @@ export default function MentorDetails(props) {
                 <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                     You have successfully changed your details
                 </Alert>
-                <Link href="/mentee/dashboard">
+                <Link href="/mentor/dashboard">
                     <Button
                         variant="contained"
                         size="large"
