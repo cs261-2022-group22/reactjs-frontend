@@ -87,15 +87,15 @@ export default function ScheduleMeeting() {
 
         event.preventDefault()
 
-        const dataMentee = {
+        const dataMeeting = {
             menteeID: ID,
             dateOfMeeting: data.dateOfMeeting, 
-            durationOfMeeting:data.durationOfMeeting,    
+            durationOfMeeting: data.durationOfMeeting,    
             link: "link" + ID
         }
 
         const res = await fetch('/api/mentee/meeting', {
-            body: JSON.stringify(dataMentee),
+            body: JSON.stringify(dataMeeting),
             headers: { 'Content-Type': 'application/json' },
             method: 'POST'
         })
