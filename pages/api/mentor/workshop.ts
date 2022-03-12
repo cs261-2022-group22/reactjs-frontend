@@ -3,33 +3,33 @@ import { getSession } from 'next-auth/react'
 import { MeetingClient } from 'utils/rpcClients'
 import { ServiceError } from '@grpc/grpc-js'
 
-export default async function schedule(req: NextApiRequest, res: NextApiResponse) {
+export default async function create(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
     if (session)
-        console.log("Received a scheduling attempt from user:")
+        console.log("Received a creating attempt from user:")
 
     if (req.method !== "POST") {
         res.status(405).send(`Method ${req.method} not allowed on this API endpoint.`)
         return
     }
 
-    type SchedulingData = {
-        menteeID: number;
-        dateOfMeeting: Date;
-        durationOfMeeting: number;
+    type CreatingData = {
+        dateOfWorkshop: Date;
+        durationOfWorkshop: number;
         link: string;
+        skill: string;
     };
 
-    const meetinginfo: SchedulingData = req.body
+    const workshopinfo: CreatingData = req.body
 
     const client = new MeetingClient()
 
     try {
-        const result = await client.scheduleMeetingAsync({
-            menteeUserId: meetinginfo.menteeID,
-            start: new Date(meetinginfo.dateOfMeeting),
-            duration: meetinginfo.durationOfMeeting,
-            link: meetinginfo.link
+        const result = await client.scheduleWorkshopAsync({
+            start: new Date(workshopinfo.dateOfWorkshop),
+            duration: workshopinfo.durationOfWorkshop,
+            link: workshopinfo.link,
+            skill: workshopinfo.skill
         });
 
         console.log(result);
