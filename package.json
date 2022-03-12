@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node bin/generate-proto.js && next build",
+    "build": "node tools/generate-proto.js && next build",
     "start": "next start",
-    "build:gen_proto": "node bin/generate-proto.js",
+    "build:gen_proto": "node tools/generate-proto.js",
     "lint": "next lint"
   },
   "dependencies": {

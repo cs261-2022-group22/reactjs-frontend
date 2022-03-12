@@ -5,8 +5,8 @@
 // modules for all proto files in ./common/
 
 const path = require("path");
-const shell = require("shelljs");
 const process = require("process");
+const { exec } = require("child_process");
 
 // https://github.com/shelljs/shelljs/issues/469
 process.env.PATH +=
@@ -33,8 +33,8 @@ const protoConfig = [
 
 const command = `"${PROTOC_PATH}" ${protoConfig.join(" ")}`;
 
-shell.exec(command, (code, stdout, stderr) => {
-    if (code !== 0)
+exec(command, (error, stdout, stderr) => {
+    if (error)
         console.error(code, stdout, stderr)
     else
         console.log("Generation Completed!")
