@@ -37,9 +37,9 @@ export default function developerFeedback() {
                         <Button
                             variant="contained"
                             onClick={async () => {
-                                // await axios.post("/api/user/devfeedback", {
-                                //     message: message,
-                                // });
+                                await axios.post("/api/user/devfeedback", {
+                                    message: message,
+                                });
                                 setStatus("success");
                             }}
                         >

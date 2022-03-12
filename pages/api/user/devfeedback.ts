@@ -4,11 +4,12 @@ import { FeedbackClient } from "utils/rpcClients";
 
 export default async function ChangeDetails(req: NextApiRequest, res: NextApiResponse) {
     try {
+		console.log("got to api", req.body);
 		const client = new FeedbackClient();
-        const result = await client.FILLINWITHFUNCTIONWHENDONE({
-			message: req.body.message,
+        const result = await client.addDevFeedbackAsync({
+			content: req.body.message,
         });
-        res.status(200).json({success: result.success});
+        res.status(200).json({success: result.status});
     } catch (error) {
         const grpcError: ServiceError = error as ServiceError;
         console.log(grpcError);
