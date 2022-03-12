@@ -4,7 +4,6 @@ import { FeedbackClient } from "utils/rpcClients";
 
 export default async function ChangeDetails(req: NextApiRequest, res: NextApiResponse) {
     try {
-		console.log("got to api", req.body);
 		const client = new FeedbackClient();
         const result = await client.addDevFeedbackAsync({
 			content: req.body.message,
