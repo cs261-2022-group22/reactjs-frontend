@@ -19,13 +19,13 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { AccountClient } from "utils/rpcClients";
-import { Skill } from "utils/CommonTypes";
+import { SkillResult } from "utils/CommonTypes";
 import {
     ArrowForward as ArrowForwardIcon,
     Refresh as RefreshIcon,
 } from "@mui/icons-material";
 
-export default function MenteeSignUp(props: { skills: Skill[] }) {
+export default function MenteeSignUp(props: { skills: SkillResult[] }) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
@@ -123,15 +123,15 @@ export default function MenteeSignUp(props: { skills: Skill[] }) {
                                                 }
                                             );
                                             if (res.data.status) {
-												await axios.post(
-													"/api/user/getassignment",
-													{
-														menteeUserId:
-															session[
-																"id"
-															] as number,
-													}
-												);
+                                                await axios.post(
+                                                    "/api/user/getassignment",
+                                                    {
+                                                        menteeUserId:
+                                                            session[
+                                                            "id"
+                                                            ] as number,
+                                                    }
+                                                );
                                                 setStatus("success");
                                             } else {
                                                 setStatus("false");

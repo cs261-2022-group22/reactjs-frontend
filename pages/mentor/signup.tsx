@@ -19,13 +19,13 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { AccountClient } from "utils/rpcClients";
-import { Skill } from "utils/CommonTypes";
+import { SkillResult } from "utils/CommonTypes";
 import {
     ArrowForward as ArrowForwardIcon,
     Refresh as RefreshIcon,
 } from "@mui/icons-material";
 
-export default function MentorSignUp(props: { skills: Skill[] }) {
+export default function MentorSignUp(props: { skills: SkillResult[] }) {
     const [skillState, setskillState] = useState<string[]>([]);
     const [displayRequired, setDisplayRequired] = useState(false);
     // 3 status': normal, false, success
