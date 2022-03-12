@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 import { MeetingClient } from 'utils/rpcClients'
+import { CreatingData } from "utils/CommonTypes"
 import { ServiceError } from '@grpc/grpc-js'
 
 export default async function create(req: NextApiRequest, res: NextApiResponse) {
@@ -12,13 +13,6 @@ export default async function create(req: NextApiRequest, res: NextApiResponse) 
         res.status(405).send(`Method ${req.method} not allowed on this API endpoint.`)
         return
     }
-
-    type CreatingData = {
-        dateOfWorkshop: Date;
-        durationOfWorkshop: number;
-        link: string;
-        skill: string;
-    };
 
     const workshopinfo: CreatingData = req.body
 
