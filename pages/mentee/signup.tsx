@@ -196,7 +196,6 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
 export async function getServerSideProps() {
     const accountClient = new AccountClient();
     const skillsResult = await accountClient.listSkillsAsync({});
-    console.log("sa", skillsResult);
     return {
         props: {
             skills: skillsResult.skills,

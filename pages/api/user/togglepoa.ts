@@ -2,7 +2,7 @@ import { ServiceError } from "@grpc/grpc-js";
 import { NextApiRequest, NextApiResponse } from "next";
 import { MeetingClient } from "utils/rpcClients";
 
-export default async function togglepoa(req: NextApiRequest, res: NextApiResponse) {
+export default async function TogglePOA(req: NextApiRequest, res: NextApiResponse) {
 	try {
         const meetingClient = new MeetingClient();
         const result = await meetingClient.togglePlansOfActionAsync({

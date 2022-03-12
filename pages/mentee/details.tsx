@@ -134,7 +134,6 @@ export default function MenteeDetails(props: {
                                 value={emailInput}
                                 onChange={(e) => {
                                     setEmailInput(e.target.value);
-                                    console.log(emailInput);
                                 }}
                                 disabled={!emailToggle}
                                 sx={{
@@ -271,8 +270,6 @@ export default function MenteeDetails(props: {
                         <Button
                             variant="contained"
                             onClick={async () => {
-                                console.log("ba", convertBA(ba));
-                                console.log("skill", convertSkills(skillState));
                                 const res = await axios.post(
                                     "/api/user/changedetails",
                                     {
@@ -343,7 +340,6 @@ export async function getServerSideProps() {
     const accountClient = new AccountClient();
     const businessAreasResult = await accountClient.listBusinessAreasAsync({});
     const skillsResult = await accountClient.listSkillsAsync({});
-    console.log("sa", skillsResult);
     return {
         props: {
             businessAreas: businessAreasResult.businessAreas,

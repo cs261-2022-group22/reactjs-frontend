@@ -2,7 +2,7 @@ import { ServiceError } from "@grpc/grpc-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { MatchingClient } from "utils/rpcClients";
 
-export default async function ProfileType(req: NextApiRequest, res: NextApiResponse) {
+export default async function GetAssignment(req: NextApiRequest, res: NextApiResponse) {
 	try {	
 		const client = new MatchingClient();
 		const matchResult = await client.tryMatchAsync({

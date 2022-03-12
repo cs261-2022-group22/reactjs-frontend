@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { AccountClient } from "utils/rpcClients";
 import { ProfileType } from "utils/proto/account";
 
-export default async function registermentee(req: NextApiRequest, res: NextApiResponse) {
+export default async function ChangeDetails(req: NextApiRequest, res: NextApiResponse) {
     try {
 		const client = new AccountClient();
         const result = await client.updateProfileDetailsAsync({

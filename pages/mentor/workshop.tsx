@@ -129,7 +129,6 @@ export default function CreateWorkshop(props: { skills: SkillResult[] }) {
             })
 
             const result = await res.json()
-            console.log(result)
             if (result.status) {
                 window.location.pathname = "/"
             }
@@ -203,7 +202,6 @@ export default function CreateWorkshop(props: { skills: SkillResult[] }) {
 export async function getServerSideProps() {
     const accountClient = new AccountClient();
     const skillsResult = await accountClient.listSkillsAsync({});
-    console.log("sa", skillsResult);
     return {
         props: {
             skills: skillsResult.skills,
