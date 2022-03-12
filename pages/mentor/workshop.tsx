@@ -4,14 +4,14 @@ import {
     Select,
     SelectChangeEvent,
     Stack,
-    Alert, 
-    Box, 
-    Button, 
-    Container, 
-    FormControl, 
-    FormHelperText, 
-    Input, 
-    InputLabel, 
+    Alert,
+    Box,
+    Button,
+    Container,
+    FormControl,
+    FormHelperText,
+    Input,
+    InputLabel,
     Typography
 } from "@mui/material";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,7 +22,7 @@ import { FieldErrors, FieldPath, SubmitHandler, useForm, UseFormRegister } from 
 import { useSession } from "next-auth/react";
 import Unauthenticated from "components/Unauthenticated";
 import { useState } from "react";
-import { CreatingData, Skill } from "utils/CommonTypes"
+import { CreatingData, SkillResult } from "utils/CommonTypes"
 import { AccountClient } from "utils/rpcClients";
 import { date as yup_date, object as yup_object, number as yup_number } from 'yup';
 
@@ -73,7 +73,7 @@ function FormTextInput(_prop: InferProps<typeof FormTextInputTypes>) {
     );
 }
 
-export default function CreateWorkshop(props: { skills: Skill[] }) {
+export default function CreateWorkshop(props: { skills: SkillResult[] }) {
     const validationSchema = yup_object().shape({
         dateOfWorkshop: yup_date()
             .transform((d) => new Date(d))
@@ -87,21 +87,21 @@ export default function CreateWorkshop(props: { skills: Skill[] }) {
 
     const { data: session } = useSession();
     if (!session) {
-       return <Unauthenticated/>
+        return <Unauthenticated />
     }
 
     const skills: string[] = [];
     props.skills.forEach((skill) => {
         skills.push(skill.name);
     });
-    
+
     const [skillState, setskillState] = useState<string>("");
     const [alert, setAlert] = useState(false);
-    
+
     const handleChange = (event: SelectChangeEvent<typeof skillState>) => {
         const {
             target: { value },
-            } = event;
+        } = event;
         setskillState(value);
         setAlert(false);
     };
@@ -113,8 +113,8 @@ export default function CreateWorkshop(props: { skills: Skill[] }) {
         event.preventDefault()
 
         const dataWorkshop = {
-            dateOfWorkshop: data.dateOfWorkshop, 
-            durationOfWorkshop: data.durationOfWorkshop,    
+            dateOfWorkshop: data.dateOfWorkshop,
+            durationOfWorkshop: data.durationOfWorkshop,
             link: "link" + skillState,
             skill: skillState
         }
@@ -127,26 +127,26 @@ export default function CreateWorkshop(props: { skills: Skill[] }) {
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
             })
-    
+
             const result = await res.json()
             console.log(result)
             if (result.status) {
                 window.location.pathname = "/"
             }
         }
-       
+
     }
-    
+
     const { register, handleSubmit, formState } = useForm<CreatingData>({ resolver: yupResolver(validationSchema) });
     const { errors } = formState;
 
     return (
-        <>  
-        {alert ? (
-            <Alert severity="error">Choose at least one skill</Alert>
-        ) : (
-            <></>
-        )}
+        <>
+            {alert ? (
+                <Alert severity="error">Choose at least one skill</Alert>
+            ) : (
+                <></>
+            )}
             <Container maxWidth="sm" sx={{ mt: "3vh" }}>
                 <Typography variant="h4" component="div" gutterBottom>Create a workshop</Typography>
 
@@ -167,25 +167,25 @@ export default function CreateWorkshop(props: { skills: Skill[] }) {
                     </Box>
                     <Stack direction="column">
                         <InputLabel>Skill</InputLabel>
-                            <Select
-                                value={skillState}
-                                onChange={handleChange}
-                                input={<OutlinedInput label="Skill" />}
-                                sx={{
-                                    minHeight: "8vh",
-                                }}
-                                
-                            >
-                                {skills.map((skill) => (
-                                    <MenuItem key={skill} value={skill}>
-                                        {skill}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                        <Select
+                            value={skillState}
+                            onChange={handleChange}
+                            input={<OutlinedInput label="Skill" />}
+                            sx={{
+                                minHeight: "8vh",
+                            }}
+
+                        >
+                            {skills.map((skill) => (
+                                <MenuItem key={skill} value={skill}>
+                                    {skill}
+                                </MenuItem>
+                            ))}
+                        </Select>
                     </Stack>
-                    
+
                     <br />
-                    
+
                     <Box sx={{ display: 'grid', rowGap: 2 }}>
                         <Button type="submit" disabled={formState.isSubmitting} variant="contained">
                             {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
