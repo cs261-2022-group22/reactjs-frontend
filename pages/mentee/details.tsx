@@ -275,7 +275,7 @@ export default function MenteeDetails(props: {
                                 }
                             }}
                         >
-                            Register
+                            Submit
                         </Button>
                         <Button variant="outlined" color="error" href="/">
                             Cancel

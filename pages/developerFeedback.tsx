@@ -44,7 +44,7 @@ export default function developerFeedback() {
                                 setStatus("success");
                             }}
                         >
-                            Register
+                            Submit
                         </Button>
                     </Stack>
                 </Container>

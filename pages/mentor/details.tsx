@@ -275,7 +275,7 @@ export default function MentorDetails(props: {
                                 }
                             }}
                         >
-                            Register
+                            Update
                         </Button>
                         <Button variant="outlined" color="error" href="/">
                             Cancel
