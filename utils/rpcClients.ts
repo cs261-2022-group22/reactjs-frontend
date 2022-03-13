@@ -22,15 +22,23 @@ export class AccountClient extends AccountServiceClient {
     registerUserAsync = WrapAsyncRPC(this, this.registerUser);
     listBusinessAreasAsync = WrapAsyncRPC(this, this.listBusinessAreas);
     listNotificationsAsync = WrapAsyncRPC(this, this.getNotifications);
-    getMenteesByMentorIdAsync = WrapAsyncRPC(this, this.getMenteesByMentorId);
+    
+    listSkillsAsync = WrapAsyncRPC(this, this.listSkills);
+    registerMenteeAsync = WrapAsyncRPC(this, this.registerMentee);
+    registerMentorAsync = WrapAsyncRPC(this, this.registerMentor);
+    updateProfileDetailsAsync = WrapAsyncRPC(this, this.updateProfileDetails);
 }
 
 export class FeedbackClient extends FeedbackServiceClient {
     static SERVICE_NAME = "FEEDBACK";
 
+
     constructor() {
         super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
     }
+    addFeedbackOnMenteeAsync = WrapAsyncRPC(this, this.addFeedbackOnMentee);
+    addFeedbackOnMentorAsync = WrapAsyncRPC(this, this.addFeedbackOnMentor);
+   
 }
 
 export class MatchingClient extends MatchingServiceClient {
@@ -41,6 +49,7 @@ export class MatchingClient extends MatchingServiceClient {
     }
 
     getMatchingMentorAsync = WrapAsyncRPC(this, this.getMatchingMentor);
+    getMenteesByMentorIdAsync = WrapAsyncRPC(this, this.getMenteesByMentorId);
 }
 
 export class MeetingClient extends MeetingServiceClient {

@@ -1,12 +1,13 @@
 import { Grid } from "@mui/material";
 import MenteeLinks from "components/MenteeLinks";
+import MentorFeedbackList from "components/MentorFeedbackList";
 import Notifications from "components/Notification";
 import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
-import { AccountClient } from "utils/rpcClients";
+import { AccountClient, MatchingClient } from "utils/rpcClients";
 
-export default function MenteeDashboard(props: { messages: string[] }) {
+export default function MenteeDashboard(props: {messages: string[]; mentors: any[]}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "48vh" }}>
@@ -14,7 +15,7 @@ export default function MenteeDashboard(props: { messages: string[] }) {
                     <MenteeLinks />
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable={true} />
+                    test
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -22,7 +23,7 @@ export default function MenteeDashboard(props: { messages: string[] }) {
                     <Notifications messages={props.messages} />
                 </Grid>
                 <Grid item xs={6}>
-                    Bottom right
+                    <MentorFeedbackList mentors = {props.mentors}/>
                 </Grid>
             </Grid>
         </Grid>
@@ -31,24 +32,36 @@ export default function MenteeDashboard(props: { messages: string[] }) {
 
 export async function getServerSideProps(context: GetSessionParams | undefined) {
     const session = await getSession(context);
+    
 
     if (!session) {
         return {
             props: {
-                messages: []
+                messages: [],
+                mentors: []
             }
+    
         };
+    
     }
+    
 
     const client = new AccountClient();
+    const client2 = new MatchingClient();
+    
     const notificationsResult = await client.listNotificationsAsync({
         userid: session["id"] as number,
-        targetProfileType: ProfileType.MENTEE,
+        targetProfileType: ProfileType.MENTOR,
     });
-
+   const mentorsResult = await client2.getMatchingMentorAsync({
+    menteeUserId: session["id"] as number
+    })
+ 
     return {
         props: {
             messages: notificationsResult.desiredNotifications,
+            mentors: mentorsResult
+
         },
     };
 }
