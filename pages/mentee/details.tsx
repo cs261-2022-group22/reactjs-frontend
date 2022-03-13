@@ -2,7 +2,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {
     Alert, Box, Button, Checkbox, Chip, Container, FormControl, FormControlLabel,
-    FormGroup, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography
+    FormGroup, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography, Link as RefreshLink
 } from "@mui/material";
 import Link from "next/link";
 import axios from "axios";
@@ -290,7 +290,7 @@ export default function MenteeDetails(props: {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentee/details" passHref>
+                <RefreshLink href="/mentee/details">
                     <Button
                         variant="contained"
                         size="large"
@@ -298,7 +298,7 @@ export default function MenteeDetails(props: {
                     >
                         Try again
                     </Button>
-                </Link>
+                </RefreshLink>
             </Container>
         );
     } else {
