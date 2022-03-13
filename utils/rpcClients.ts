@@ -1,11 +1,14 @@
-import { WrapAsyncRPC, getCredentials, getRpcBackendAddress } from "./gRPCHelpers";
+import {
+    WrapAsyncRPC,
+    getCredentials,
+    getRpcBackendAddress,
+} from "./gRPCHelpers";
 
 import { AccountServiceClient } from "./proto/account";
 import { FeedbackServiceClient } from "./proto/feedback";
 import { MatchingServiceClient } from "./proto/matching";
 import { MeetingServiceClient } from "./proto/meeting";
 import { OtherServiceClient } from "./proto/other";
-
 
 export class AccountClient extends AccountServiceClient {
     static SERVICE_NAME = "ACCOUNT";
@@ -31,13 +34,15 @@ export class AccountClient extends AccountServiceClient {
 export class FeedbackClient extends FeedbackServiceClient {
     static SERVICE_NAME = "FEEDBACK";
 
-
     constructor() {
-        super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
+        super(
+            getRpcBackendAddress(FeedbackClient.SERVICE_NAME),
+            getCredentials(FeedbackClient.SERVICE_NAME)
+        );
     }
     addFeedbackOnMenteeAsync = WrapAsyncRPC(this, this.addFeedbackOnMentee);
     addFeedbackOnMentorAsync = WrapAsyncRPC(this, this.addFeedbackOnMentor);
-  	addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
+    addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
 }
 
 export class MatchingClient extends MatchingServiceClient {
@@ -67,7 +72,10 @@ export class MeetingClient extends MeetingServiceClient {
 
     listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);
     listPlansOfActionAsync = WrapAsyncRPC(this, this.listPlansOfActions);
-    togglePlansOfActionAsync = WrapAsyncRPC(this, this.togglePlansOfActionCompletion);
+    togglePlansOfActionAsync = WrapAsyncRPC(
+        this,
+        this.togglePlansOfActionCompletion
+    );
     createPlansOfActionAsync = WrapAsyncRPC(this, this.createPlansOfActions);
     scheduleMeetingAsync = WrapAsyncRPC(this, this.scheduleNewMeeting);
     scheduleWorkshopAsync = WrapAsyncRPC(this, this.scheduleNewWorkshop);
@@ -77,6 +85,9 @@ export class OtherClient extends OtherServiceClient {
     static SERVICE_NAME = "OTHER";
 
     constructor() {
-        super(getRpcBackendAddress(OtherClient.SERVICE_NAME), getCredentials(OtherClient.SERVICE_NAME));
+        super(
+            getRpcBackendAddress(OtherClient.SERVICE_NAME),
+            getCredentials(OtherClient.SERVICE_NAME)
+        );
     }
 }

@@ -8,8 +8,13 @@ import { ProfileType } from "utils/proto/account";
 
 import { AccountClient, MatchingClient, MeetingClient } from "utils/rpcClients";
 import { NormalisedAppointment } from "utils/CommonTypes";
+import UpcomingAppointments from "components/UpcomingAppointments";
 
-export default function MenteeDashboard(props: { messages: string[]; appointments: NormalisedAppointment[]; mentors: MentorReturn }) {
+export default function MenteeDashboard(props: {
+    messages: string[];
+    appointments: NormalisedAppointment[];
+    mentors: MentorReturn;
+}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "48vh" }}>
@@ -17,7 +22,10 @@ export default function MenteeDashboard(props: { messages: string[]; appointment
                     <MenteeLinks />
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments cancellable={true} appointments={props.appointments}/>
+                    <UpcomingAppointments
+                        cancellable={true}
+                        appointments={props.appointments}
+                    />
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -58,7 +66,7 @@ export async function getServerSideProps(
         menteeUserId: session["id"] as number,
     });
 
-	const meetingClient = new MeetingClient();
+    const meetingClient = new MeetingClient();
     const appointmentsResult = await meetingClient.listAppointmentsAsync({
         userid: session["id"] as number,
         profileType: ProfileType.MENTEE,
@@ -89,10 +97,10 @@ export async function getServerSideProps(
         }
     });
 
-	const matchingClient = new MatchingClient();
-	await matchingClient.tryMatchAsync({
-		menteeUserId: session["id"] as number,
-	});
+    const matchingClient = new MatchingClient();
+    await matchingClient.tryMatchAsync({
+        menteeUserId: session["id"] as number,
+    });
 
     return {
         props: {

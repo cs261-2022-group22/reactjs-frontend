@@ -126,10 +126,9 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
                                                 await axios.post(
                                                     "/api/user/getassignment",
                                                     {
-                                                        menteeUserId:
-                                                            session[
+                                                        menteeUserId: session[
                                                             "id"
-                                                            ] as number,
+                                                        ] as number,
                                                     }
                                                 );
                                                 setStatus("success");
@@ -191,6 +190,7 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
             </Container>
         );
     }
+}
 
 export async function getServerSideProps() {
     const accountClient = new AccountClient();
