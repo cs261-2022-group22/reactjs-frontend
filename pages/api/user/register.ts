@@ -3,8 +3,13 @@ import { getSession } from 'next-auth/react'
 import { AccountClient } from 'utils/rpcClients'
 import { RegistrationData } from "utils/CommonTypes"
 import { ServiceError } from '@grpc/grpc-js'
+import { getSession } from "next-auth/react";
 
 export default async function Register(req: NextApiRequest, res: NextApiResponse) {
+	const session = await getSession({ req });
+    if (!session) {
+        res.status(403).json({ error: "Not logged in", success: false });
+    }
     const session = await getSession({ req });
     if (session)
         console.log("Received a registration attempt from user:", session.user?.email ?? "<unknown>")

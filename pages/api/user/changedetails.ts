@@ -2,8 +2,13 @@ import { ServiceError } from "@grpc/grpc-js";
 import { NextApiRequest, NextApiResponse } from "next";
 import { AccountClient } from "utils/rpcClients";
 import { ProfileType } from "utils/proto/account";
+import { getSession } from "next-auth/react";
 
 export default async function ChangeDetails(req: NextApiRequest, res: NextApiResponse) {
+	const session = await getSession({ req });
+    if (!session) {
+        res.status(403).json({ error: "Not logged in", success: false });
+    }
     try {
 		const client = new AccountClient();
         const result = await client.updateProfileDetailsAsync({
