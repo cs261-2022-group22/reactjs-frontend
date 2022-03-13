@@ -112,13 +112,13 @@ export default function DevelopmentFeedback() {
                     <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                         Thank you for the feedback
                     </Alert>
-                    <Link href="/">
+                    <Link href="/mentor/dashboard">
                         <Button
                             variant="contained"
                             size="large"
                             startIcon={<ArrowForwardIcon />}
                         >
-                            Go to home page
+                            Go to dashboard
                         </Button>
                     </Link>
                 </Container>
