@@ -16,23 +16,12 @@ export default function DevelopmentFeedback() {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("normal");
 
-    const a = localStorage.getItem("Mentee_UserID");
-    if (a == null) {
-        setStatus("false");
-    }
-
-    const b = localStorage.getItem("Mentor_UserID");
-    if (b == null) {
-        setStatus("false");
-    }
-
     if (status == "normal") {
         return (
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Typography sx={{ mt: "5vh", mb: "1vh" }} variant="h3">
-                        {"Development Feedback for " +
-                            localStorage.getItem("Mentee_Username")}
+                        Development Feedback
                     </Typography>
                     <TextField
                         label="Feedback"
@@ -57,19 +46,32 @@ export default function DevelopmentFeedback() {
                         <Button
                             variant="contained"
                             onClick={async () => {
-                                const res = await axios.post(
-                                    "/api/user/developmentfeedback",
-                                    {
-                                        mentorUserId: b,
-                                        menteeUserId: a,
-                                        message: message,
+                                if (message.length >= 0) {
+                                    let a =
+                                        localStorage.getItem("Mentee_UserID");
+                                    if (a == null) {
+                                        a = "-1";
                                     }
-                                );
-                                if (res.data.success) {
-                                    setStatus("success");
-                                } else {
-									setStatus("false")
-								}
+
+                                    let b =
+                                        localStorage.getItem("Mentor_UserID");
+                                    if (b == null) {
+                                        b = "-1";
+                                    }
+                                    const res = await axios.post(
+                                        "/api/user/developmentfeedback",
+                                        {
+                                            mentorUserId: b,
+                                            menteeUserId: a,
+                                            message: message,
+                                        }
+                                    );
+                                    if (res.data.success) {
+                                        setStatus("success");
+                                    } else {
+                                        setStatus("false");
+                                    }
+                                }
                             }}
                         >
                             Submit
