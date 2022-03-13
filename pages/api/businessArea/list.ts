@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 import { ListBusinessAreasReply } from "utils/proto/account";
 import { AccountClient } from "utils/rpcClients";
 
