@@ -94,7 +94,7 @@ export default function DevelopmentFeedback() {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentee/DevelopmentFeedback">
+                <Link href="/mentee/DevelopmentFeedback" passHref>
                     <Button
                         variant="contained"
                         size="large"

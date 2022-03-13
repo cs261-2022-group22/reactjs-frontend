@@ -2,8 +2,9 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {
     Alert, Box, Button, Checkbox, Chip, Container, FormControl, FormControlLabel,
-    FormGroup, InputLabel, Link, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography
+    FormGroup, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography
 } from "@mui/material";
+import Link from "next/link";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
@@ -289,7 +290,7 @@ export default function MentorDetails(props: {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentor/details">
+                <Link href="/mentor/details" passHref>
                     <Button
                         variant="contained"
                         size="large"
@@ -306,7 +307,7 @@ export default function MentorDetails(props: {
                 <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                     You have successfully changed your details
                 </Alert>
-                <Link href="/mentor/dashboard">
+                <Link href="/mentor/dashboard" passHref>
                     <Button
                         variant="contained"
                         size="large"
