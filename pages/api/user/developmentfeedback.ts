@@ -11,7 +11,7 @@ export default async function MenteeFeedback(req: NextApiRequest, res: NextApiRe
             menteeUserId: req.body.menteeUserId,
             message: req.body.message,
         });
-       res.status(200).json({success: result.status});
+       res.status(200).json({success: result.success});
     } catch (error) {
         const grpcError: ServiceError = error as ServiceError;
         console.log(grpcError);

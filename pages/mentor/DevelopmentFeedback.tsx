@@ -6,10 +6,6 @@ import {
     Alert,
     Link,
     Stack,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
@@ -36,10 +32,10 @@ export default function DevelopmentFeedback() {
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Typography sx={{ mt: "5vh", mb: "1vh" }} variant="h3">
-                        Provide Feedback
+                        {"Development Feedback for " + localStorage.getItem("Mentee_Username")}
                     </Typography>
                     <TextField
-                        label="Developer Feedback"
+                        label="Feedback"
                         color="secondary"
                         focused
                         sx={{
@@ -64,15 +60,15 @@ export default function DevelopmentFeedback() {
                                 await axios.post(
                                     "/api/user/developmentfeedback",
                                     {
-										mentorUserId: b,
-										menteeUserId: a,
+                                        mentorUserId: b,
+                                        menteeUserId: a,
                                         message: message,
                                     }
                                 );
                                 setStatus("success");
                             }}
                         >
-                            Register
+                            Submit
                         </Button>
                     </Stack>
                 </Container>
@@ -84,7 +80,7 @@ export default function DevelopmentFeedback() {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentee/details">
+                <Link href="/mentee/DevelopmentFeedback">
                     <Button
                         variant="contained"
                         size="large"

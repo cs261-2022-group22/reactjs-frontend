@@ -7,11 +7,16 @@ import {
     CardActions,
     Button,
 } from "@mui/material";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { MenteeReturn } from "utils/CommonTypes";
+import Unauthenticated from "./Unauthenticated";
 
 export default function Test({ mentees }: { mentees: MenteeReturn[] }) {
-	const { data: session } = useSession();
+    const { data: session } = useSession();
+	if (!session) {
+        return <Unauthenticated />;
+    }
     let i = 0;
     return (
         <>
@@ -114,8 +119,14 @@ export default function Test({ mentees }: { mentees: MenteeReturn[] }) {
                                                         ),
                                                             localStorage.setItem(
                                                                 "Mentor_UserID",
-                                                                session["id"] as unknown as string
+                                                                session[
+                                                                    "id"
+                                                                ] as unknown as string
                                                             );
+                                                        localStorage.setItem(
+                                                            "Mentee_Username",
+                                                            mapping.name as unknown as string
+                                                        );
                                                     }}
                                                 >
                                                     Development Feedback
