@@ -11,7 +11,7 @@ import Link from "next/link";
 import { MenteeReturn } from "utils/CommonTypes";
 
 export default function Test({ mentees }: { mentees: MenteeReturn[] }) {
-	let i = 0;
+    let i = 0;
     return (
         <>
             <Card

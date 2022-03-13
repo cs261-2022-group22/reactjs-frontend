@@ -1,31 +1,15 @@
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import {
-    Container,
-    Stack,
-    Typography,
-    TextField,
-    Checkbox,
-    FormControlLabel,
-    FormGroup,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    Button,
-    Box,
-    Chip,
-    OutlinedInput,
-    SelectChangeEvent,
-    Alert,
-    Link,
+    Alert, Box, Button, Checkbox, Chip, Container, FormControl, FormControlLabel,
+    FormGroup, InputLabel, Link, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography
 } from "@mui/material";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { AccountClient } from "utils/rpcClients";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { BAResult, SkillResult } from "utils/CommonTypes";
+import { AccountClient } from "utils/rpcClients";
 
 export default function MentorDetails(props: {
     businessAreas: BAResult[];

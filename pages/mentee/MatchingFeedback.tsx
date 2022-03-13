@@ -1,15 +1,8 @@
-import {
-    Typography,
-    Button,
-    Rating,
-    Box,
-    Container,
-    Alert,
-} from "@mui/material";
-import React, { useState } from "react";
-import Link from "next/link";
-import { getSession, GetSessionParams } from "next-auth/react";
+import { Alert, Box, Button, Container, Rating, Typography } from "@mui/material";
 import axios from "axios";
+import { getSession, GetSessionParams } from "next-auth/react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 export default function MentorFeedback(props: { mid: string }) {
     const [status, setStatus] = useState("normal");
