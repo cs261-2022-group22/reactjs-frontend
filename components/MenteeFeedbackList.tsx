@@ -1,7 +1,5 @@
 import { Card, CardContent, Stack, Typography, List, CardActions, Button } from "@mui/material";
 import Link from "next/link";
-import { GetSessionParams, getSession } from "next-auth/react";
-import { AccountClient } from "utils/rpcClients";
 
 export default function Test({mentees}: { mentees: any[]}  ) {
     
