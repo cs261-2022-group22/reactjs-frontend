@@ -15,16 +15,15 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 export default function DevelopmentFeedback() {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("normal");
-	const [mentee, setMentee] = useState("")
 
-	let a = localStorage.getItem("Mentee_UserID");
+    const a = localStorage.getItem("Mentee_UserID");
     if (a == null) {
-		setStatus("false")
+        setStatus("false");
     }
 
-	let b = localStorage.getItem("Mentor_UserID");
+    const b = localStorage.getItem("Mentor_UserID");
     if (b == null) {
-        setStatus("false")
+        setStatus("false");
     }
 
     if (status == "normal") {
@@ -32,7 +31,8 @@ export default function DevelopmentFeedback() {
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Typography sx={{ mt: "5vh", mb: "1vh" }} variant="h3">
-                        {"Development Feedback for " + localStorage.getItem("Mentee_Username")}
+                        {"Development Feedback for " +
+                            localStorage.getItem("Mentee_Username")}
                     </Typography>
                     <TextField
                         label="Feedback"
@@ -57,7 +57,7 @@ export default function DevelopmentFeedback() {
                         <Button
                             variant="contained"
                             onClick={async () => {
-                                await axios.post(
+                                const res = await axios.post(
                                     "/api/user/developmentfeedback",
                                     {
                                         mentorUserId: b,
@@ -65,7 +65,11 @@ export default function DevelopmentFeedback() {
                                         message: message,
                                     }
                                 );
-                                setStatus("success");
+                                if (res.data.success) {
+                                    setStatus("success");
+                                } else {
+									setStatus("false")
+								}
                             }}
                         >
                             Submit

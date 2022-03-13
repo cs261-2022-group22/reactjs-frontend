@@ -30,7 +30,7 @@ export default function UpcomingAppointments(props: {
             variant="outlined"
             sx={{
                 padding: "10px",
-                mt: "15px",
+                mt: "9px",
                 boxShadow: 0,
                 maxWidth: "100vh",
                 backgroundColor: "transparent",
