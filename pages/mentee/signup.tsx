@@ -1,29 +1,19 @@
 import {
-    SelectChangeEvent,
-    Container,
-    Stack,
-    Typography,
-    FormControl,
-    InputLabel,
-    Select,
-    OutlinedInput,
-    Box,
-    Chip,
-    MenuItem,
-    Button,
-    Alert,
+    ArrowForward as ArrowForwardIcon,
+    Refresh as RefreshIcon
+} from "@mui/icons-material";
+import {
+    Alert, Box, Button, Chip, Container, FormControl,
+    InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack,
+    Typography
 } from "@mui/material";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { AccountClient } from "utils/rpcClients";
 import { SkillResult } from "utils/CommonTypes";
-import {
-    ArrowForward as ArrowForwardIcon,
-    Refresh as RefreshIcon,
-} from "@mui/icons-material";
+import { AccountClient } from "utils/rpcClients";
 
 export default function MenteeSignUp(props: { skills: SkillResult[] }) {
     const [skillState, setskillState] = useState<string[]>([]);
@@ -126,10 +116,9 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
                                                 await axios.post(
                                                     "/api/user/getassignment",
                                                     {
-                                                        menteeUserId:
-                                                            session[
+                                                        menteeUserId: session[
                                                             "id"
-                                                            ] as number,
+                                                        ] as number,
                                                     }
                                                 );
                                                 setStatus("success");

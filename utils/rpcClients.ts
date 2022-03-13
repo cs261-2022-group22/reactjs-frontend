@@ -1,5 +1,4 @@
-import { WrapAsyncRPC, getCredentials, getRpcBackendAddress } from "./gRPCHelpers";
-
+import { getCredentials, getRpcBackendAddress, WrapAsyncRPC } from "./gRPCHelpers";
 import { AccountServiceClient } from "./proto/account";
 import { FeedbackServiceClient } from "./proto/feedback";
 import { MatchingServiceClient } from "./proto/matching";
@@ -11,10 +10,7 @@ export class AccountClient extends AccountServiceClient {
     static SERVICE_NAME = "ACCOUNT";
 
     constructor() {
-        super(
-            getRpcBackendAddress(AccountClient.SERVICE_NAME),
-            getCredentials(AccountClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(AccountClient.SERVICE_NAME), getCredentials(AccountClient.SERVICE_NAME));
     }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
@@ -34,18 +30,17 @@ export class FeedbackClient extends FeedbackServiceClient {
     constructor() {
         super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
     }
-	
-	addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
+    addFeedbackOnMenteeAsync = WrapAsyncRPC(this, this.addFeedbackOnMentee);
+    addFeedbackOnMentorAsync = WrapAsyncRPC(this, this.addFeedbackOnMentor);
+    addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
+	addProgFeedbackAsync = WrapAsyncRPC(this, this.addProgFeedback)
 }
 
 export class MatchingClient extends MatchingServiceClient {
     static SERVICE_NAME = "MATCHING";
 
     constructor() {
-        super(
-            getRpcBackendAddress(MatchingClient.SERVICE_NAME),
-            getCredentials(MatchingClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(MatchingClient.SERVICE_NAME), getCredentials(MatchingClient.SERVICE_NAME));
     }
 
     getMatchingMentorAsync = WrapAsyncRPC(this, this.getMatchingMentor);
@@ -57,10 +52,7 @@ export class MeetingClient extends MeetingServiceClient {
     static SERVICE_NAME = "MEETING";
 
     constructor() {
-        super(
-            getRpcBackendAddress(MeetingClient.SERVICE_NAME),
-            getCredentials(MeetingClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(MeetingClient.SERVICE_NAME), getCredentials(MeetingClient.SERVICE_NAME));
     }
 
     listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);

@@ -16,7 +16,7 @@ export type NormalisedAppointment = {
     duration: number;
     skill: string;
     link: string;
-}
+};
 
 export type SkillResult = {
     id: number;
@@ -40,4 +40,14 @@ export type CreatingData = {
     durationOfWorkshop: number;
     link: string;
     skill: string;
+};
+
+export type MentorReturn = {
+    status: boolean;
+    mentorUserId: number;
+    mentorName: string;
+};
+export type MenteeReturn = {
+    userid: number;
+    name: string;
 };

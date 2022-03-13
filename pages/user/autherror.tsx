@@ -1,6 +1,6 @@
-import { Box, Button, Container, Typography } from "@mui/material"
+import { Box, Button, Container, Typography } from "@mui/material";
 import BottomBar from "components/BottomBar";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export default function Index() {
 
@@ -26,7 +26,7 @@ export default function Index() {
                     </Button>
                 </Box>
             </Container>
-			<BottomBar position="fixed"/>
+            <BottomBar position="fixed" />
         </>
     );
 }

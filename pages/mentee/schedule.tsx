@@ -1,13 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { DateRangeOutlined, TextFields, AccessTimeOutlined } from '@mui/icons-material';
+import { AccessTimeOutlined, DateRangeOutlined, TextFields } from '@mui/icons-material';
 import { Box, Button, Container, FormControl, FormHelperText, Input, InputLabel, Typography } from '@mui/material';
 import BottomBar from 'components/BottomBar';
+import Unauthenticated from "components/Unauthenticated";
+import { useSession } from "next-auth/react";
 import PropTypes, { InferProps } from "prop-types";
 import { FieldErrors, FieldPath, SubmitHandler, useForm, UseFormRegister } from 'react-hook-form';
-import { useSession } from "next-auth/react";
-import { SchedulingData } from "utils/CommonTypes"
-import Unauthenticated from "components/Unauthenticated";
-import { date as yup_date, object as yup_object, number as yup_number } from 'yup';
+import { SchedulingData } from "utils/CommonTypes";
+import { date as yup_date, number as yup_number, object as yup_object } from 'yup';
 
 const FormTextInputTypes = {
     text: PropTypes.string.isRequired,
@@ -70,7 +70,7 @@ export default function ScheduleMeeting() {
 
     const { data: session } = useSession();
     if (!session) {
-       return <Unauthenticated/>
+        return <Unauthenticated />
     }
     const ID = session["id"] as number
 
@@ -82,8 +82,8 @@ export default function ScheduleMeeting() {
 
         const dataMeeting = {
             menteeID: ID,
-            dateOfMeeting: data.dateOfMeeting, 
-            durationOfMeeting: data.durationOfMeeting,    
+            dateOfMeeting: data.dateOfMeeting,
+            durationOfMeeting: data.durationOfMeeting,
             link: "link" + ID
         }
 

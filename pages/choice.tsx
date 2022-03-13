@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import BasicCard from "components/BasicCard";
 import BottomBar from "components/BottomBar";
 import Unauthenticated from "components/Unauthenticated";
-import { useSession, getSession, GetSessionParams } from "next-auth/react";
+import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import { AccountClient } from "utils/rpcClients";
 
 export default function Choice(props: { isMentee: boolean; isMentor: boolean }) {
