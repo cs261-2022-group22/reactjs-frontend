@@ -1,4 +1,5 @@
-import { Container, Button, TextField, Typography, Alert, Link, Stack } from "@mui/material";
+import { Container, Button, TextField, Typography, Alert, Stack } from "@mui/material";
+import Link from "next/link";
 import axios from "axios";
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -56,7 +57,7 @@ export default function developerFeedback() {
                     <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                         Thank you for the feedback
                     </Alert>
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <Button
                             variant="contained"
                             size="large"

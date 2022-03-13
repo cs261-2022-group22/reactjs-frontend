@@ -2,8 +2,9 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import {
     Alert, Box, Button, Checkbox, Chip, Container, FormControl, FormControlLabel,
-    FormGroup, InputLabel, Link, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography
+    FormGroup, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack, TextField, Typography, Link as RefreshLink
 } from "@mui/material";
+import Link from "next/link";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
 import { useSession } from "next-auth/react";
@@ -289,7 +290,7 @@ export default function MenteeDetails(props: {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentee/details">
+                <RefreshLink href="/mentee/details">
                     <Button
                         variant="contained"
                         size="large"
@@ -297,7 +298,7 @@ export default function MenteeDetails(props: {
                     >
                         Try again
                     </Button>
-                </Link>
+                </RefreshLink>
             </Container>
         );
     } else {
@@ -306,7 +307,7 @@ export default function MenteeDetails(props: {
                 <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
                     You have successfully changed your details
                 </Alert>
-                <Link href="/mentee/dashboard">
+                <Link href="/mentee/dashboard" passHref>
                     <Button
                         variant="contained"
                         size="large"

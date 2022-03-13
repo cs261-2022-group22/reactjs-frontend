@@ -5,6 +5,7 @@ import {
     Typography,
     Alert,
     Stack,
+    Link as RefreshLink
 } from "@mui/material";
 import Link from "next/link";
 import axios from "axios";
@@ -94,7 +95,7 @@ export default function DevelopmentFeedback() {
                 <Alert severity="warning" sx={{ mt: "3vh", mb: "3vh" }}>
                     An error has occurred, please try again
                 </Alert>
-                <Link href="/mentee/DevelopmentFeedback">
+                <RefreshLink href="/mentor/DevelopmentFeedback">
                     <Button
                         variant="contained"
                         size="large"
@@ -102,7 +103,7 @@ export default function DevelopmentFeedback() {
                     >
                         Try again
                     </Button>
-                </Link>
+                </RefreshLink>
             </Container>
         );
     } else {
