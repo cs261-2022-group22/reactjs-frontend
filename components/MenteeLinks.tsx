@@ -21,7 +21,7 @@ export default function MenteeLinks() {
                 </Link>
             </Grid>
             <Grid item xs={6}>
-                <Link href="/mentee/planofactions" passHref>
+                <Link href="/mentee/plansofaction" passHref>
                     <Button
                         sx={{
                             flexDirection: 'column',

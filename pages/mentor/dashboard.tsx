@@ -7,11 +7,9 @@ import { getSession, GetSessionParams } from "next-auth/react";
 import { MenteeReturn } from "utils/CommonTypes";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient, MatchingClient } from "utils/rpcClients";
+import { NormalisedAppointment } from "utils/CommonTypes";
 
-export default function MentorDashboard(props: {
-    messages: string[];
-    mentees: MenteeReturn[];
-}) {
+export default function MentorDashboard(props: { messages: string[]; appointments: NormalisedAppointment[]; mentees: MenteeReturn[]}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -19,9 +17,7 @@ export default function MentorDashboard(props: {
                     <MentorLinks />
                 </Grid>
                 <Grid item xs={6}>
-                    <UpcomingAppointments
-                        cancellable={false}
-                    />
+                    <UpcomingAppointments cancellable={false} appointments={props.appointments} />
                 </Grid>
             </Grid>
             <Grid container item xs={12} sx={{ height: "46vh" }}>
@@ -50,8 +46,8 @@ export async function getServerSideProps(
         };
     }
 
-    const client = new AccountClient();
-    const notificationsResult = await client.listNotificationsAsync({
+    const accountClient = new AccountClient();
+    const notificationsResult = await accountClient.listNotificationsAsync({
         userid: session["id"] as number,
         targetProfileType: ProfileType.MENTOR,
     });
@@ -60,10 +56,42 @@ export async function getServerSideProps(
         mentorUserId: session["id"] as number,
     });
 
+	const meetingClient = new MeetingClient();
+    const appointmentsResult = await meetingClient.listAppointmentsAsync({
+        userid: session["id"] as number,
+        profileType: ProfileType.MENTOR,
+    });
+
+	const elements: NormalisedAppointment[] = [];
+    appointmentsResult.appointments.forEach((appointment) => {
+		if (!appointment.startTime) {
+			const obj = {
+                type: appointment.type,
+                date: "",
+                time: "",
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj);
+		} else {
+			const obj = {
+                type: appointment.type,
+                date: appointment.startTime.toLocaleDateString(),
+                time: appointment.startTime.toLocaleTimeString(),
+                duration: appointment.durationMinutes,
+                skill: appointment.skill,
+                link: appointment.link,
+            };
+            elements.push(obj); 
+		}
+    });
+
     return {
         props: {
             messages: notificationsResult.desiredNotifications,
             mentees: menteesResult.mentees,
+            appointments: elements,
         },
     };
 }

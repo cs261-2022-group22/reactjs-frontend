@@ -1,9 +1,9 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material"
-import { Alert, Box, Button, Container, FormControl, Input, InputAdornment, InputLabel } from "@mui/material"
-import { getCsrfToken, getSession } from "next-auth/react";
-import { GetServerSideProps } from "next"
-import React from "react";
+import { EmailOutlined, KeyOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Alert, Box, Button, Container, FormControl, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import BottomBar from "components/BottomBar";
+import { GetServerSideProps } from "next";
+import { getCsrfToken, getSession } from "next-auth/react";
+import React from "react";
 
 type SigninProperty = {
     csrfToken: string;
@@ -19,13 +19,15 @@ export default function SignIn({ csrfToken, hasValidSession, currentEmail, error
 
     return (
         <>
-            <Container maxWidth="sm" sx={{ mt: "3vh" }}>
+            <Container maxWidth="sm" sx={{ mt: "4vh" }}>
+                <Typography variant="h5">Sign in with your email and password</Typography>
+                <br />
                 {
                     hasValidSession && <div><Alert severity="info">You have already logged in as &apos;{currentEmail}&apos;</Alert><br /></div>
                 }
 
                 {
-                    errorReason == "CredentialsSignin" && <div><Alert severity="warning">Wrong email address or password.</Alert><br /></div>
+                    errorReason == "CredentialsSignin" && <div><Alert severity="warning">Incorrect email address or password.</Alert><br /></div>
                 }
 
                 <form method="post" action="/api/auth/callback/credentials">
@@ -33,20 +35,22 @@ export default function SignIn({ csrfToken, hasValidSession, currentEmail, error
                         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
                         <FormControl >
-                            <InputLabel htmlFor="login_email" variant='standard' required>Email</InputLabel>
-                            <Input id="login_email" type="text" name="email" />
+                            <TextField label="Email" variant="standard" id="login_email" type="email" name="email"
+                                InputProps={{ startAdornment: <EmailOutlined sx={{ marginRight: 1 }} /> }} />
                         </FormControl>
 
                         <FormControl>
-                            <InputLabel htmlFor="login_password" variant='standard' required>Password</InputLabel>
-                            <Input id="login_password" name="password" type={values.showPassword ? "text" : "password"}
-                                endAdornment={<InputAdornment position="end">
-                                    <Button aria-label="toggle password visibility"
-                                        onClick={() => { setValues({ ...values, showPassword: !values.showPassword, }); }}
-                                        onMouseDown={(event) => event.preventDefault()}>
-                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </Button>
-                                </InputAdornment>}
+                            <TextField label="Password" variant="standard" name="password" type={values.showPassword ? "text" : "password"}
+                                InputProps={{
+                                    startAdornment: <KeyOutlined sx={{ marginRight: 1 }} />,
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton aria-label="toggle password visibility"
+                                            onClick={() => { setValues({ ...values, showPassword: !values.showPassword, }); }}
+                                            onMouseDown={(event) => event.preventDefault()}>
+                                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
                             />
                         </FormControl>
 

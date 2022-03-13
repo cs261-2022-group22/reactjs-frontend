@@ -11,7 +11,7 @@ export default function FrontPageText() {
                     color="text.secondary"
                     textAlign="center"
                 >
-                    You have been asked by Deutsche Bank to build a prototype
+                    You have been asked by to build a prototype
                     system to help support the mentoring process. Ideally, this
                     system allows people to sign up as either mentees or mentors
                     and could be matched to each other based on their
@@ -43,7 +43,7 @@ export default function FrontPageText() {
                     mentors and suggest they organise a workshop or group
                     learning experience.
                     <br />
-                    The diversity of Deutsche Bank’s services mean they employ a
+                    The diversity of services mean they employ a
                     wide range of skilled professionals and so the system must
                     be intuitive and easy to use, even for a non-technical
                     person. Thus the user experience and UI development will
