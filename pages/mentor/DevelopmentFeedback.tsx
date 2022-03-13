@@ -11,10 +11,18 @@ import axios from "axios";
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import Unauthenticated from "components/Unauthenticated";
+import { useSession } from "next-auth/react";
 
 export default function DevelopmentFeedback() {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("normal");
+
+	const { data: session } = useSession();
+    if (!session) {
+        return <Unauthenticated />;
+    }
+
 
     if (status == "normal") {
         return (
