@@ -59,7 +59,7 @@ export async function getServerSideProps(
 
     const notificationsResult = await client.listNotificationsAsync({
         userid: session["id"] as number,
-        targetProfileType: ProfileType.MENTOR,
+        targetProfileType: ProfileType.MENTEE,
     });
     const mentorsResult = await client2.getMatchingMentorAsync({
         menteeUserId: session["id"] as number,
