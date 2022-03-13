@@ -24,7 +24,8 @@ export default function MentorFeedback(props: { mid: string }) {
                         How Good Was The Match?
                     </Typography>
                     <Typography variant="h3" component="legend">
-                        Mentor&aposs Name: {localStorage.getItem("Mentor_Name")}
+                        Mentor&apos;s Name:{" "}
+                        {localStorage.getItem("Mentor_Name")}
                     </Typography>
                     <Rating
                         sx={{

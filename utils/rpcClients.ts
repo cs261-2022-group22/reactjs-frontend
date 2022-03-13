@@ -33,6 +33,7 @@ export class FeedbackClient extends FeedbackServiceClient {
     addFeedbackOnMenteeAsync = WrapAsyncRPC(this, this.addFeedbackOnMentee);
     addFeedbackOnMentorAsync = WrapAsyncRPC(this, this.addFeedbackOnMentor);
     addDevFeedbackAsync = WrapAsyncRPC(this, this.addDevFeedback);
+	addProgFeedbackAsync = WrapAsyncRPC(this, this.addProgFeedback)
 }
 
 export class MatchingClient extends MatchingServiceClient {
