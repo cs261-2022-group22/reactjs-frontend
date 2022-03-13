@@ -2,9 +2,7 @@ import { Card, CardContent, Stack, Typography, List, CardActions, Button } from 
 import Link from "next/link";
 
 export default function Test({mentors}: { mentors: any[]  }) {
-    console.log(mentors.status)
-    console.log(mentors.mentorName)
-    console.log(mentors.mentorUserId)
+  
 
     if (mentors.status == true){
 
