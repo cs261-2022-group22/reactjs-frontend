@@ -6,7 +6,7 @@ import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { MenteeReturn } from "utils/CommonTypes";
 import { ProfileType } from "utils/proto/account";
-import { AccountClient, MatchingClient } from "utils/rpcClients";
+import { AccountClient, MatchingClient, MeetingClient } from "utils/rpcClients";
 import { NormalisedAppointment } from "utils/CommonTypes";
 
 export default function MentorDashboard(props: {
