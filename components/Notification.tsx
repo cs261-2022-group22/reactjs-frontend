@@ -57,7 +57,7 @@ export default function Notifications({ messages }: { messages: string[] }) {
                     <Card
                         sx={{
                             overflow: "auto",
-                            maxHeight: "30vh",
+                            maxHeight: "37vh",
                             boxShadow: "0",
                             ml: "-1vh",
                             pb: "1vh",

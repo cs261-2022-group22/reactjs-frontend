@@ -16,7 +16,7 @@ export default function Test({ mentees }: { mentees: MenteeReturn[] }) {
         <>
             <Card
                 sx={{
-                    mt: "1vh",
+                    mt: "0vh",
                     boxShadow: 2,
                     "&:hover": { boxShadow: 2 },
                     mr: "1vh",
@@ -31,7 +31,7 @@ export default function Test({ mentees }: { mentees: MenteeReturn[] }) {
                             Give Feedback
                         </Typography>
                     </Stack>
-                    <List>
+                    <List sx={{ maxHeight: "37vh", overflowY: "scroll" }}>
                         <Card
                             sx={{
                                 overflow: "auto",
