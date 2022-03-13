@@ -10,10 +10,7 @@ export class AccountClient extends AccountServiceClient {
     static SERVICE_NAME = "ACCOUNT";
 
     constructor() {
-        super(
-            getRpcBackendAddress(AccountClient.SERVICE_NAME),
-            getCredentials(AccountClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(AccountClient.SERVICE_NAME), getCredentials(AccountClient.SERVICE_NAME));
     }
 
     tryLoginAsync = WrapAsyncRPC(this, this.tryLogin);
@@ -31,10 +28,7 @@ export class FeedbackClient extends FeedbackServiceClient {
     static SERVICE_NAME = "FEEDBACK";
 
     constructor() {
-        super(
-            getRpcBackendAddress(FeedbackClient.SERVICE_NAME),
-            getCredentials(FeedbackClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(FeedbackClient.SERVICE_NAME), getCredentials(FeedbackClient.SERVICE_NAME));
     }
     addFeedbackOnMenteeAsync = WrapAsyncRPC(this, this.addFeedbackOnMentee);
     addFeedbackOnMentorAsync = WrapAsyncRPC(this, this.addFeedbackOnMentor);
@@ -45,10 +39,7 @@ export class MatchingClient extends MatchingServiceClient {
     static SERVICE_NAME = "MATCHING";
 
     constructor() {
-        super(
-            getRpcBackendAddress(MatchingClient.SERVICE_NAME),
-            getCredentials(MatchingClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(MatchingClient.SERVICE_NAME), getCredentials(MatchingClient.SERVICE_NAME));
     }
 
     getMatchingMentorAsync = WrapAsyncRPC(this, this.getMatchingMentor);
@@ -60,10 +51,7 @@ export class MeetingClient extends MeetingServiceClient {
     static SERVICE_NAME = "MEETING";
 
     constructor() {
-        super(
-            getRpcBackendAddress(MeetingClient.SERVICE_NAME),
-            getCredentials(MeetingClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(MeetingClient.SERVICE_NAME), getCredentials(MeetingClient.SERVICE_NAME));
     }
 
     listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);
@@ -78,9 +66,6 @@ export class OtherClient extends OtherServiceClient {
     static SERVICE_NAME = "OTHER";
 
     constructor() {
-        super(
-            getRpcBackendAddress(OtherClient.SERVICE_NAME),
-            getCredentials(OtherClient.SERVICE_NAME)
-        );
+        super(getRpcBackendAddress(OtherClient.SERVICE_NAME), getCredentials(OtherClient.SERVICE_NAME));
     }
 }
