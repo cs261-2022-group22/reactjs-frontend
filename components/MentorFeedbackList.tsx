@@ -1,7 +1,8 @@
 import { Card, CardContent, Stack, Typography, List, CardActions, Button } from "@mui/material";
 import Link from "next/link";
+import { MentorReturn } from "utils/CommonTypes";
 
-export default function Test({mentors}: { mentors: any[]  }) {
+export default function Test({mentors}: { mentors: MentorReturn[]  }) {
   
 
     if (mentors.status == true){

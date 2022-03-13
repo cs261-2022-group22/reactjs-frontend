@@ -3,10 +3,11 @@ import MenteeLinks from "components/MenteeLinks";
 import MentorFeedbackList from "components/MentorFeedbackList";
 import Notifications from "components/Notification";
 import { getSession, GetSessionParams } from "next-auth/react";
+import { MentorReturn } from "utils/CommonTypes";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient, MatchingClient } from "utils/rpcClients";
 
-export default function MenteeDashboard(props: {messages: string[]; mentors: any[]}) {
+export default function MenteeDashboard(props: {messages: string[]; mentors: MentorReturn[]}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "48vh" }}>

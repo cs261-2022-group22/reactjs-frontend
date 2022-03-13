@@ -6,3 +6,9 @@ export type RegistrationData = {
     dateOfBirth: Date;
     businessArea: number;
 };
+export type MentorReturn = {
+    status: boolean;
+    mentorUserId: number;
+    mentorName: string;
+ 
+};
