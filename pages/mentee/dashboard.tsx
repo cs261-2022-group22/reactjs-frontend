@@ -7,7 +7,7 @@ import { MentorReturn } from "utils/CommonTypes";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient, MatchingClient } from "utils/rpcClients";
 
-export default function MenteeDashboard(props: {messages: string[]; mentors: MentorReturn[]}) {
+export default function MenteeDashboard(props: {messages: string[]; mentors: MentorReturn}) {
     return (
         <Grid container>
             <Grid container item xs={12} sx={{ height: "48vh" }}>

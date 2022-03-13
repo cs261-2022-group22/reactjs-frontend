@@ -2,7 +2,7 @@ import { Card, CardContent, Stack, Typography, List, CardActions, Button } from 
 import Link from "next/link";
 import { MentorReturn } from "utils/CommonTypes";
 
-export default function Test({mentors}: { mentors: MentorReturn[]  }) {
+export default function Test({mentors}: { mentors: MentorReturn }) {
   
 
     if (mentors.status == true){
