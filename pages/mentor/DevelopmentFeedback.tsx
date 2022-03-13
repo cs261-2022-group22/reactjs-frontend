@@ -54,7 +54,7 @@ export default function DevelopmentFeedback() {
                         <Button
                             variant="contained"
                             onClick={async () => {
-                                if (message.length >= 0) {
+                                if (message.length > 0) {
                                     let a =
                                         localStorage.getItem("Mentee_UserID");
                                     if (a == null) {
