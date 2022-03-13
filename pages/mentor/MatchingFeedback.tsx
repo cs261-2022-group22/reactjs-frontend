@@ -1,11 +1,6 @@
 import { Typography, Button, Grid, Rating, Box, Alert, Container } from "@mui/material";
-import Ratings from "components/Ratings";
 import React, { useState } from "react";
 import Link from "next/link";
-import { NextResponse } from "next/server";
-import { ServiceError } from "@grpc/grpc-js";
-import { NextApiRequest, NextApiResponse } from "next";
-import { FeedbackClient } from "utils/rpcClients";
 import { getSession, GetSessionParams } from "next-auth/react";
 import axios from "axios";
 

@@ -1,7 +1,6 @@
 import { ServiceError } from "@grpc/grpc-js";
 import { NextApiRequest, NextApiResponse } from "next";
-import { AccountClient, FeedbackClient } from "utils/rpcClients";
-import { ProfileType } from "utils/proto/account";
+import {FeedbackClient } from "utils/rpcClients";
 
 export default async function MentorFeedback(req: NextApiRequest, res: NextApiResponse) {
     try {

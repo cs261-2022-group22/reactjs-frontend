@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import MenteeLinks from "components/MenteeLinks";
 import MentorFeedbackList from "components/MentorFeedbackList";
 import Notifications from "components/Notification";
-import UpcomingAppointments from "components/UpcomingAppointments";
 import { getSession, GetSessionParams } from "next-auth/react";
 import { ProfileType } from "utils/proto/account";
 import { AccountClient, MatchingClient } from "utils/rpcClients";
