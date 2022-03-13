@@ -4,9 +4,9 @@ import {
     TextField,
     Typography,
     Alert,
-    Link,
     Stack,
 } from "@mui/material";
+import Link from "next/link";
 import axios from "axios";
 import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -110,9 +110,9 @@ export default function DevelopmentFeedback() {
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
-                        Thank you for the feedback
+                        Feedback Recorded successfully
                     </Alert>
-                    <Link href="/mentor/dashboard">
+                    <Link href="/mentor/dashboard" passHref>
                         <Button
                             variant="contained"
                             size="large"
