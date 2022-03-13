@@ -24,7 +24,7 @@ export default function MenteeFeedback(props: {mid: string}) {
         }}
         >
         <Typography sx={{fontweight: "bold"}} variant="h3" component="legend">How Good Was The Match?</Typography>
-        <Typography variant="h3" component="legend">Mentee's Name: { localStorage.getItem('Mentee_Name')  }</Typography>
+        <Typography variant="h3" component="legend">Mentee&aposs Name: { localStorage.getItem('Mentee_Name')  }</Typography>
         <Rating
             sx={{
                 fontSize: "5.5rem",

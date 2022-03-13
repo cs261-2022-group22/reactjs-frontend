@@ -23,7 +23,7 @@ export default function MentorFeedback(props: {mid: string}) {
         }}
         >
         <Typography sx={{fontweight: "bold"}} variant="h3" component="legend">How Good Was The Match?</Typography>
-        <Typography variant="h3" component="legend">Mentor's Name: { localStorage.getItem('Mentor_Name')  }</Typography>
+        <Typography variant="h3" component="legend">Mentor&aposs Name: { localStorage.getItem('Mentor_Name')  }</Typography>
         <Rating
             sx={{
                 fontSize: "5.5rem",
