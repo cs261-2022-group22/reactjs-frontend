@@ -1,14 +1,10 @@
-import {
-    WrapAsyncRPC,
-    getCredentials,
-    getRpcBackendAddress,
-} from "./gRPCHelpers";
-
+import { getCredentials, getRpcBackendAddress, WrapAsyncRPC } from "./gRPCHelpers";
 import { AccountServiceClient } from "./proto/account";
 import { FeedbackServiceClient } from "./proto/feedback";
 import { MatchingServiceClient } from "./proto/matching";
 import { MeetingServiceClient } from "./proto/meeting";
 import { OtherServiceClient } from "./proto/other";
+
 
 export class AccountClient extends AccountServiceClient {
     static SERVICE_NAME = "ACCOUNT";
@@ -72,10 +68,7 @@ export class MeetingClient extends MeetingServiceClient {
 
     listAppointmentsAsync = WrapAsyncRPC(this, this.list5AppointmentsByUserID);
     listPlansOfActionAsync = WrapAsyncRPC(this, this.listPlansOfActions);
-    togglePlansOfActionAsync = WrapAsyncRPC(
-        this,
-        this.togglePlansOfActionCompletion
-    );
+    togglePlansOfActionAsync = WrapAsyncRPC(this, this.togglePlansOfActionCompletion);
     createPlansOfActionAsync = WrapAsyncRPC(this, this.createPlansOfActions);
     scheduleMeetingAsync = WrapAsyncRPC(this, this.scheduleNewMeeting);
     scheduleWorkshopAsync = WrapAsyncRPC(this, this.scheduleNewWorkshop);
