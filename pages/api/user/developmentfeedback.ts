@@ -10,7 +10,7 @@ export default async function developmentfeedback(
     const session = await getSession({ req });
     if (
         !session ||
-        (session["id"] as number) !== (req.body.mentorUserId as number)
+        (session["id"] as number) != (req.body.mentorUserId as number)
     ) {
         res.status(403).json({ error: "Not logged in", success: false });
     }
