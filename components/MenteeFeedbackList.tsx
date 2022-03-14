@@ -97,7 +97,7 @@ export default function Test({ mentors }: { mentors: MentorReturn }) {
                         "&:hover": { boxShadow: 2 },
                         mr: "1vh",
                         maxHeight: "45vh",
-                        maxWidth: "100vh",
+                        maxWidth: "100vw",
                         height: "100%",
                     }}
                 >

@@ -109,7 +109,7 @@ export default function MenteeDetails(props: {
                                     }
                                     sx={{
                                         minWidth: "40vh",
-                                        maxWidth: "40vh",
+                                        maxWidth: "40vw",
                                     }}
                                 ></FormControlLabel>
                             </FormGroup>
@@ -123,7 +123,7 @@ export default function MenteeDetails(props: {
                                 disabled={!emailToggle}
                                 sx={{
                                     minWidth: "50vh",
-                                    maxWidth: "50vh",
+                                    maxWidth: "50vw",
                                 }}
                             />
                         </Stack>
@@ -150,7 +150,7 @@ export default function MenteeDetails(props: {
                                     }
                                     sx={{
                                         minWidth: "40vh",
-                                        maxWidth: "40vh",
+                                        maxWidth: "40vw",
                                     }}
                                 ></FormControlLabel>
                             </FormGroup>
@@ -164,7 +164,7 @@ export default function MenteeDetails(props: {
                                     }}
                                     sx={{
                                         minWidth: "50vh",
-                                        maxWidth: "50vh",
+                                        maxWidth: "50vw",
                                     }}
                                     disabled={!baToggle}
                                 >
@@ -201,7 +201,7 @@ export default function MenteeDetails(props: {
                                     }
                                     sx={{
                                         minWidth: "40vh",
-                                        maxWidth: "40vh",
+                                        maxWidth: "40vw",
                                     }}
                                 ></FormControlLabel>
                             </FormGroup>
@@ -214,7 +214,7 @@ export default function MenteeDetails(props: {
                                     input={<OutlinedInput label="Skill" />}
                                     sx={{
                                         minWidth: "50vh",
-                                        maxWidth: "50vh",
+                                        maxWidth: "50vw",
                                     }}
                                     disabled={!skillToggle}
                                     renderValue={(selected) => (
