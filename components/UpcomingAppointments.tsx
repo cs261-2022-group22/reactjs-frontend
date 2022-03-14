@@ -1,8 +1,8 @@
 import {
     Cancel as CancelIcon,
-    Refresh as RefreshIcon,
+    Refresh as RefreshIcon
 } from "@mui/icons-material";
-import { Card, List, ListItem, Paper, Stack, Typography } from "@mui/material";
+import { Card, List, ListItem, Stack, Typography } from "@mui/material";
 import groupBy from "lodash.groupby";
 import Link from "next/link";
 import { useState } from "react";
