@@ -3,15 +3,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { MeetingClient } from "utils/rpcClients";
 
-export default async function TogglePOA(req: NextApiRequest, res: NextApiResponse) {
-	const session = await getSession({ req });
+export default async function TogglePOA(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
+    const session = await getSession({ req });
     if (!session) {
-        res.status(403).json({ error: "Not logged in", success: false });
+        res.status(403).json({ error: "Not logged in", successful: false });
     }
-	try {
+    try {
         const meetingClient = new MeetingClient();
         const result = await meetingClient.togglePlansOfActionAsync({
-            planid: req.body.planid as number
+            planid: req.body.planid as number,
         });
 
         res.status(200).json({ successful: result.successful });
