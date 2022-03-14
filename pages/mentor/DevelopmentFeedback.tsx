@@ -19,7 +19,7 @@ export default function DevelopmentFeedback() {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("normal");
 
-	const { data: session } = useSession();
+    const { data: session } = useSession();
     if (!session) {
         return <Unauthenticated />;
     }
@@ -38,7 +38,7 @@ export default function DevelopmentFeedback() {
                         focused
                         sx={{
                             minWidth: "120vh",
-                            maxWidth: "120vh",
+                            maxWidth: "120vw",
                             mt: "5vh",
                             mb: "10vh",
                         }}

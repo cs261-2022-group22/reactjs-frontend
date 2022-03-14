@@ -1,8 +1,8 @@
 import {
     Cancel as CancelIcon,
-    Refresh as RefreshIcon,
+    Refresh as RefreshIcon
 } from "@mui/icons-material";
-import { Card, List, ListItem, Paper, Stack, Typography } from "@mui/material";
+import { Card, List, ListItem, Stack, Typography } from "@mui/material";
 import groupBy from "lodash.groupby";
 import Link from "next/link";
 import { useState } from "react";
@@ -26,16 +26,18 @@ export default function UpcomingAppointments(props: {
     }
 
     return (
-        <Paper
-            variant="outlined"
+        <Card
             sx={{
-                padding: "10px",
-                mt: "9px",
-                boxShadow: 0,
-                maxWidth: "100vh",
-                backgroundColor: "transparent",
+                mt: "1vh",
+                boxShadow: 2,
+                "&:hover": { boxShadow: 2 },
+                mr: "1vh",
+                padding: "1vh",
+                background: "transparent",
+                maxHeight: "44vh",
+                maxWidth: "100vw",
+                height: "100%",
             }}
-            elevation={0}
         >
             <Stack
                 direction="row"
@@ -133,6 +135,6 @@ export default function UpcomingAppointments(props: {
                     </Card>
                 ))}
             </List>
-        </Paper>
+        </Card>
     );
 }

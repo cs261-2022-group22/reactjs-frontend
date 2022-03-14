@@ -48,7 +48,7 @@ export default function Tutorial() {
                         }}
                     >
                         <CardMedia
-                            sx={{ maxWidth: "110vh", maxHeight: "110vh" }}
+                            sx={{ maxWidth: "110vw", maxHeight: "110vh" }}
                             component="img"
                             image="/Images/LoginPage.png"
                             alt="Login"

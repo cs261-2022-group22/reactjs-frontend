@@ -5,11 +5,11 @@ import { useState } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function developerFeedback() {
-	const [message, setMessage] = useState("")
-	const [status, setStatus] = useState("normal")
+    const [message, setMessage] = useState("")
+    const [status, setStatus] = useState("normal")
 
-	if (status == "normal") {
-		return (
+    if (status == "normal") {
+        return (
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Typography sx={{ mt: "5vh", mb: "1vh" }} variant="h3">
@@ -21,7 +21,7 @@ export default function developerFeedback() {
                         focused
                         sx={{
                             minWidth: "120vh",
-                            maxWidth: "120vh",
+                            maxWidth: "120vw",
                             mt: "5vh",
                             mb: "10vh",
                         }}
@@ -50,8 +50,8 @@ export default function developerFeedback() {
                 </Container>
             </>
         );
-	} else {
-		return (
+    } else {
+        return (
             <>
                 <Container sx={{ textAlign: "center" }}>
                     <Alert severity="info" sx={{ mt: "3vh", mb: "3vh" }}>
@@ -69,5 +69,5 @@ export default function developerFeedback() {
                 </Container>
             </>
         );
-	}
+    }
 }

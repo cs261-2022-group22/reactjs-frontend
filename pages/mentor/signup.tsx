@@ -94,7 +94,7 @@ export default function MentorSignUp(props: { skills: SkillResult[] }) {
                                     display: "grid",
                                     rowGap: 2,
                                     mt: "10vh",
-                                    maxWidth: "20vh",
+                                    maxWidth: "20vw",
                                 }}
                             >
                                 <Button
