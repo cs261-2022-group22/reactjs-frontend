@@ -4,7 +4,7 @@ import { FeedbackClient } from "utils/rpcClients";
 import { getSession } from "next-auth/react";
 
 
-export default async function MenteeFeedback(req: NextApiRequest, res: NextApiResponse) {
+export default async function developmentfeedback(req: NextApiRequest, res: NextApiResponse) {
 	const session = await getSession({ req });
     if (!session || (session["id"] as number) !== (req.body.mentorUserId as number)) {
         res.status(403).json({ error: "Not logged in", success: false });
