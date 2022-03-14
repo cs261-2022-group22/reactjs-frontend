@@ -16,7 +16,7 @@ export default function MenteeDashboard(props: {
 }) {
     return (
         <Grid container>
-            <Grid container item xs={12} sx={{ height: "48vh" }}>
+            <Grid container item xs={12} sx={{ height: "46vh" }}>
                 <Grid item xs={6}>
                     <MenteeLinks />
                 </Grid>
