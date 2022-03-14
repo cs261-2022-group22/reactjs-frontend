@@ -9,6 +9,10 @@ export default async function create(req: NextApiRequest, res: NextApiResponse) 
     if (session)
         console.log("Received a creating attempt from user:")
 
+	if (!session) {
+        res.status(403).json({ error: "Not logged in" });
+    }
+
     if (req.method !== "POST") {
         res.status(405).send(`Method ${req.method} not allowed on this API endpoint.`)
         return

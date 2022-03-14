@@ -9,6 +9,10 @@ export default async function schedule(req: NextApiRequest, res: NextApiResponse
     if (session)
         console.log("Received a scheduling attempt from user:")
 
+	if (!session) {
+		res.status(403).json({ error: "Not logged in" });
+	}
+
     if (req.method !== "POST") {
         res.status(405).send(`Method ${req.method} not allowed on this API endpoint.`)
         return
