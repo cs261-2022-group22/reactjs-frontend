@@ -4,7 +4,6 @@ import { AccountClient } from "utils/rpcClients";
 
 export default async function ListBusinessAreas(req: NextApiRequest, res: NextApiResponse) {
     req;
-
     let areas: ListBusinessAreasReply = { businessAreas: [] }
 
     try {
