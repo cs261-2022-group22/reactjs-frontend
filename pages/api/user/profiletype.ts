@@ -9,6 +9,7 @@ export default async function ProfileType(
     const session = await getSession({ req });
     if (!session) {
         res.status(403).json({ error: "Not logged in" });
+        return;
     }
     const client = new AccountClient();
     const profileResult = await client.listAccountProfilesAsync({

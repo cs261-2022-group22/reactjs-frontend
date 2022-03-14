@@ -11,6 +11,7 @@ export default async function ChangeDetails(
     const session = await getSession({ req });
     if (!session || (session["id"] as number) !== (req.body.userid as number)) {
         res.status(403).json({ error: "Not logged in", success: false });
+        return;
     }
     try {
         const client = new AccountClient();

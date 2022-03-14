@@ -10,6 +10,7 @@ export default async function developerfeedback(
     const session = await getSession({ req });
     if (!session) {
         res.status(403).json({ error: "Not logged in", success: false });
+        return;
     }
     try {
         const client = new FeedbackClient();

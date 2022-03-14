@@ -10,6 +10,7 @@ export default async function GetAssignment(
     const session = await getSession({ req });
     if (!session) {
         res.status(403).json({ error: "Not logged in", status: false });
+        return;
     }
     try {
         const client = new MatchingClient();

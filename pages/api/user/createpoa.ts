@@ -10,6 +10,7 @@ export default async function CreatePOA(
     const session = await getSession({ req });
     if (!session || (session["id"] as number) !== (req.body.userid as number)) {
         res.status(403).json({ error: "Not logged in", successful: false });
+        return;
     }
     try {
         const meetingClient = new MeetingClient();

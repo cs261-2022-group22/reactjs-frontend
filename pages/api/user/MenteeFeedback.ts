@@ -13,6 +13,7 @@ export default async function MenteeFeedback(
         (session["id"] as number) !== (req.body.mentorUserId as number)
     ) {
         res.status(403).json({ error: "Not logged in", status: false });
+        return;
     }
     try {
         const client = new FeedbackClient();

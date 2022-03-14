@@ -13,6 +13,7 @@ export default async function developmentfeedback(
         (session["id"] as number) != (req.body.mentorUserId as number)
     ) {
         res.status(403).json({ error: "Not logged in", success: false });
+        return;
     }
     try {
         const client = new FeedbackClient();

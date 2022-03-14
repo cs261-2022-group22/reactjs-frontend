@@ -13,6 +13,7 @@ export default async function create(
 
     if (!session) {
         res.status(403).json({ error: "Not logged in" });
+        return;
     }
 
     if (req.method !== "POST") {

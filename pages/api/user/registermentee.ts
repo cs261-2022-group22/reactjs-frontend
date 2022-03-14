@@ -10,6 +10,7 @@ export default async function RegisterMentee(
     const session = await getSession({ req });
     if (!session || (session["id"] as number) !== (req.body.userid as number)) {
         res.status(403).json({ error: "Not logged in", status: false });
+        return;
     }
     try {
         const client = new AccountClient();
