@@ -6,7 +6,7 @@ import { getSession } from "next-auth/react";
 
 export default async function ChangeDetails(req: NextApiRequest, res: NextApiResponse) {
 	const session = await getSession({ req });
-    if (!session) {
+    if (!session || (session["id"] as number) !== (req.body.userid as number)) {
         res.status(403).json({ error: "Not logged in", success: false });
     }
     try {

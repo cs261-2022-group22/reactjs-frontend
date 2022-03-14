@@ -1,10 +1,9 @@
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import LoginButton from "components/LoginButton";
 import FrontPagePicture from "components/FrontPagePicture";
 import RegisterButton from "components/RegisterButton";
 import FrontPageText from "components/FrontPageText";
 import BottomBar from "components/BottomBar";
-import { signIn } from "next-auth/react";
 
 export default function Home() {
     return (
