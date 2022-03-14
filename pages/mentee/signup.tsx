@@ -5,7 +5,7 @@ import {
 import {
     Alert, Box, Button, Chip, Container, FormControl,
     InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Stack,
-    Typography
+    Typography, Link as RefreshLink
 } from "@mui/material";
 import axios from "axios";
 import Unauthenticated from "components/Unauthenticated";
@@ -150,7 +150,7 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
                     An error has occurred, please try again (You may already
                     have an account)
                 </Alert>
-                <Link href="/mentee/signup" passHref>
+                <RefreshLink href="/mentee/signup">
                     <Button
                         variant="contained"
                         size="large"
@@ -158,7 +158,7 @@ export default function MenteeSignUp(props: { skills: SkillResult[] }) {
                     >
                         Try again
                     </Button>
-                </Link>
+                </RefreshLink>
             </Container>
         );
     } else {
